@@ -1,5 +1,5 @@
 # ASIC_Design_Class_1
-#Laboratory 1: Create a C program to find the sum of n natural numbers, compile it using gcc compiler. Verify the output of the C program after execution.
+**Laboratory 1:** Create a C program to find the sum of n natural numbers, compile it using gcc compiler. Verify the output of the C program after execution.
 
 Step 1: Create a new sum1ton.c file in the desired directory in Linux environment.
 
