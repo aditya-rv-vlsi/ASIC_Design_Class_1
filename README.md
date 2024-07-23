@@ -7,8 +7,9 @@ This is the Github repository of **Aditya R Venkateshwaran, MT2024502** for the 
 
 ***
 <details>
-  <summary>**Laboratory 1:** Create a C program to find the sum of n natural numbers, compile it using gcc compiler. Verify the output of the C program after execution.</summary>
-  <p>Step 1: Create a new sum1ton.c file in the desired directory (ASIC Class) in Linux environment.
+  <summary> **Laboratory 1:** Create a C program to find the sum of n natural numbers, compile it using gcc compiler. Verify the output of the C program after execution.</summary>
+  <p> Step 1: Create a new sum1ton.c file in the desired directory (ASIC Class) in Linux environment.
+  
   ![image](https://github.com/user-attachments/assets/a37c4825-dbf3-458a-ab23-fb4d47fb4c0d)
   
   Here, GEDIT text editor from Ubuntu is used. Write and save your C program in the text editor.
