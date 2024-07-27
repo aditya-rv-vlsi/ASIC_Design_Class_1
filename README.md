@@ -100,7 +100,9 @@ It can be observed that the number of instructions are equal to (0x100DC-0x100B0
 
 <details>
   <summary>
-    Identify various RISC-V instruction type (R, I, S, B, U, J) and exact 32-bit instruction      code in the instruction type format for below RISC-V instructions
+    Identify various RISC-V instruction type (R, I, S, B, U, J) and exact 32-bit instruction code in the instruction type format for below RISC-V instructions
+
+    
     1. ADD r11, r12, r13
     2. SUB r13, r11, r12
     3. AND r12, r11, r13
