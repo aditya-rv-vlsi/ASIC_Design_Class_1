@@ -100,7 +100,8 @@ It can be observed that the number of instructions are equal to (0x100DC-0x100B0
 
 <details>
   <summary>
-    Identify various RISC-V instruction type (R, I, S, B, U, J) and exact 32-bit instruction code in the instruction type format for below RISC-V instructions
+    Laboratory 4: 
+    Task 1: Identify various RISC-V instruction type (R, I, S, B, U, J) and exact 32-bit instruction code in the instruction type format for below RISC-V instructions
 
     
     1. ADD r11, r12, r13
@@ -116,8 +117,11 @@ It can be observed that the number of instructions are equal to (0x100DC-0x100B0
     11. BEQ r0, r0, 15
     12. LW r23, r21, 2
     13. SLL r25, r21, r20
+
+    Task 2: 
   </summary>
- 
+
+**Task 1:**
 The instructions format of a processor is the way in which machine language instructions are structured and organized for a processor to execute. It is made up of series of 0s and 1s, each containing information about the location and operation of data.
 There are 6 instruction formats in RISC-V:
 
@@ -215,6 +219,11 @@ In J-type instruction, J stand for jump, which means that this instruction forma
 |11| BEQ r0, r0, 15     |B| Branch if the contents of registers R0 and R0 are equal, to the address denoted by the sum of the address held by the program counter (PC) and the immediate value (15)|[12|10:5] rs2 rs1_funct3_imm[4:1'|'11]_opcode|000000_00000_00000_000_01111_1100011|
 |12| LW r23, r21, 2     |I|Load Word (32 bits or 4 bytes) from the address pointed by the sum of address held in register R21 and the immediate value (2) and store it in register R23|imm[11:0]_rs1_funct3_rd_opcode|000000000010_10101_010_10111_0000011|
 |13| SLL r25, r21, r20  |R| Perform Shift Logical Left on data present in register R21, based on the data present in register R20, and store the result in register R25|funct7 rs2 rs1 funct3 rd opcode   | 0000000_10100_10101_001_11001_0110011|
+
+
+**Task 2:**
+
+![image](https://github.com/user-attachments/assets/18e8b414-c7ed-4b73-b029-8a26e24ab2bb)
 
 </details>
 
