@@ -118,7 +118,9 @@ It can be observed that the number of instructions are equal to (0x100DC-0x100B0
     12. LW r23, r21, 2
     13. SLL r25, r21, r20
 
-    Task 2: 
+
+
+    Task 2: Use the RISC-V Core Verilog netlist and testbench given, for functional simulation experiment. Upload waveform snapshots for the commands. 
   </summary>
 
 **Task 1:**
@@ -230,19 +232,33 @@ Enter the following instructions in the Terminal:
 The instructions given to me are hardcoded into the memory, in accordance to the 32 bit format for RISC-V Architechture
 
 always @(posedge reset) begin
+    
         MEM[0] <= 32'h00D60B67; // add r11, r12, r13
+        
         MEM[1] <= 32'h40C586B3; // sub r13, r11, r12
+        
         MEM[2] <= 32'h00D5EC67; // and r12, r11, r13
+        
         MEM[3] <= 32'h05563233; // or r8, r12, r5
+        
         MEM[4] <= 32'h0045C833; // xor r8, r11, r4
+        
         MEM[5] <= 32'h042A28BC; // slt r30, r20, r4
+        
         MEM[6] <= 32'h00058AF9; // addi r31, r21, 5
+        
         MEM[7] <= 32'h009D548B; // sw r21, r19, 4
+        
         MEM[8] <= 32'h00A55B4D; // srl r26, r21, r20
+        
         MEM[9] <= 32'h130208C7; // bne r0, r19, 20
+        
         MEM[10] <= 32'h00000FFF; // beq r0, r0, 15
+        
         MEM[11] <= 32'h0015577F; // lw r23, r21, 2
+        
         MEM[12] <= 32'h00A55935; // sll r25, r21, r20
+    
     end
 
     The respective instructions along with the relevant waveforms are as shown below: 
