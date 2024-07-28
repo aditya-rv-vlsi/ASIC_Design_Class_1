@@ -223,9 +223,95 @@ In J-type instruction, J stand for jump, which means that this instruction forma
 
 **Task 2:**
 
-![image](https://github.com/user-attachments/assets/18e8b414-c7ed-4b73-b029-8a26e24ab2bb)
+Enter the following instructions in the Terminal:
+
+![image](https://github.com/user-attachments/assets/931599ce-b260-4f2e-aeb4-50340d50453e)
+
+The instructions given to me are hardcoded into the memory, in accordance to the 32 bit format for RISC-V Architechture
+
+always @(posedge reset) begin
+        MEM[0] <= 32'h00D60B67; // add r11, r12, r13
+        MEM[1] <= 32'h40C586B3; // sub r13, r11, r12
+        MEM[2] <= 32'h00D5EC67; // and r12, r11, r13
+        MEM[3] <= 32'h05563233; // or r8, r12, r5
+        MEM[4] <= 32'h0045C833; // xor r8, r11, r4
+        MEM[5] <= 32'h042A28BC; // slt r30, r20, r4
+        MEM[6] <= 32'h00058AF9; // addi r31, r21, 5
+        MEM[7] <= 32'h009D548B; // sw r21, r19, 4
+        MEM[8] <= 32'h00A55B4D; // srl r26, r21, r20
+        MEM[9] <= 32'h130208C7; // bne r0, r19, 20
+        MEM[10] <= 32'h00000FFF; // beq r0, r0, 15
+        MEM[11] <= 32'h0015577F; // lw r23, r21, 2
+        MEM[12] <= 32'h00A55935; // sll r25, r21, r20
+    end
+
+    The respective instructions along with the relevant waveforms are as shown below: 
+
+    1. ADD r11, r12, r13
+
+![image](https://github.com/user-attachments/assets/046be833-6cd7-4f5d-b841-6b4e68559b0d)
+
+    2. SUB r13, r11, r12
+
+![image](https://github.com/user-attachments/assets/ee195b5d-fe98-4129-bf70-859241e5f1cf)
+
+    3. AND r12, r11, r13
+
+![image](https://github.com/user-attachments/assets/7fd4ef82-e131-4293-8818-98fa30e3f605)
+
+    4. OR r8, r12, r5
+
+![image](https://github.com/user-attachments/assets/cd54c929-990b-43ae-bd4f-a049653ab231)
+
+    5. XOR r8, r11, r4
+
+![image](https://github.com/user-attachments/assets/00eaa52e-8e55-4905-91e1-f07c9fb9af06)
+
+    6. SLT r30, r20, r4
+
+![image](https://github.com/user-attachments/assets/baee2b52-d2f9-4e73-adab-a2a7a9911b97)
+
+    7. ADDI r31, r21, 5
+
+![image](https://github.com/user-attachments/assets/ae9ed1da-bb9f-42db-9516-27e66ae0d50c)
+
+    8. SW r21, r19, 4
+
+![image](https://github.com/user-attachments/assets/6874a8f3-d65f-4e01-8745-14cc0709ad0e)
+
+    9. SRL r26, r21, r20
+
+![image](https://github.com/user-attachments/assets/920555d0-ce19-4ba9-9e58-9c06cd9b657d)
+
+    10. BNE r0, r19, 20
+
+![image](https://github.com/user-attachments/assets/969044cb-f332-49ce-8530-9fe2589316c9)
+
+    11. BEQ r0, r0, 15
+
+![image](https://github.com/user-attachments/assets/8be0aba5-fc67-41a4-8e15-61eafc7e8034)
+
+    12. LW r23, r21, 2
+
+![image](https://github.com/user-attachments/assets/148160b1-8c8e-49f8-8211-f25358c5a328)
+
+    13. SLL r25, r21, r20
+
+![image](https://github.com/user-attachments/assets/425a7071-213e-4d05-9d69-6a7a3b0847a8)
+
+
+Final Output
+
+![image](https://github.com/user-attachments/assets/54d92552-37f3-4aa4-bbd5-643e162b2ccc)
+
+
+
 
 </details>
+
+
+
+
 
 
 
