@@ -222,23 +222,6 @@ In J-type instruction, J stand for jump, which means that this instruction forma
 |12| LW r23, r21, 2     |I|Load Word (32 bits or 4 bytes) from the address pointed by the sum of address held in register R21 and the immediate value (2) and store it in register R23|imm[11:0]_rs1_funct3_rd_opcode|000000000010_10101_010_10111_0000011|
 |13| SLL r25, r21, r20  |R| Perform Shift Logical Left on data present in register R21, based on the data present in register R20, and store the result in register R25|funct7 rs2 rs1 funct3 rd opcode   | 0000000_10100_10101_001_11001_0110011|
 
-|Sl. No|Operation |Standard RISCV ISA |Hardcoded ISA |
-|------|----------|-------------------|--------------|
-|1 |ADD r11, r12, r13 |32'h00d6b33	|32'h00d6b300|
-|2 |SUB r13, r11, r12 |32'h40b6d33	|32'h40b6d380|
-|3 |AND r12, r11, r13 |32'h00d6f33	|32'h00d6f400|
-|4 |OR r8, r12, r5 |32'h0056c33	|32'h0056c400|
-|5 |XOR r8, r11, r4 |32'h0046c33	|32'h0046c500|
-|6 |SLT r30, r20, r4 |32'h004a0f33	|32'h004a0f00|
-|7 |ADDI r31, r21, 5 |32'h005af93	|32'h005af200|
-|8 |SW r21, r19, 4 |32'h004bb3	|32'h0040b300|
-|9 |SRL r26, r21, r20 |32'h014b6d33	|32'h014b6d00|
-|10 |BNE r0, r19, 20 |32'h014be63	|32'h014be200|
-|11 |BEQ r0, r0, 15 |32'h00fbe63	|32'h00fbe000|
-|12 |LW r23, r21, 2	|32'h002b8513	|32'h002b8100|
-|13 |SLL r25, r21, r20	32'h014b6933	32'h014b6900
-
-
 **Task 2:**
 
 Enter the following instructions in the Terminal:
@@ -279,6 +262,22 @@ always @(posedge reset) begin
 
 
 Here's the table formatted for GitHub with the provided data: Standard ISA vs Hardcoded ISA
+|Sl. No|Operation |Standard RISCV ISA |Hardcoded ISA |
+|------|----------|-------------------|--------------|
+|1 |ADD r11, r12, r13 |32'h00d6b33	|32'h00d6b300|
+|2 |SUB r13, r11, r12 |32'h40b6d33	|32'h40b6d380|
+|3 |AND r12, r11, r13 |32'h00d6f33	|32'h00d6f400|
+|4 |OR r8, r12, r5 |32'h0056c33	|32'h0056c400|
+|5 |XOR r8, r11, r4 |32'h0046c33	|32'h0046c500|
+|6 |SLT r30, r20, r4 |32'h004a0f33	|32'h004a0f00|
+|7 |ADDI r31, r21, 5 |32'h005af93	|32'h005af200|
+|8 |SW r21, r19, 4 |32'h004bb3	|32'h0040b300|
+|9 |SRL r26, r21, r20 |32'h014b6d33	|32'h014b6d00|
+|10 |BNE r0, r19, 20 |32'h014be63	|32'h014be200|
+|11 |BEQ r0, r0, 15 |32'h00fbe63	|32'h00fbe000|
+|12 |LW r23, r21, 2	|32'h002b8513	|32'h002b8100|
+|13 |SLL r25, r21, r20	|32'h014b6933	|32'h014b6900|
+
 
     The respective instructions along with the relevant waveforms are as shown below: 
 
