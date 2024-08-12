@@ -223,6 +223,7 @@ In J-type instruction, J stand for jump, which means that this instruction forma
 |13| SLL r25, r21, r20  |R| Perform Shift Logical Left on data present in register R21, based on the data present in register R20, and store the result in register R25|funct7 rs2 rs1 funct3 rd opcode   | 0000000_10100_10101_001_11001_0110011|
 
 |Sl. No|Operation |Standard RISCV ISA |Hardcoded ISA |
+|------|----------|-------------------|--------------|
 |1 |ADD r11, r12, r13 |32'h00d6b33	|32'h00d6b300|
 |2 |SUB r13, r11, r12 |32'h40b6d33	|32'h40b6d380|
 |3 |AND r12, r11, r13 |32'h00d6f33	|32'h00d6f400|
