@@ -344,9 +344,9 @@ Final Output
 <details>
   <summary>Laboratory 5: The application that I chose is an 8-bit Counter with the following features:
     
-1. Bidirectional Counting.
-2. User can input start and stop values.
-3. Provision for wrap around, in case of underlow/overflow of counter value.
+    1. Bidirectional Counting.
+    2. User can input start and stop values.
+    3. Provision for wrap around, in case of underlow/overflow of counter value.
 
    The following tasks have been performed:
    
