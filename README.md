@@ -342,13 +342,17 @@ Final Output
 ***
 
 <details>
-  <summary>Laboratory 5: Following Application has been chosen: 
-    8-bit Counter with the following features:
+  <summary>Laboratory 5: The application that I chose is an 8-bit Counter with the following features:
     
-1. Bidirectional Counting
-2. User can input start and stop values
-3. Provision for wrap around, in case of underlow/overflow of counter value" 
-   Upload C code, compile with GCC and RISCV-GCC, upload the snapshots.
+1. Bidirectional Counting.
+2. User can input start and stop values.
+3. Provision for wrap around, in case of underlow/overflow of counter value.
+
+   The following tasks have been performed:
+   
+   1. Uploading of C program.
+   2. Compile with GCC, RISCV-GCC and Spike.
+   3. Uploading of relevant screenshots.
    </summary>
 **Step 1:** Create a file by the name counter_8bit.c using gedit editor, type in the code, and save the file.
 ![image](https://github.com/user-attachments/assets/96002e3c-effe-41a9-921a-178e22652a9b)
