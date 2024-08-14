@@ -344,11 +344,53 @@ Final Output
 <details>
   <summary>Laboratory 5: Following Application has been chosen: 
     8-bit Counter with the following features:
+    
 1. Bidirectional Counting
 2. User can input start and stop values
 3. Provision for wrap around, in case of underlow/overflow of counter value" 
-   Upload C code, compile with GCC and RISCV-GCC, upload the snapshots.</summary>
+   Upload C code, compile with GCC and RISCV-GCC, upload the snapshots.
+   </summary>
+**Step 1:** Create a file by the name counter_8bit.c using gedit editor, type in the code, and save the file.
+![image](https://github.com/user-attachments/assets/96002e3c-effe-41a9-921a-178e22652a9b)
 
+**Step 2:** Run the file using the GCC Compiler, and change the name of the executable file to counter_8bit.out
+![image](https://github.com/user-attachments/assets/e628de13-6c3e-4839-ab3b-738b40a98adc)
+
+**Step 3:** Run the executable file, and test it for various kinds of inputs, thereby demonstrating the up and down counting, overflow and underflow when counter reaches maximum and minimum value respectively.
+![image](https://github.com/user-attachments/assets/45d363c9-acdd-4755-90ff-527e2f6ace35)
+![image](https://github.com/user-attachments/assets/11ccaf16-5c1c-4523-a983-13c2a7f9aa02)
+![image](https://github.com/user-attachments/assets/24121153-1e2f-4844-ad14-2daf7143953b)
+![image](https://github.com/user-attachments/assets/4a14c26f-fa8f-4963-8eef-71f4abe4c328)
+![image](https://github.com/user-attachments/assets/8b2931f7-2162-4808-aa65-53fad1967f09)
+![image](https://github.com/user-attachments/assets/59537f9d-4cbc-4eff-aefb-dd3f827980a6)
+
+**Step 4:** Now, proceed for performing the simulation using the RISCV-GCC compiler, using the O1 switch.
+![image](https://github.com/user-attachments/assets/8f5c7c53-8a68-4453-bbed-5de42f6d2cd8)
+
+**Step 5:** Perform the object dump for the file counter_8bit.o
+![image](https://github.com/user-attachments/assets/e150ab74-b81a-420e-ab57-3be203e596d8)
+![image](https://github.com/user-attachments/assets/df3e3719-bf43-4a3c-82d2-adbabe406f9d)
+
+Type /main to reach to the code section that corresponds to the main function of the C program.
+
+![image](https://github.com/user-attachments/assets/42469ddf-7d86-4b05-b2fc-7536aefcb209)
+![image](https://github.com/user-attachments/assets/9bb69963-66ba-40cf-8a85-b17e93bccce2)
+
+The number of instructions can be found out by doing the calculation (10438-10358)/4 = 38 (hexadecimal), which is 56 instructions (decimal).
+
+![image](https://github.com/user-attachments/assets/c38919bc-e1a8-4ed7-9bc3-ba17f3a0f08b)
+
+**Step 6:** Now, perform the simulation using spike compiler, and compare the output obtained using spike with that of the GCC compiler.
+![image](https://github.com/user-attachments/assets/5d716ff5-260b-40e4-933a-df73420fe576)
+![image](https://github.com/user-attachments/assets/a8d1afbf-d535-4fbb-9a31-2ede8f61f6bc)
+
+**Step 7:** Type in the command "spike -d pk counter_8bit.o" and verify the contents of each register. In this screenshot, I have depicted the change in the value of the stack pointer, when the first instruction is executed at the starting address as mentioned in Step 5.
+
+![image](https://github.com/user-attachments/assets/92bab34d-3adc-4530-98d8-2c09c27d97f4)
+
+![image](https://github.com/user-attachments/assets/39b26eab-72f8-40cb-9fb4-df9ff004c47f)
+
+The difference in stack pointer values can be observed as per the calculation depicted in the screenshot.
 
 
 
