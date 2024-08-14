@@ -337,12 +337,17 @@ Here's the table formatted for GitHub with the provided data: Standard ISA vs Ha
 Final Output
 
 ![image](https://github.com/user-attachments/assets/54d92552-37f3-4aa4-bbd5-643e162b2ccc)
-
-
-
-
 </details>
 
+***
+
+<details>
+  <summary>Laboratory 5: Following Application has been chosen: 
+    8-bit Counter with the following features:
+1. Bidirectional Counting
+2. User can input start and stop values
+3. Provision for wrap around, in case of underlow/overflow of counter value" 
+   Upload C code, compile with GCC and RISCV-GCC, upload the snapshots.</summary>
 
 
 
