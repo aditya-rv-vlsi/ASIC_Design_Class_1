@@ -358,7 +358,7 @@ Final Output
 **Step 1:** Create a file by the name counter_8bit.c using gedit editor, type in the code, and save the file.
 ![image](https://github.com/user-attachments/assets/96002e3c-effe-41a9-921a-178e22652a9b)
 
-
+{
 #include <stdio.h>
 #include <stdint.h>
 #include <unistd.h>  // For usleep()
@@ -447,7 +447,7 @@ int main() {
 
     return 0;
 }
-
+}
 
 
 
