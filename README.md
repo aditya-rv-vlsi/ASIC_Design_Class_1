@@ -490,7 +490,72 @@ The number of instructions can be found out by doing the calculation (10438-1035
 
 The difference in stack pointer values can be observed as per the calculation depicted in the screenshot.
 
+***
 
+<details>
+  <summary>Laboratory 6: Build 5-stage pipeplined RISC-V processor using Makerchip IDE and TL Verilog
+   </summary>
+1. Combinational Logic
+Implementation of a basic combinational calculator.
 
+```
+   $val1[31:0] = $rand1[3:0];
+   $val2[31:0] = $rand2[3:0];
+   
+   $sum[31:0] =  $val1[31:0] +  $val2[31:0];
+   $diff[31:0] =  $val1[31:0] -  $val2[31:0];
+   $prod[31:0] =  $val1[31:0] *  $val2[31:0];
+   $quot[31:0] =  $val1[31:0] /  $val2[31:0];
+   
+   $out[31:0] = $sel[1] ? ($sel[0] ? $quot[31:0] : $prod[31:0])
+                        : ($sel[0] ? $diff[31:0] : $sum[31:0]);
+```
 
+The screenshot of the implementation of the above code shows the generated block diagram as well as the waveform for the circuit.
 
+![image](https://github.com/user-attachments/assets/196e3e4a-c788-4bbd-9258-95e99c636c00)
+
+2. Sequential Logic
+A new operator is introduced  >>no_of_clock_cycles $variable name. It provides the value of the mentioned signal, a certain number of clock cycles prior, as mentioned in the code.
+
+We have a reset signal which will reset the output to 0 when it is pulled high.
+
+```
+$num[15:0] = *reset ? 0             // 0 if reset
+                    : >>1$num + 1;  // otherwise add previous and 1
+```
+
+![image](https://github.com/user-attachments/assets/43c8fe37-4154-4b84-abdf-6eedaf996983)
+
+The screenshot shows the implementation of the counter logic, along with the generated waveform.
+
+![image](https://github.com/user-attachments/assets/38f394df-56e9-47e5-906f-40e457f8d2e0)
+
+3. Pipelined Logic
+The calculator has been implemented following a pipelined design so that the circuit can be operated at higher clock frequencies. The multiplexer introduced to select the operation is shifted to the next clock cycle so that the calculator logic can operate at higher frequencies.
+
+```
+|calc
+      @1
+         $reset = *reset;
+   
+         $val1[31:0] = >>2$out[31:0];
+         $val2[31:0] = $rand2[3:0];
+         $sel[1:0] = $rand3[1:0];
+   
+         $sum[31:0] = $val1[31:0] + $val2[31:0];
+         $diff[31:0] = $val1[31:0] - $val2[31:0];
+         $prod[31:0] = $val1[31:0] * $val2[31:0];
+         $quot[31:0] = $val1[31:0] / $val2[31:0];
+            
+         $count = $reset ? 0 : >>1$count + 1;
+         
+      @2
+         $valid = !$count;
+         $calc_reset = $reset | $valid;
+         $out[31:0] = $calc_reset ? 32'b0
+                                  : ($sel[1] ? ($sel[0] ? $quot[31:0] 
+                                                        : $prod[31:0])
+                                             : ($sel[0] ? $diff[31:0] 
+                                                        : $sum[31:0]));
+```
