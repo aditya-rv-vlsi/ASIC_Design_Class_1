@@ -449,8 +449,6 @@ int main() {
 }
 ```
 
-
-
 **Step 2:** Run the file using the GCC Compiler, and change the name of the executable file to counter_8bit.out
 ![image](https://github.com/user-attachments/assets/e628de13-6c3e-4839-ab3b-738b40a98adc)
 
@@ -491,7 +489,7 @@ The number of instructions can be found out by doing the calculation (10438-1035
 The difference in stack pointer values can be observed as per the calculation depicted in the screenshot.
 
 ***
-
+</details>
 <details>
   <summary>Laboratory 6: Build 5-stage pipeplined RISC-V processor using Makerchip IDE and TL Verilog
    </summary>
@@ -559,3 +557,4 @@ The calculator has been implemented following a pipelined design so that the cir
                                              : ($sel[0] ? $diff[31:0] 
                                                         : $sum[31:0]));
 ```
+</details>
