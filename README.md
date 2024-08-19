@@ -557,4 +557,28 @@ The calculator has been implemented following a pipelined design so that the cir
                                              : ($sel[0] ? $diff[31:0] 
                                                         : $sum[31:0]));
 ```
+
+4. Implementation of a 5 staged pipelined RISC-V Core
+
+Each stage of the pipeline has been described using screenshots:
+
+1. **Program Counter:** Also commonly called the Instruction Pointer (IP), PC is a counter in the processor that indicates where the computer is, presently in the program. PC jumps 4 bytes at a time as each instruction is 32bits in RISC-V.
+![image](https://github.com/user-attachments/assets/c6551a6e-f029-49db-a657-195a23a3fcef)
+
+2. **Instruction Fetch:** The instruction fetch unit (IFU) in a central processing unit (CPU) is responsible for organising program instructions to be fetched from memory, and executed, in an appropriate order. This makes the control logic of the core.
+![image](https://github.com/user-attachments/assets/42facae2-7210-41ad-834f-f3deec5aa2f3)
+
+3. **Instruction Decode:** The decoding stage allows the CPU to determine what instruction is to be performed so that the CPU can tell how many operands it needs to fetch in order to perform the instruction. The opcode fetched from the memory is decoded for the next steps and moved to the appropriate registers. Below image shows how decode is determining the TYPE OF RISC V instructions set (Various types of Instructions in RV32 are I, R, S, J, U)
+![image](https://github.com/user-attachments/assets/a77e97ea-5db0-4659-a4d3-6bfa16770b0e)
+
+4. **Memory:** 
+![image](https://github.com/user-attachments/assets/01cc0fe1-a91e-49fb-8047-b45c32ebea18)
+
+5.**Writeback:**
+
+6. Single Stage RISC V Core A single stage implmentation of the above modules put together looks like below.
+![image](https://github.com/user-attachments/assets/64b472c7-1e51-4240-8c35-d55f61f66778)
+
+
+
 </details>
