@@ -583,7 +583,7 @@ The calculator has been implemented following a pipelined design so that the cir
    m4_asm(ADD, r10, r0, r0)              // Initialize r10 (a0) to 0.
    // Function:
    m4_asm(ADD, r14, r10, r0)             // Initialize sum register a4 with 0x0
-   m4_asm(ADDI, r12, r10, 1010)          // Store count of 10 in register a2.
+   m4_asm(ADDI, r12, r10, 1011)          // Store count of 10 in register a2.
    m4_asm(ADD, r13, r10, r0)             // Initialize intermediate sum register a3 with 0
    // Loop:
    m4_asm(ADD, r14, r13, r14)            // Incremental addition
@@ -828,29 +828,36 @@ The calculator has been implemented following a pipelined design so that the cir
 ```
 **Generated Block Diagram**
 1. Entire Processor
+   
 ![image](https://github.com/user-attachments/assets/fd7fcde0-7369-4d8c-8cb5-d576176eb96d)
 
 
-2. Stage 0: Program Counter
+2. Stage 0: Program Counter\
+   
 ![image](https://github.com/user-attachments/assets/b4474f79-ac26-452c-b638-940d17578e0e)
 
 
 3. Stage 1: Instruction Fetch
+
 ![image](https://github.com/user-attachments/assets/5805fa2b-4346-4c40-9072-e32bde6f847d)
 
 
 4. Stage 2: Instruction Decode
+   
 ![image](https://github.com/user-attachments/assets/4b9224a5-431c-4c11-98ad-e3f086a00df2)
 
 
 5. Stage 3: Instruction Execute
+   
 ![image](https://github.com/user-attachments/assets/0d992f37-4275-4a9e-bc28-9a6fb6929d50)
 
 
-6. Stage 4: Memory Access
+7. Stage 4: Memory Access
+   
 ![image](https://github.com/user-attachments/assets/1abe25e5-bf45-451f-b2ad-20a5eb7faff8)
 
-7. Stage 5: Writeback
+8. Stage 5: Writeback
+   
 ![image](https://github.com/user-attachments/assets/3c238e51-aa9c-4495-aa51-fb4166f94405)
 
 
@@ -858,15 +865,19 @@ The calculator has been implemented following a pipelined design so that the cir
 
 ![image](https://github.com/user-attachments/assets/e63a77ad-eace-412c-ae39-ec4d1e2e6058)
 
-The below screenshots depict the addition of numbers 1 to 10 into the register R14, after every 5 clock cycles starting from 12th clock cycle
-![image](https://github.com/user-attachments/assets/b66c027c-86f5-48c2-aafa-666d55cd03a8)
-![image](https://github.com/user-attachments/assets/c2bf8917-f24a-4bb3-8497-d4935836bc77)
+The below screenshot depict the addition of numbers 1 to 10 into the register R14, after every 5 clock cycles starting from 12th clock cycle
 
 Also, the below code which acts as the testbench can also be viewed in these screenshots at register 17.
 ```
 *passed = |cpu/xreg[17]>>10$value == (1+2+3+4+5+6+7+8+9+10);
 ```
+
+![image](https://github.com/user-attachments/assets/788e235d-99ff-4217-8893-b04cbe9c4d4c)
+
+
+
 **Visualization**
+
 We can view the changing of values in each of the registers as the program is executed.
 ![image](https://github.com/user-attachments/assets/e082d633-c815-4d02-a615-3a3e19b42a9d)
 
