@@ -1,4 +1,4 @@
-![359121373-37196a54-a585-41e3-a8c7-922741e6ffe7](https://github.com/user-attachments/assets/32f0ca58-4609-4390-9aa8-7246ea7aeb91)# ASIC_Design_Class_1
+# ASIC_Design_Class_1
 This is the Github repository of **Aditya R Venkateshwaran, MT2024502** for the ASIC Design Class of Aug 2024 to Dec 2024. The following items can be found in this repository, the name of the file indicative of the experiment number:
 
 1. Documentation for each of the experiments conducted during the labs
@@ -493,7 +493,8 @@ The difference in stack pointer values can be observed as per the calculation de
 <details>
   <summary>Laboratory 6: Build 5-stage pipeplined RISC-V processor using Makerchip IDE and TL Verilog
    </summary>
-1. Combinational Logic - Calculator
+	
+**1. Combinational Logic - Calculator**
 	
 Implementation of a basic combinational calculator.
 
@@ -514,7 +515,7 @@ The screenshot of the implementation of the above code shows the generated block
 
 ![image](https://github.com/user-attachments/assets/196e3e4a-c788-4bbd-9258-95e99c636c00)
 
-2. Sequential Logic
+**2. Sequential Logic**
 A new operator is introduced  >>no_of_clock_cycles $variable name. It provides the value of the mentioned signal, a certain number of clock cycles prior, as mentioned in the code.
 
 We have a reset signal which will reset the output to 0 when it is pulled high.
@@ -530,7 +531,7 @@ The screenshot shows the implementation of the counter logic, along with the gen
 
 ![image](https://github.com/user-attachments/assets/38f394df-56e9-47e5-906f-40e457f8d2e0)
 
-3. Pipelined Logic
+**3. Pipelined Logic**
 The calculator has been implemented following a pipelined design so that the circuit can be operated at higher clock frequencies. The multiplexer introduced to select the operation is shifted to the next clock cycle so that the calculator logic can operate at higher frequencies.
 
 ```
@@ -559,7 +560,9 @@ The calculator has been implemented following a pipelined design so that the cir
                                                         : $sum[31:0]));
 ```
 
-4. Implementation of a 5 staged pipelined RISC-V Core
+**4. Implementation of a 5 staged pipelined RISC-V Core**
+
+![image](https://github.com/user-attachments/assets/969aa4c4-0eee-472b-82a4-877fddf464b5)
 
 **TL Verilog Program**
 ```
