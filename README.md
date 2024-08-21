@@ -1,4 +1,4 @@
-# ASIC_Design_Class_1
+![359121373-37196a54-a585-41e3-a8c7-922741e6ffe7](https://github.com/user-attachments/assets/32f0ca58-4609-4390-9aa8-7246ea7aeb91)# ASIC_Design_Class_1
 This is the Github repository of **Aditya R Venkateshwaran, MT2024502** for the ASIC Design Class of Aug 2024 to Dec 2024. The following items can be found in this repository, the name of the file indicative of the experiment number:
 
 1. Documentation for each of the experiments conducted during the labs
@@ -493,7 +493,8 @@ The difference in stack pointer values can be observed as per the calculation de
 <details>
   <summary>Laboratory 6: Build 5-stage pipeplined RISC-V processor using Makerchip IDE and TL Verilog
    </summary>
-1. Combinational Logic
+1. Combinational Logic - Calculator
+	
 Implementation of a basic combinational calculator.
 
 ```
@@ -563,6 +564,9 @@ The calculator has been implemented following a pipelined design so that the cir
 Each stage of the pipeline has been described using screenshots:
 
 1. **Program Counter:** Also commonly called the Instruction Pointer (IP), PC is a counter in the processor that indicates where the computer is, presently in the program. PC jumps 4 bytes at a time as each instruction is 32bits in RISC-V.
+
+![359121373-37196a54-a585-41e3-a8c7-922741e6ffe7](https://github.com/user-attachments/assets/b9f3438f-7122-43d7-a8a7-247e36ad786d)
+
 ![image](https://github.com/user-attachments/assets/c6551a6e-f029-49db-a657-195a23a3fcef)
 
 2. **Instruction Fetch:** The instruction fetch unit (IFU) in a central processing unit (CPU) is responsible for organising program instructions to be fetched from memory, and executed, in an appropriate order. This makes the control logic of the core.
