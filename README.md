@@ -855,11 +855,11 @@ The calculator has been implemented following a pipelined design so that the cir
 ![image](https://github.com/user-attachments/assets/0d992f37-4275-4a9e-bc28-9a6fb6929d50)
 
 
-7. Stage 4: Memory Access
+7. Stage 4: Memory Access and Stage 5: Writeback
    
 ![image](https://github.com/user-attachments/assets/1abe25e5-bf45-451f-b2ad-20a5eb7faff8)
 
-8. Stage 5: Writeback
+8. XREG
    
 ![image](https://github.com/user-attachments/assets/3c238e51-aa9c-4495-aa51-fb4166f94405)
 
