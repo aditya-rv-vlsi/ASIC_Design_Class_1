@@ -488,8 +488,10 @@ The number of instructions can be found out by doing the calculation (10438-1035
 
 The difference in stack pointer values can be observed as per the calculation depicted in the screenshot.
 
-***
 </details>
+
+***
+
 <details>
   <summary>Laboratory 6: Build 5-stage pipeplined RISC-V processor using Makerchip IDE and TL Verilog
    </summary>
@@ -529,10 +531,10 @@ $num[15:0] = *reset ? 0             // 0 if reset
 
 The screenshot shows the implementation of the counter logic, along with the generated waveform.
 
-![image](https://github.com/user-attachments/assets/38f394df-56e9-47e5-906f-40e457f8d2e0)
-
 **3. Pipelined Logic**
 The calculator has been implemented following a pipelined design so that the circuit can be operated at higher clock frequencies. The multiplexer introduced to select the operation is shifted to the next clock cycle so that the calculator logic can operate at higher frequencies.
+
+![image](https://github.com/user-attachments/assets/38f394df-56e9-47e5-906f-40e457f8d2e0)
 
 ```
 |calc
