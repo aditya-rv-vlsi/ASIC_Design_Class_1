@@ -561,8 +561,36 @@ The calculator has been implemented following a pipelined design so that the cir
                                              : ($sel[0] ? $diff[31:0] 
                                                         : $sum[31:0]));
 ```
+**4. Validity**
 
-**4. Implementation of a 5 staged pipelined RISC-V Core**
+When generating waveforms, we typically get results for all clock cycles. While there may be no compilation errors, logical errors can still occur, which are difficult to debug by simply analyzing the waveforms. Additionally, there can be "don't care" conditions that are insignificant and should be ignored. To handle this, we use Validity.
+
+The global clock runs continuously, but sometimes certain processes don't need to execute during every clock cycle. However, they might still run due to the clock signal, consuming unnecessary power. In complex circuits, this can lead to significant power waste. To reduce power consumption, we use clock gating, which stops the clock during such cycles. Validity helps us manage this process.
+
+```
+$reset = *reset;
+   |calc
+      @1
+         $clk_aditya *clk;
+         $reset = *reset;
+         $valid = $reset? 0: (>>1$valid + 1); $valid_or_reset = $valid || $reset;
+   ?$valid
+      @1
+         $val1[31:0] =>>2$result[31:0];
+         $val2[31:0] = $rand2 [3:0];
+      @2
+         $out [31:0] = $valid_or_reset ? 32'b0:(($sel[1:0] == 2'b00) ? ($val1[31:0]+$val2[31:0]) : (($sel[1:0] == 2'b01) ? ($val1[31:0]-$val2[31:0]) : (($sel[1:0] == 2'b10) ? ($val1[31:0]*$val2[31:0]):($val1[31:0]+$val2[31:0]))));
+```
+
+
+![image](https://github.com/user-attachments/assets/83691d6b-1f64-4577-8b14-6fa581406b77)
+
+**5. Total Distance Calculator**
+
+![image](https://github.com/user-attachments/assets/4e2f5235-9129-4bb5-b219-be1bebff70e5)
+
+
+**6. Implementation of a 5 staged pipelined RISC-V Core**
 
 ![image](https://github.com/user-attachments/assets/969aa4c4-0eee-472b-82a4-877fddf464b5)
 
