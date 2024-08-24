@@ -915,3 +915,29 @@ We can view the changing of values in each of the registers as the program is ex
 ![image](https://github.com/user-attachments/assets/e082d633-c815-4d02-a615-3a3e19b42a9d)
 
 </details>
+
+***
+
+<details>
+  <summary>Laboratory 7: Using the TL Verilog Program written in the previous laboratory, convert the TL Verilog Program to Verilog Program using Sandpiper. Write a testbench using sample testbench for rvmyth. Use iverilog to simulate and gtkwave to view the output waveforms. Plot below signals from gtkwave 
+
+1) clock signal appended with your name
+2) reset signal
+3) 10-bit output which shows the gradual addition of 1 to 10 or 1 to 9
+
+The above waveforms should match with your TLV waveform.
+   </summary>
+
+  
+**Step 1:** Install These Required Packages:
+
+ $ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
+ $ sudo chmod 666 /var/run/docker.sock
+ $ cd ~
+ $ pip3 install pyyaml click sandpiper-saas
+
+**Step 2:** git clone https://github.com/manili/VSDBabySoC.git - clone this repo containing VSDBabySoC design files and testbench.
+
+**Step 3:** cd /home/subhasis/VSDBabySoC
+
+**Step 4:** sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/ - to translate .tlv definition of rvmyth into .v definition.
