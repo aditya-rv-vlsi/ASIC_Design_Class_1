@@ -962,13 +962,17 @@ This command compiles and simulates the rvmyth.v design.
 
 **Output Waveform**
 1. Sandpiper-saas and iverilog
+
 ![image](https://github.com/user-attachments/assets/7f663f28-320f-4303-a08e-818b19fbed6b)
 
-clk_aditya: This is the clock input to the RISC-V design.
-reset: This is the input reset signal to the RISC-V design.
-OUT[9:0]: This is the 10-bit output port of the RISC-V design, which corresponds to the RISC-V register #14 (xreg[14]).
+<li>clk_aditya: This is the clock input to the RISC-V design.</li>
+<li>reset: This is the input reset signal to the RISC-V design.</li>
+<li>OUT[9:0]: This is the 10-bit output port of the RISC-V design, which corresponds to the RISC-V register #14 (xreg[14]).</li>
 
 2. TL-Verilog and Makerchip
+
+![image](https://github.com/user-attachments/assets/c459a9cd-f592-41b6-8eec-3829cdc472f5)
+
 ![image](https://github.com/user-attachments/assets/788e235d-99ff-4217-8893-b04cbe9c4d4c)
 
 The output of iverilog and Makerchip (TL-Verilog) are found to be the same.
