@@ -931,19 +931,34 @@ The above waveforms should match with your TLV waveform.
   
 **Step 1:** Install These Required Packages:
 
- $ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
- $ sudo chmod 666 /var/run/docker.sock
- $ cd ~
- $ pip3 install pyyaml click sandpiper-saas
+```
+sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
+sudo chmod 666 /var/run/docker.sock
+cd ~
+pip3 install pyyaml click sandpiper-saas
+python3 -m venv .venv
+source ~/.venv/bin/activate
+```
 
-**Step 2:** git clone https://github.com/manili/VSDBabySoC.git - clone this repo containing VSDBabySoC design files and testbench.
+**Step 2:** git clone ```https://github.com/manili/VSDBabySoC.git``` - clone this repo containing VSDBabySoC design files and testbench.
 
-**Step 3:** cd /home/subhasis/VSDBabySoC
+**Step 3:** cd /home/vsduser/VSDBabySoC/src/module
 
-**Step 4:** sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/ - to translate .tlv definition of rvmyth into .v definition.
+**Step 4:** ```sandpiper-saas –I /home/vsduser/VSDBabySoC/src/module/adi_riscv.tlv -o rvmyth.v --bestsv --noline -p Verilog --outdir /home/vsduser/VSDBabySoC/src/module```
+![image](https://github.com/user-attachments/assets/8384c21a-8408-487c-9e81-96642ee50c85)
+This command translates .tlv definition of the RISCV processor created using Makerchip into .v definition.
+
+![image](https://github.com/user-attachments/assets/b65cb070-8fb4-4644-b843-443bc7268697)
 
 
+**Step 5:** ```iverilog –g2005-sv –o pre_synth_sim.out –DPRE_SYNTH_SIM testbench.v –I /home/vsduser/VSDBabySoC/src/include –I /home/vsduser/VSDBabySoC/src/module –s vsdbabysoc_tb ```
 
+This command compiles and simulates the rvmyth.v design.
+
+![image](https://github.com/user-attachments/assets/e4cf2195-69be-4a5b-9283-17befad02745)
+
+
+**Step 6:** Run the vvp and gtkwave commands as shown in previous screenshots to view the output waveforms. 
 
 **Output Waveform**
 1. Sandpiper-saas and iverilog
