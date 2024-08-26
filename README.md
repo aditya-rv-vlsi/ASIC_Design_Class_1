@@ -921,9 +921,9 @@ We can view the changing of values in each of the registers as the program is ex
 <details>
   <summary>Laboratory 7: Using the TL Verilog Program written in the previous laboratory, convert the TL Verilog Program to Verilog Program using Sandpiper. Write a testbench using sample testbench for rvmyth. Use iverilog to simulate and gtkwave to view the output waveforms. Plot below signals from gtkwave 
 
-1) clock signal appended with your name
-2) reset signal
-3) 10-bit output which shows the gradual addition of 1 to 10 or 1 to 9
+1) Clock signal appended with your name
+2) Reset signal
+3) 10-bit output which shows the gradual addition of 1 to 10
 
 The above waveforms should match with your TLV waveform.
    </summary>
@@ -964,7 +964,11 @@ This command compiles and simulates the rvmyth.v design.
 1. Sandpiper-saas and iverilog
 ![image](https://github.com/user-attachments/assets/7f663f28-320f-4303-a08e-818b19fbed6b)
 
-2. Tl-Verilog and Makerchip
+clk_aditya: This is the clock input to the RISC-V design.
+reset: This is the input reset signal to the RISC-V design.
+OUT[9:0]: This is the 10-bit output port of the RISC-V design, which corresponds to the RISC-V register #14 (xreg[14]).
+
+2. TL-Verilog and Makerchip
 ![image](https://github.com/user-attachments/assets/788e235d-99ff-4217-8893-b04cbe9c4d4c)
 
 The output of iverilog and Makerchip (TL-Verilog) are found to be the same.
