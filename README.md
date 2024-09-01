@@ -984,12 +984,12 @@ The output of iverilog and Makerchip (TL-Verilog) are found to be the same.
 <details>
   <summary>Laboratory 8: Using the Verilog Program written in the previous laboratory, convert the digital output from the Verilog Program file to an analog output using DAC and PLL. Use iverilog to simulate and gtkwave to view the output waveforms. Plot below signals from gtkwave: 
 
-1) Clock signal appended with your name
-2) Reset signal
-3) 10-bit output which shows the gradual addition of 1 to 10
-4) DAC output analog waveform
-5) PLL clock input signal
-6) Your laptop username identifier and dates is clear
+1. Clock signal appended with your name
+2. Reset signal
+3. 10-bit output which shows the gradual addition of 1 to 10
+4. DAC output analog waveform
+5. PLL clock input signal
+6. Your laptop username identifier and dates is clear
 
    </summary>
 
@@ -1062,5 +1062,8 @@ gtkwave pre_synth_sim.vcd
 ![image](https://github.com/user-attachments/assets/4625d0b6-4a84-4544-8fe7-bddb79c4b3a5)
 
 It can be observed that once the addition output reaches 0x37 (55 in decimal), the output is reset to 0, and the addition process repeats itself.
+
+![image](https://github.com/user-attachments/assets/a342edbf-af5e-4ab1-908c-4be20145c103)
+
 
 </details>
