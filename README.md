@@ -976,3 +976,91 @@ This command compiles and simulates the rvmyth.v design.
 ![image](https://github.com/user-attachments/assets/788e235d-99ff-4217-8893-b04cbe9c4d4c)
 
 The output of iverilog and Makerchip (TL-Verilog) are found to be the same.
+
+</details>
+
+***
+
+<details>
+  <summary>Laboratory 8: Using the Verilog Program written in the previous laboratory, convert the digital output from the Verilog Program file to an analog output using DAC and PLL. Use iverilog to simulate and gtkwave to view the output waveforms. Plot below signals from gtkwave: 
+
+1) Clock signal appended with your name
+2) Reset signal
+3) 10-bit output which shows the gradual addition of 1 to 10
+4) DAC output analog waveform
+5) PLL clock input signal
+6) Your laptop username identifier and dates is clear
+
+   </summary>
+
+**Step 1:** Install yosys
+
+```
+sudo apt-get update
+git clone https://github.com/YosysHQ/yosys.git
+cd yosys
+sudo apt install make (If make is not installed please install it) 
+sudo apt-get install build-essential clang bison flex \
+    libreadline-dev gawk tcl-dev libffi-dev git \
+    graphviz xdot pkg-config python3 libboost-system-dev \
+    libboost-python-dev libboost-filesystem-dev zlib1g-dev
+make config-gcc
+make 
+sudo make install
+```
+
+**Step 2:** Install iverilog
+
+```
+sudo apt-get update
+sudo apt-get install iverilog
+```
+
+**Step 3:** Install gtkwave
+
+```
+sudo apt-get update
+sudo apt install gtkwave
+```
+
+**Step 4:** Clone files from the repository for BabySoC Simulation
+
+```
+git clone https://github.com/Subhasis-Sahu/BabySoC_Simulation/
+```
+
+**Step 5:** Install Sandpiper-saas and python
+
+```
+sudo apt install make python python3 python3-pip git iverilog gtkwave
+cd ~
+sudo apt-get install python3-venv
+python3 -m venv .venv
+source ~/.venv/bin/activate
+pip3 install pyyaml click sandpiper-saas
+```
+
+**Step 6:** Compile using iverilog, run using vvp, and view the waveform generated using GTKWave.
+
+```
+cd BabySoC_Simulation
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+vvp ./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+```
+
+![image](https://github.com/user-attachments/assets/05536599-38b7-462e-8afe-4dc7fef82758)
+
+**Output Waveform**
+<li>CPU_clk_aditya_a0: This is the clock input to the RISC-V design.</li>
+<li>reset: This is the input reset signal to the RISC-V design.</li>
+<li>OUT[9:0]: This is the 10-bit output port of the RISC-V design, which corresponds to the RISC-V register #14 (xreg[14]).</li>
+<li>OUT: This is the analog output from the DAC corresponding to the 10 bit digital input (given from the RISC-V design.</li>
+<li>VCO_IN: Clock signal of the PLL.</li>
+
+![image](https://github.com/user-attachments/assets/a9b1a008-c427-4887-8f85-c83f6554d8a9)
+![image](https://github.com/user-attachments/assets/4625d0b6-4a84-4544-8fe7-bddb79c4b3a5)
+
+It can be observed that once the addition output reaches 0x37 (55 in decimal), the output is reset to 0, and the addition process repeats itself.
+
+</details>
