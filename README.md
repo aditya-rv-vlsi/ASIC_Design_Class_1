@@ -1063,6 +1063,11 @@ gtkwave pre_synth_sim.vcd
 
 It can be observed that once the addition output reaches 0x37 (55 in decimal), the output is reset to 0, and the addition process repeats itself.
 
+![image](https://github.com/user-attachments/assets/85209f47-bc7a-4203-9674-41e21016205c)
+![image](https://github.com/user-attachments/assets/3a824176-e3ba-44b3-86c8-53d876ce9e70)
+
+**Note:** Additional waveforms depicting entire duration added to the repo upon subsequent instruction in class.
+
 ![image](https://github.com/user-attachments/assets/a342edbf-af5e-4ab1-908c-4be20145c103)
 
 
