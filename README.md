@@ -1070,5 +1070,10 @@ It can be observed that once the addition output reaches 0x37 (55 in decimal), t
 
 ![image](https://github.com/user-attachments/assets/a342edbf-af5e-4ab1-908c-4be20145c103)
 
+</details>
+
+***
+<details>
+  <summary> Laboratory 9: Complete RTL Synthesis workshop and upload screenshots of the tasks carried out.</summary>
 
 </details>
