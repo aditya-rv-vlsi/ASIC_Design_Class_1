@@ -1076,4 +1076,23 @@ It can be observed that once the addition output reaches 0x37 (55 in decimal), t
 <details>
   <summary> Laboratory 9: Complete RTL Synthesis workshop and upload screenshots of the tasks carried out.</summary>
 
+  <details>
+	  <summary>Day 1:</summary>
+		  
+  </details>
+
+  <details>
+	  <summary>Day 2:</summary>
+		  
+  </details>
+
+  <details>
+	  <summary>Day 3:</summary>
+		  
+  </details>
+
+  <details>
+	  <summary>Day 4:</summary>
+		  
+  </details>
 </details>
