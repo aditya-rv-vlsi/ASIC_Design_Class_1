@@ -1104,9 +1104,12 @@ We can observe the list of files present in the directory.
 	  <summary>Day 1:</summary>
 		  
   <li>
-	  Introduction to iverilog and GTKWave: This tutorial involved learning about how to simulate the design and testbench for a 2x1 multiplexer, using iverilog, and displaying the waveform on GTKWave.
-	  ![image](https://github.com/user-attachments/assets/ae5b3203-97fc-48df-9c8d-e906ab818aeb)
-   	  ![image](https://github.com/user-attachments/assets/d0f40acb-90b8-4376-83c7-2e02c1af1424)
+	  **Introduction to iverilog and GTKWave:** This tutorial involved learning about how to simulate the design and testbench for a 2x1 multiplexer, using iverilog, and displaying the waveform on GTKWave.
+	  
+	
+      ![image](https://github.com/user-attachments/assets/ae5b3203-97fc-48df-9c8d-e906ab818aeb)
+   	  
+      ![image](https://github.com/user-attachments/assets/d0f40acb-90b8-4376-83c7-2e02c1af1424)
 
   ```
   //Design 
@@ -1139,6 +1142,50 @@ We can observe the list of files present in the directory.
   always #55 i1 = ~i1;
   endmodule
   ```
+  </li>
+  <li>
+	  **Introduction to Yosys:** This tutorial involved the use of Yosys for synthesising the design we created in Verilog, viewing its netlists and the cells that are generated for the purpose of creating the circuit. The following commands are used:
+
+   ```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog good_mux.v
+4. synth -top good_mux
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. show
+7. write_verilog -noattr good_mux_netlist.v
+8. gvim good_mux_netlist.v
+  ```
+
+1. Opens Yosys Tool
+2. Reads the technology library file (Liberty format) required for synthesis using the specified path.
+3. Loads the Verilog file good_mux.v for synthesis.
+4. Performs synthesis on the design, with good_mux as the top module.
+5. Optimizes the synthesized design using the ABC tool and the specified technology library.
+6. Displays the synthesized design as a schematic.
+7. Writes the synthesized netlist to the file good_mux_netlist.v without attributes.
+8. Opens the netlist file good_mux_netlist.v in the gvim text editor.
+
+![image](https://github.com/user-attachments/assets/e62bdc94-a02c-453e-adf2-99e7047e66b7)
+
+![image](https://github.com/user-attachments/assets/3621042d-9789-4bb3-b66f-71f2f03df78b)
+
+![image](https://github.com/user-attachments/assets/7a2dba22-e0a8-4575-88af-f3316952b6f2)
+
+![image](https://github.com/user-attachments/assets/77e9b19e-365c-498a-b23a-55f9a174c580)
+
+![image](https://github.com/user-attachments/assets/7ffa1ad6-3994-46cc-885a-eb5b5ddce25b)
+
+![image](https://github.com/user-attachments/assets/03d0b4d4-42be-498c-82e1-020a2ab56fae)
+
+![image](https://github.com/user-attachments/assets/6fd94223-82b3-4997-a83a-db94a6508217)
+
+![image](https://github.com/user-attachments/assets/4a42f1e0-786f-49be-af5f-7fd8f7f438ad)
+
+![image](https://github.com/user-attachments/assets/0ecdb6cf-cf44-4cec-8732-001488c982da)
+
+![image](https://github.com/user-attachments/assets/b7eafdaf-61d3-45ad-b09f-63c3f917c343)
+
   </li>
   
   </details>
