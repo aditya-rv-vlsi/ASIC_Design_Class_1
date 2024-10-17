@@ -1079,6 +1079,7 @@ It can be observed that once the addition output reaches 0x37 (55 in decimal), t
   <details>
 	  <summary>Initial Setup</summary>
   Enter the following commands in the Ubuntu terminal as depicted in the screenshot
+	  
 ```
 sudo -i
 sudo apt-get install git
@@ -1096,6 +1097,7 @@ ls
 ![image](https://github.com/user-attachments/assets/9ffbc965-2be0-46d4-8ebf-d7d2d571d8fd)
 
 We can observe the list of files present in the directory. 
+
 ![image](https://github.com/user-attachments/assets/6f4c562f-d2dc-4535-ba26-410d2282d64b)
 
   </details>
@@ -1225,12 +1227,12 @@ endmodule
 ```
 1. yosys
 2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-3. read_verilog good_mux.v
-4. synth -top good_mux
+3. read_verilog multiple_modules.v
+4. synth -top multiple_modules
 5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 6. show
-7. write_verilog -noattr good_mux_netlist.v
-8. gvim good_mux_netlist.v
+7. write_verilog -noattr multiple_modules_netlist.v
+8. gvim multiple_modules_netlist.v
 ```
    </li>
 
@@ -1286,6 +1288,237 @@ endmodule
 
 ![image](https://github.com/user-attachments/assets/7e9b0cd5-09b5-48cd-93a2-5d55912a9d50)
 
+![image](https://github.com/user-attachments/assets/373f0f39-5cb2-41fd-aa24-0aaae1c6b74b)
+
+<li>
+	Use of Module Level Synthesis: This method is preferred when multiple instances of same module are used. The synthesis is carried out once and is replicate multiple times, and the multiple instances of the same module are stitched together in the top module. This method is helpful when making use of divide and conquer algorithm
+
+ ```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog multiple_modules.v
+4. synth -top sub_module1
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. show
+```
+![image](https://github.com/user-attachments/assets/16d03a83-5c76-4f37-8d16-1f61caa6b9cc)
+
+![image](https://github.com/user-attachments/assets/8830a132-281b-41d7-8a91-07650d70e43a)
+
+![image](https://github.com/user-attachments/assets/a206cede-1922-4e6b-8e1d-56d824eea294)
+
+</li>
+
+<li>
+	Use of Flattening: This method is used to reduce the size of the circuit generated. This is carried out on the multiple modules file. The command "flatten" is made use of.
+
+ ```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog multiple_modules.v
+4. synth -top multiple_modules
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. flatten
+7. show
+8. write_verilog -noattr multiple_modules_netlist.v
+9. gvim multiple_modules_netlist.v
+```
+
+```
+//Generated Netlist
+module multiple_modules (a, b, c, y);
+	wire _0_; wire _1_;
+	wire _2_; wire _3_;
+	wire _4_; wire _5_;
+	input a; wire a;
+	input b; wire b;
+	input c; wire c;
+	wire net1;
+	wire \ul.a;
+	wire \ul.b;
+	wire \ul.y;
+	wire \u2.a;
+	wire \u2.b;
+	wire \u2.y;
+	output y; wire y;
+	
+	sky130_fd_sc_hd_and2_0 _6_ (.A(1),.B(0),.X(_2_));
+	sky130_fd_sc_hd_or2_0 _7_(.A(4),.B(_3_),.X(5));
+
+	assign 4 = \u2.b ;
+	assign 3 = \u2.a ;
+	assign \u2.y = _5_;
+	assign \u2.a = net1;
+	assign \u2.b = c;
+	assign y = \u2.y;
+	assign 1 = \u1.b;
+	assign 0 = \ul.a ;
+	assign \ul.y = _2_;
+	assign \ul.a = a;
+	assign \u1.b = b;
+	assign net1 = \u1.y;
+endmodule
+```
+
+![image](https://github.com/user-attachments/assets/661565e9-fa5b-4821-ac2f-10bd779b2d2f)
+
+![image](https://github.com/user-attachments/assets/8f88f1ff-6c93-4e3b-a896-544c019cf397)
+
+</li>
+
+<li>
+	Simulation of D-Flipflop using Iverilog and GTKWave: Performed simulations for 3 types of D-Flipflops - Asynchronous Reset, Asynchronous Set and Synchronous Reset.
+	<li>
+		Asynchronous Reset
+
+    		```
+      		iverilog dff_asyncres.v tb_dff_asyncres.v
+		./a.out
+  		gtkwave tb_dff_asyncres.vcd
+    		```
+
+      		```
+		//Design
+  		//Testbench
+    		```
+
+      ![image](https://github.com/user-attachments/assets/27de48d3-f468-412e-9270-07c14601cecc)
+
+      ![image](https://github.com/user-attachments/assets/c460d114-b811-4ccc-b4f8-84e3402ebaf7)
+
+      From the waveform, it can be observed that the Q output changes to zero when the asynchronous reset is set high, independent of the positive/negative clock edge.
+
+	</li>
+
+	<li>
+		Asynchronous Set
+
+  		```
+      		iverilog dff_async_set.v tb_dff_async_set.v
+		./a.out
+  		gtkwave tb_dff_async_set.vcd
+    		```
+
+		```
+		//Design
+  		//Testbench
+    		```
+
+      ![image](https://github.com/user-attachments/assets/149d288a-97e1-43a8-8871-bedd91fb7bac)
+
+      ![image](https://github.com/user-attachments/assets/947cf6da-f236-4cea-b2e8-620fee2dfe78)
+
+From the waveform, it can be observed that the Q output changes to one when the asynchronous set is set high, independent of the positive/negative clock edge.
+
+	</li>
+
+	<li>
+		Synchronous Reset
+
+  		```
+      		iverilog dff_syncres.v tb_dff_syncres.v
+		./a.out
+  		gtkwave tb_dff_syncres.vcd
+    		```
+
+		```
+		//Design
+  		//Testbench
+    		```
+      
+	![image](https://github.com/user-attachments/assets/78430bfa-a730-4ef5-9d26-49e3517b7584)
+
+ 	![image](https://github.com/user-attachments/assets/a8ca2d39-44d4-462d-9ab3-b9211dc6e758)
+
+From the waveform, it can be observed that the Q output changes to zero when the synchronous reset is set high, only at the positive clock edge.
+
+	</li>
+</li>
+
+<li>
+	Synthesis of D-Flipflop using Yosys: Synthesized 3 types of D-Flipflops - Asynchronous Reset, Asynchronous Set and Synchronous Reset.
+	<li>
+		Asynchronous Reset
+		
+  
+  		```
+		1. yosys
+		2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+		3. read_verilog dff_asyncres.v
+		4. synth -top dff_asyncres
+		5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+		7. show
+		8. write_verilog -noattr dff_asyncres_netlist.v
+		9. gvim dff_asyncres_netlist.v
+		```
+
+  		```
+    		//Generated Netlist
+      		```
+
+ ![image](https://github.com/user-attachments/assets/6f67adf6-ebc1-49a4-b8b0-ae1a09f76897)
+
+ ![image](https://github.com/user-attachments/assets/20a15008-6b31-49e5-b2c4-9ae3d1bfdb55)
+
+![image](https://github.com/user-attachments/assets/d3723b64-5e45-4589-996b-20d327de7485)
+
+	</li>
+
+ 	<li>
+		Asynchronous Set
+		
+  
+  		```
+		1. yosys
+		2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+		3. read_verilog dff_async_set.v
+		4. synth -top dff_async_set
+		5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+		7. show
+		8. write_verilog -noattr dff_async_set_netlist.v
+		9. gvim dff_async_set_netlist.v
+		```
+
+  		```
+    		//Generated Netlist
+      		```
+
+![image](https://github.com/user-attachments/assets/2e048513-b8cd-460a-972c-b119e13efef6)
+
+![image](https://github.com/user-attachments/assets/eb6a5cdd-911c-41b6-939e-5e35686ccd32)
+
+![image](https://github.com/user-attachments/assets/f37b4790-3647-4441-ad3f-466a34e98cd3)
+
+	</li>
+
+	<li>
+		Synchronous Reset
+		
+  
+  		```
+		1. yosys
+		2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+		3. read_verilog dff_syncres.v
+		4. synth -top dff_syncres
+		5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+		7. show
+		8. write_verilog -noattr dff_syncres_netlist.v
+		9. gvim dff_syncres_netlist.v
+		```
+
+  		```
+    		//Generated Netlist
+      		```
+
+![image](https://github.com/user-attachments/assets/18154798-941b-485a-964c-be8bba5e15de)
+
+![image](https://github.com/user-attachments/assets/77d3b495-0921-4eab-82c4-4c830914516c)
+
+![image](https://github.com/user-attachments/assets/c3b424e1-c096-47d8-92e1-c54265a7fd36)
+
+
+	</li>
+</li>
     
   </details>
 
