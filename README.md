@@ -1104,7 +1104,7 @@ We can observe the list of files present in the directory.
 	  <summary>Day 1:</summary>
 		  
   <li>
-	  **Introduction to iverilog and GTKWave:** This tutorial involved learning about how to simulate the design and testbench for a 2x1 multiplexer, using iverilog, and displaying the waveform on GTKWave.
+	  Introduction to iverilog and GTKWave: This tutorial involved learning about how to simulate the design and testbench for a 2x1 multiplexer, using iverilog, and displaying the waveform on GTKWave.
 	  
 	
       ![image](https://github.com/user-attachments/assets/ae5b3203-97fc-48df-9c8d-e906ab818aeb)
@@ -1114,13 +1114,13 @@ We can observe the list of files present in the directory.
   ```
   //Design 
   module good_mux (input i0, input i1, input sel, output reg y);
-  always@(*)
-  begin
-  	if(sel)
-		y<=i1;
-	else
-		y<=i0;
-  end
+	  always@(*)
+	  begin
+	  	if(sel)
+			y<=i1;
+		else
+			y<=i0;
+	  end
   endmodule
   //Testbench
   module tb_good_mux;
@@ -1137,14 +1137,14 @@ We can observe the list of files present in the directory.
 		i1=0;
 		#300 $finish;
 	end
-  always #75 sel = ~sel;
-  always #10 i0 = ~i0;
-  always #55 i1 = ~i1;
+	always #75 sel = ~sel;
+	always #10 i0 = ~i0;
+	always #55 i1 = ~i1;
   endmodule
   ```
   </li>
   <li>
-	  **Introduction to Yosys:** This tutorial involved the use of Yosys for synthesising the design we created in Verilog, viewing its netlists and the cells that are generated for the purpose of creating the circuit. The following commands are used:
+	  Introduction to Yosys: This tutorial involved the use of Yosys for synthesising the design we created in Verilog, viewing its netlists and the cells that are generated for the purpose of creating the circuit. The following commands are used:
 
    ```
 1. yosys
@@ -1166,6 +1166,27 @@ We can observe the list of files present in the directory.
 7. Writes the synthesized netlist to the file good_mux_netlist.v without attributes.
 8. Opens the netlist file good_mux_netlist.v in the gvim text editor.
 
+```
+//Generated Netlist
+module good_mux(i0, il, sel, y);
+	wire _0_;
+	wire _1_;
+	wire _2_;
+	wire_3_;
+	input i0; wire i0;
+	input il; wire il;
+	input sel; wire sel;
+	output y; wire y;
+	
+	sky130_fd_sc_hd__mux2_1 _4_ (.AO(_0_),.A1(_1_),.S(_2_),.X(_3_));
+	
+	assign_0_ = 10;
+	assign 1 = il;
+	assign 2 = sel;
+	assign y = _3_;
+endmodule
+```
+
 ![image](https://github.com/user-attachments/assets/e62bdc94-a02c-453e-adf2-99e7047e66b7)
 
 ![image](https://github.com/user-attachments/assets/3621042d-9789-4bb3-b66f-71f2f03df78b)
@@ -1184,6 +1205,8 @@ We can observe the list of files present in the directory.
 
 ![image](https://github.com/user-attachments/assets/0ecdb6cf-cf44-4cec-8732-001488c982da)
 
+![image](https://github.com/user-attachments/assets/94c76080-b1fe-4c7c-86af-7782b39101a0)
+
 ![image](https://github.com/user-attachments/assets/b7eafdaf-61d3-45ad-b09f-63c3f917c343)
 
   </li>
@@ -1192,7 +1215,78 @@ We can observe the list of files present in the directory.
 
   <details>
 	  <summary>Day 2:</summary>
-		  
+   <li>
+	   Yosys Synthesis for Multiple Modules: This tutorial involved the synthesis of a design file that has more than one module.
+
+```
+//Design
+```
+
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog good_mux.v
+4. synth -top good_mux
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. show
+7. write_verilog -noattr good_mux_netlist.v
+8. gvim good_mux_netlist.v
+```
+   </li>
+
+```
+//Generated Netlist
+module multiple_modules (a, b, c, y);
+	input a; wire a;
+	input b; wire b;
+	input c; wire c;
+	wire net1;
+	output y; wire y;
+
+	sub_modulel ul (.a(a),.b(b),.y(net1));
+	sub_module2 u2 (.a(net1),.b(c),.y (y));
+endmodule
+
+module sub_modulel (a, b, y);
+	wire _0_;
+	wire _1_;
+	wire _2_;
+	input a; wire a;
+	input b; wire b;
+	output y; wire y;
+	
+	sky130_fd_sc_hd_and2_0_3_(.A(_1_),.B(_0_),.X(_2_));
+	
+	assign _1_ = b;
+	assign _0_ = a;
+	assign y = _2_;
+endmodule
+
+module sub_module2 (a, b, y);
+	wire _0_;
+	wire _1_;
+	wire _2_;
+	input a; wire a;
+	input b; wire b;
+	output y;wire y;
+
+	sky130_fd_sc_hd_or2_0_3_ (A(_1_), .B( 0 ), .X( 2 ));
+	assign _1_ = b;
+	assign _0_ = a;
+	assign y = _2_;
+endmodule
+```
+
+
+![image](https://github.com/user-attachments/assets/d4e15e80-521d-4421-b403-5c539c6f6419)
+
+![image](https://github.com/user-attachments/assets/f8ecbbc6-1f71-4a49-a3cd-d06bd4760b62)
+
+![image](https://github.com/user-attachments/assets/4b63f6e1-23d2-42f5-8627-fdb4d697382e)
+
+![image](https://github.com/user-attachments/assets/7e9b0cd5-09b5-48cd-93a2-5d55912a9d50)
+
+    
   </details>
 
   <details>
