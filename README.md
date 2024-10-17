@@ -1526,9 +1526,10 @@ From the waveform, it can be observed that the Q output changes to zero when the
 2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 3. read_verilog mult_2.v
 4. synth -top mul2
-5. show
-6. write_verilog -noattr mul2_net.v
-7. gvim mul2_net.v
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. show
+7. write_verilog -noattr mul2_net.v
+8. gvim mul2_net.v
 ```
 
 ```
@@ -1562,9 +1563,10 @@ endmodule
 2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 3. read_verilog mult_9.v
 4. synth -top mult9
-5. show
-6. write_verilog -noattr mul9_net.v
-7. gvim mul9_net.v
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. show
+7. write_verilog -noattr mul9_net.v
+8. gvim mul9_net.v
 ```
 
 ```
@@ -1595,7 +1597,166 @@ endmodule
 
   <details>
 	  <summary>Day 3:</summary>
-		  
+Optimization of Various Designs
+
+<li>
+	Design infers 2 input AND Gate:
+
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog opt_check.v
+4. synth -top opt_check
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. opt_clean -purge
+7. show
+```
+
+5. Removes unused or redundant logic in the design and purges any dangling wires or gates.
+ 
+```
+//Design
+module opt_check(input a, input b, output y);
+	assign y = a?b:0;
+endmodule
+```
+
+![image](https://github.com/user-attachments/assets/3d6a54bf-3ec3-4095-a20a-1f7862c3ca32)
+
+![image](https://github.com/user-attachments/assets/fcb82f85-0790-451b-90d6-4c30e2794809)
+
+![image](https://github.com/user-attachments/assets/b40e05e1-29db-44eb-a7b3-f92fb600f90a)
+
+</li>
+
+<li>
+	Design infers 2 input OR Gate:
+
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog opt_check2.v
+4. synth -top opt_check2
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. opt_clean -purge
+7. show
+```
+
+```
+//Design
+module opt_check2(input a, input b, output y);
+	assign y = a?1:b;
+endmodule
+```
+
+![image](https://github.com/user-attachments/assets/9c69e45d-e424-4be4-9e0e-971e88f7ba74)
+
+![image](https://github.com/user-attachments/assets/45223852-6776-4739-a70e-b0d96e3686b4)
+
+![image](https://github.com/user-attachments/assets/68b48765-8b90-4cf9-a1f0-66615b9c08bd)
+
+</li>	
+
+<li>
+	Design infers 3 input AND Gate:
+
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog opt_check3.v
+4. synth -top opt_check3
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. opt_clean -purge
+7. show
+```
+
+```
+//Design
+module opt_check2(input a, input b, input c, output y);
+	assign y = a?(b?c:0):0;
+endmodule
+```
+
+![image](https://github.com/user-attachments/assets/169f2928-8098-4907-8178-2e75e5843005)
+
+![image](https://github.com/user-attachments/assets/5d21faca-631d-4fb3-847f-2b741d26d39b)
+
+![image](https://github.com/user-attachments/assets/02934cfe-8b3b-48f8-bdd2-190154eb378b)
+
+</li>
+
+<li>
+	Design infers 2 input XNOR Gate (3 input Boolean Logic)
+
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog opt_check4.v
+4. synth -top opt_check4
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. opt_clean -purge
+7. show
+```
+
+```
+//Design
+module opt_check2(input a, input b, input c, output y);
+	assign y = a ? (b ? ~c : c) : ~c;
+endmodule
+```
+
+![image](https://github.com/user-attachments/assets/ba9df5f9-cdcc-47db-a390-3aee5b93fe1d)
+
+![image](https://github.com/user-attachments/assets/eda292b5-e49b-4754-8fcf-2d8cd6ffa09a)
+
+![image](https://github.com/user-attachments/assets/c417d6af-feda-4062-9962-76bbbdaaf495)
+
+</li>
+
+<li>
+	Multiple Module Optimization-1
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog multiple_module_opt.v
+4. synth -top multiple_module_opt
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. opt_clean -purge
+7. show
+```
+
+```
+//Design
+To be added
+```
+
+![image](https://github.com/user-attachments/assets/88629e12-376e-4c2a-80b0-48ed974a0c34)
+
+![image](https://github.com/user-attachments/assets/5ef44a01-5ebc-47ba-a633-f596bbfad2e0)
+
+</li>
+
+<li>
+	Multiple Module Optimization-2
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog multiple_module_opt2.v
+4. synth -top multiple_module_opt2
+5. abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+6. opt_clean -purge
+7. show
+```
+
+```
+//Design
+To be added
+```
+
+
+
+</li>
+
   </details>
 
   <details>
