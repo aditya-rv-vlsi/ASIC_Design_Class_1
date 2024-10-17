@@ -1516,9 +1516,80 @@ From the waveform, it can be observed that the Q output changes to zero when the
 
 ![image](https://github.com/user-attachments/assets/c3b424e1-c096-47d8-92e1-c54265a7fd36)
 
-
 	</li>
 </li>
+<li>
+	Multiplication by 2: This tutorial, we get to know that specific multiplier hardware is not required for multiplication of a number by 2. It can simply be achieved by concatenating the number itself with a zero in the LSB.
+ 
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog mult_2.v
+4. synth -top mul2
+5. show
+6. write_verilog -noattr mul2_net.v
+7. gvim mul2_net.v
+```
+
+```
+//Design
+module mul2(input [2:0]a, output [3:0]y);
+	assign y=a*2;
+endmodule
+```
+
+```
+//Generated Netlist
+module mul2(a,y);
+	input [2:0]a; wire [2:0]a;
+	output [3:0]y; wire [3:0]y;
+
+	assign y = {a,1'h0};
+endmodule
+```
+
+![image](https://github.com/user-attachments/assets/363e6e5f-f149-4aee-b099-5ac296d5a5f9)
+
+![image](https://github.com/user-attachments/assets/8ee2e9b1-2555-4bf6-a5f2-738a3df609f8)
+
+</li>
+
+<li>
+	Multiplication by 9: This tutorial, we get to know that specific multiplier hardware is not required for multiplication of a number by 9. It can simply be achieved by concatenating the number with itself.
+ 
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog mult_9.v
+4. synth -top mult9
+5. show
+6. write_verilog -noattr mul9_net.v
+7. gvim mul9_net.v
+```
+
+```
+//Design
+module mul2(input [2:0]a, output [5:0]y);
+	assign y=a*9;
+endmodule
+```
+
+```
+//Generated Netlist
+module mul9(a,y);
+	input [2:0]a; wire [2:0]a;
+	output [5:0]y; wire [5:0]y;
+
+	assign y = {a,a};
+endmodule
+```
+
+![image](https://github.com/user-attachments/assets/7c8bdc00-111c-45ac-88d2-cd7a2cf04fd1)
+
+![image](https://github.com/user-attachments/assets/c7eabb0a-48f5-417e-810c-928e4787ea87)
+
+</li>
+
     
   </details>
 
