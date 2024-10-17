@@ -1077,6 +1077,30 @@ It can be observed that once the addition output reaches 0x37 (55 in decimal), t
   <summary> Laboratory 9: Complete RTL Synthesis workshop and upload screenshots of the tasks carried out.</summary>
 
   <details>
+	  <summary>Initial Setup</summary>
+  Enter the following commands in the Ubuntu terminal as depicted in the screenshot
+	  ```
+	  sudo -i
+	  sudo apt-get install git
+	  ls
+	  cd /home/aditya
+   	  mkdir VLSI
+          cd VLSI
+	  git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+          cd sky130RTLDesignAndSynthesisWorkshop/verilog_files
+	  ls
+	  ```
+	  
+	  ![image](https://github.com/user-attachments/assets/8777ca74-07c7-4065-a1af-4e24337f044d)
+
+   	  ![image](https://github.com/user-attachments/assets/9ffbc965-2be0-46d4-8ebf-d7d2d571d8fd)
+
+      	 We can observe the list of files present in the directory. 
+	 ![image](https://github.com/user-attachments/assets/6f4c562f-d2dc-4535-ba26-410d2282d64b)
+
+  </details>
+  
+  <details>
 	  <summary>Day 1:</summary>
 		  
   </details>
