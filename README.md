@@ -1,4 +1,4 @@
-# ASIC_Design_Class_1
+![image](https://github.com/user-attachments/assets/1964151f-8e38-4ebb-bc39-c7aeba07e3f0)# ASIC_Design_Class_1
 This is the Github repository of **Aditya R Venkateshwaran, MT2024502** for the ASIC Design Class of Aug 2024 to Dec 2024. The following items can be found in this repository, the name of the file indicative of the experiment number:
 
 1. Documentation for each of the experiments conducted during the labs
@@ -1384,190 +1384,183 @@ endmodule
 
 <li>
 	Simulation of D-Flipflop using Iverilog and GTKWave: Performed simulations for 3 types of D-Flipflops - Asynchronous Reset, Asynchronous Set and Synchronous Reset.
-	<li>
-		Asynchronous Reset
 
-    		```
-      		iverilog dff_asyncres.v tb_dff_asyncres.v
-		./a.out
-  		gtkwave tb_dff_asyncres.vcd
-    		```
+Asynchronous Reset
 
-      		```
-		//Design
-  		module dff_asyncres(input clk, input async_reset, input d, output reg q);
-    			always@(posedge clk, posedge async_reset)
-       			begin
-	  			if(async_reset)
-      					q <= 1'b0;
-	   			else
-       					q <= d;
-	    		end
-       		endmodule
-  		//Testbench
-    		module tb_dff_asyncres; 
-			reg clk, async_reset, d;
-			wire q;
-			dff_asyncres uut (.clk(clk),.async_reset (async_reset),.d(d),.q(q));
+	```
+	iverilog dff_asyncres.v tb_dff_asyncres.v
+	./a.out
+	gtkwave tb_dff_asyncres.vcd
+	```
 
-      			initial begin
-				$dumpfile("tb_dff_asyncres.vcd");
-				$dumpvars(0,tb_dff_asyncres);
-				// Initialize Inputs
-				clk = 0;
-				async_reset = 1;
-				d = 0;
-				#3000 $finish;
-			end
-				
-    			always #10 clk = ~clk;
-			always #23 d = ~d;
-			always #547 async_reset=~async_reset; 
-   		endmodule
-    		```
+	```
+	//Design
+	module dff_asyncres(input clk, input async_reset, input d, output reg q);
+		always@(posedge clk, posedge async_reset)
+		begin
+			if(async_reset)
+				q <= 1'b0;
+			else
+				q <= d;
+		end
+	endmodule
+	//Testbench
+	module tb_dff_asyncres; 
+		reg clk, async_reset, d;
+		wire q;
+		dff_asyncres uut (.clk(clk),.async_reset (async_reset),.d(d),.q(q));
 
-      ![image](https://github.com/user-attachments/assets/27de48d3-f468-412e-9270-07c14601cecc)
+		initial begin
+			$dumpfile("tb_dff_asyncres.vcd");
+			$dumpvars(0,tb_dff_asyncres);
+			// Initialize Inputs
+			clk = 0;
+			async_reset = 1;
+			d = 0;
+			#3000 $finish;
+		end
+			
+		always #10 clk = ~clk;
+		always #23 d = ~d;
+		always #547 async_reset=~async_reset; 
+	endmodule
+	```
 
-      ![image](https://github.com/user-attachments/assets/c460d114-b811-4ccc-b4f8-84e3402ebaf7)
+![image](https://github.com/user-attachments/assets/27de48d3-f468-412e-9270-07c14601cecc)
+
+![image](https://github.com/user-attachments/assets/c460d114-b811-4ccc-b4f8-84e3402ebaf7)
 
       From the waveform, it can be observed that the Q output changes to zero when the asynchronous reset is set high, independent of the positive/negative clock edge.
 
-	</li>
+Asynchronous Set
 
-	<li>
-		Asynchronous Set
+	```
+	iverilog dff_async_set.v tb_dff_async_set.v
+	./a.out
+	gtkwave tb_dff_async_set.vcd
+	```
 
-  		```
-      		iverilog dff_async_set.v tb_dff_async_set.v
-		./a.out
-  		gtkwave tb_dff_async_set.vcd
-    		```
+	```
+	//Design
+	module dff_async_set(input clk, input async_set, input d, output reg q);
+		always@(posedge clk, posedge async_set)
+		begin
+			if(async_set)
+				q <= 1'b1;
+			else
+				q <= d;
+		end
+	endmodule
+	//Testbench
+	module tb_dff_async_set; 
+		reg clk, async_set, d;
+		wire q;
+		dff_async_set uut (.clk(clk),.async_set (async_set),.d(d),.q(q));
 
-		```
-		//Design
-  		module dff_async_set(input clk, input async_set, input d, output reg q);
-    			always@(posedge clk, posedge async_set)
-       			begin
-	  			if(async_set)
-      					q <= 1'b1;
-	   			else
-       					q <= d;
-	    		end
-       		endmodule
-    		//Testbench
-      		module tb_dff_async_set; 
-			reg clk, async_set, d;
-			wire q;
-			dff_async_set uut (.clk(clk),.async_set (async_set),.d(d),.q(q));
+		initial begin
+			$dumpfile("tb_dff_async_set.vcd");
+			$dumpvars(0,tb_dff_async_set);
+			// Initialize Inputs
+			clk = 0;
+			async_set = 1;
+			d = 0;
+			#3000 $finish;
+		end
+			
+		always #10 clk = ~clk;
+		always #23 d = ~d;
+		always #547 async_set=~async_set; 
+	endmodule
+	```
 
-      			initial begin
-				$dumpfile("tb_dff_async_set.vcd");
-				$dumpvars(0,tb_dff_async_set);
-				// Initialize Inputs
-				clk = 0;
-				async_set = 1;
-				d = 0;
-				#3000 $finish;
-			end
-				
-    			always #10 clk = ~clk;
-			always #23 d = ~d;
-			always #547 async_set=~async_set; 
-   		endmodule
-    		```
+![image](https://github.com/user-attachments/assets/149d288a-97e1-43a8-8871-bedd91fb7bac)
 
-      ![image](https://github.com/user-attachments/assets/149d288a-97e1-43a8-8871-bedd91fb7bac)
-
-      ![image](https://github.com/user-attachments/assets/947cf6da-f236-4cea-b2e8-620fee2dfe78)
+![image](https://github.com/user-attachments/assets/947cf6da-f236-4cea-b2e8-620fee2dfe78)
 
 From the waveform, it can be observed that the Q output changes to one when the asynchronous set is set high, independent of the positive/negative clock edge.
 
-	</li>
+Synchronous Reset
 
-	<li>
-		Synchronous Reset
+	```
+	iverilog dff_syncres.v tb_dff_syncres.v
+	./a.out
+	gtkwave tb_dff_syncres.vcd
+	```
 
-  		```
-      		iverilog dff_syncres.v tb_dff_syncres.v
-		./a.out
-  		gtkwave tb_dff_syncres.vcd
-    		```
+	```
+	//Design
+	module dff_syncres(input clk, input sync_reset, input d, output reg q);
+		always@(posedge clk)
+		begin
+			if(sync_reset)
+				q <= 1'b0;
+			else
+				q <= d;
+		end
+	endmodule
+	//Testbench
+	module tb_dff_syncres; 
+		reg clk, syncres, d;
+		wire q;
+		dff_asyncres uut (.clk(clk),.sync_reset (sync_reset),.d(d),.q(q));
 
-		```
-		//Design
-  		module dff_syncres(input clk, input sync_reset, input d, output reg q);
-    			always@(posedge clk)
-       			begin
-	  			if(sync_reset)
-      					q <= 1'b0;
-	   			else
-       					q <= d;
-	    		end
-       		endmodule
-    		//Testbench
-      		module tb_dff_syncres; 
-			reg clk, syncres, d;
-			wire q;
-			dff_asyncres uut (.clk(clk),.sync_reset (sync_reset),.d(d),.q(q));
-
-      			initial begin
-				$dumpfile("tb_dff_syncres.vcd");
-				$dumpvars(0,tb_dff_syncres);
-				// Initialize Inputs
-				clk = 0;
-				sync_reset = 1;
-				d = 0;
-				#3000 $finish;
-			end
-				
-    			always #10 clk = ~clk;
-			always #23 d = ~d;
-			always #547 sync_reset=~async_reset; 
-   		endmodule
-    		```
+		initial begin
+			$dumpfile("tb_dff_syncres.vcd");
+			$dumpvars(0,tb_dff_syncres);
+			// Initialize Inputs
+			clk = 0;
+			sync_reset = 1;
+			d = 0;
+			#3000 $finish;
+		end
+			
+		always #10 clk = ~clk;
+		always #23 d = ~d;
+		always #547 sync_reset=~async_reset; 
+	endmodule
+	```
       
-	![image](https://github.com/user-attachments/assets/78430bfa-a730-4ef5-9d26-49e3517b7584)
+![image](https://github.com/user-attachments/assets/78430bfa-a730-4ef5-9d26-49e3517b7584)
 
- 	![image](https://github.com/user-attachments/assets/a8ca2d39-44d4-462d-9ab3-b9211dc6e758)
+![image](https://github.com/user-attachments/assets/a8ca2d39-44d4-462d-9ab3-b9211dc6e758)
 
 From the waveform, it can be observed that the Q output changes to zero when the synchronous reset is set high, only at the positive clock edge.
 
-	</li>
 </li>
 
 <li>
 	Synthesis of D-Flipflop using Yosys: Synthesized 3 types of D-Flipflops - Asynchronous Reset, Asynchronous Set and Synchronous Reset.
-	<li>
-		Asynchronous Reset
-		
-  		```
-		1. yosys
-		2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-		3. read_verilog dff_asyncres.v
-		4. synth -top dff_asyncres
-		5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-		7. show
-		8. write_verilog -noattr dff_asyncres_netlist.v
-		9. gvim dff_asyncres_netlist.v
-		```
+	
+Asynchronous Reset
+	
+	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog dff_asyncres.v
+	4. synth -top dff_asyncres
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	8. write_verilog -noattr dff_asyncres_netlist.v
+	9. gvim dff_asyncres_netlist.v
+	```
 
-  		```
-    		//Generated Netlist   		
-		module dff_asyncres (clk, async_reset, d, q);
-			wire _0_;
-			wire _1_;
-			wire _2_;
-			input async_reset;
-			input clk;
-			input d;
-			output q;
-			
-   			sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
-			sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
-			assign _0_ = async_reset;
-			assign _2_ = _1_;
-		endmodule
-      		```
+	```
+	//Generated Netlist   		
+	module dff_asyncres (clk, async_reset, d, q);
+		wire _0_;
+		wire _1_;
+		wire _2_;
+		input async_reset;
+		input clk;
+		input d;
+		output q;
+		
+		sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+		sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+		assign _0_ = async_reset;
+		assign _2_ = _1_;
+	endmodule
+	```
 
 ![image](https://github.com/user-attachments/assets/6f67adf6-ebc1-49a4-b8b0-ae1a09f76897)
 
@@ -1575,39 +1568,36 @@ From the waveform, it can be observed that the Q output changes to zero when the
 
 ![image](https://github.com/user-attachments/assets/d3723b64-5e45-4589-996b-20d327de7485)
 
-	</li>
-
- 	<li>
-		Asynchronous Set		
+Asynchronous Set		
   
-  		```
-		1. yosys
-		2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-		3. read_verilog dff_async_set.v
-		4. synth -top dff_async_set
-		5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-		7. show
-		8. write_verilog -noattr dff_async_set_netlist.v
-		9. gvim dff_async_set_netlist.v
-		```
+	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog dff_async_set.v
+	4. synth -top dff_async_set
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	8. write_verilog -noattr dff_async_set_netlist.v
+	9. gvim dff_async_set_netlist.v
+	```
 
-  		```
-    		//Generated Netlist   		
-		module dff_async_set (clk, async_set, d, q);
-			wire _0_;
-			wire _1_;
-			wire _2_;
-			input async_set;
-			input clk;
-			input d;
-			output q;
-			
-   			sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
-			sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
-			assign _0_ = async_set;
-			assign _2_ = _1_;
-		endmodule
-      		```
+	```
+	//Generated Netlist   		
+	module dff_async_set (clk, async_set, d, q);
+		wire _0_;
+		wire _1_;
+		wire _2_;
+		input async_set;
+		input clk;
+		input d;
+		output q;
+		
+		sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+		sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+		assign _0_ = async_set;
+		assign _2_ = _1_;
+	endmodule
+	```
 
 ![image](https://github.com/user-attachments/assets/2e048513-b8cd-460a-972c-b119e13efef6)
 
@@ -1615,40 +1605,36 @@ From the waveform, it can be observed that the Q output changes to zero when the
 
 ![image](https://github.com/user-attachments/assets/f37b4790-3647-4441-ad3f-466a34e98cd3)
 
-	</li>
-
-	<li>
-		Synchronous Reset
-		
+Synchronous Reset
   
-  		```
-		1. yosys
-		2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-		3. read_verilog dff_syncres.v
-		4. synth -top dff_syncres
-		5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-		7. show
-		8. write_verilog -noattr dff_syncres_netlist.v
-		9. gvim dff_syncres_netlist.v
-		```
+	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog dff_syncres.v
+	4. synth -top dff_syncres
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	8. write_verilog -noattr dff_syncres_netlist.v
+	9. gvim dff_syncres_netlist.v
+	```
 
-  		```
-    		//Generated Netlist   		
-		module dff_syncres (clk, sync_reset, d, q);
-			wire _0_;
-			wire _1_;
-			wire _2_;
-			input sync_reset;
-			input clk;
-			input d;
-			output q;
-			
-   			sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
-			sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
-			assign _0_ = sync_reset;
-			assign _2_ = _1_;
-		endmodule
-      		```
+	```
+	//Generated Netlist   		
+	module dff_syncres (clk, sync_reset, d, q);
+		wire _0_;
+		wire _1_;
+		wire _2_;
+		input sync_reset;
+		input clk;
+		input d;
+		output q;
+		
+		sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+		sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+		assign _0_ = sync_reset;
+		assign _2_ = _1_;
+	endmodule
+	```
 
 ![image](https://github.com/user-attachments/assets/18154798-941b-485a-964c-be8bba5e15de)
 
@@ -1656,8 +1642,8 @@ From the waveform, it can be observed that the Q output changes to zero when the
 
 ![image](https://github.com/user-attachments/assets/c3b424e1-c096-47d8-92e1-c54265a7fd36)
 
-	</li>
 </li>
+
 <li>
 	Multiplication by 2: This tutorial, we get to know that specific multiplier hardware is not required for multiplication of a number by 2. It can simply be achieved by concatenating the number itself with a zero in the LSB.
  
@@ -1918,8 +1904,327 @@ module multiple_module_opt2(input a, input b input c, input d, output y);
 	sub_module U4 (.a(n3), .b(n1), .y(y));
 endmodule
 ```
+<li>
+	D-Flipflop Constant 1 with Asynchronous Reset (active low)
 
-Add slide 16 to 20
+	```
+ 	iverilog dff_const1.v tb_dff_const1.v
+  	./a.out
+   	gtkwave tb_dff_const1.vcd
+    	```
+
+	```
+ 	//Design
+	module dff_const1(input clk, input reset, output reg q); 
+ 	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+			q <= 1'b0;
+		else
+			q <= 1'b1;
+   	end
+	endmodule
+ 	//Testbench
+  	module tb_dff_const1; 
+		reg clk, reset;
+		wire q;
+
+  		dff_const1 uut (.clk(clk),.reset(reset),.q(q));
+
+    		initial begin
+			$dumpfile("tb_dff_const1.vcd");
+			$dumpvars(0,tb_dff_const1);
+			// Initialize Inputs
+			clk = 0;
+			reset = 1;
+			#3000 $finish;
+		end
+
+		always #10 clk = ~clk;
+		always #1547 reset=~reset;
+	endmodule
+	```
+ 
+![image](https://github.com/user-attachments/assets/02b17971-01cb-4fc4-8315-21f9e17fa47d)
+
+![image](https://github.com/user-attachments/assets/c5545f8c-5036-446e-94e6-64a6f177ea99)
+
+From the waveform, it can be observed that the Q output is always high when reset is zero, and reset doesn't depend on clock edge.
+  
+	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog dff_const1.v
+	4. synth -top dff_const1
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	```
+
+![image](https://github.com/user-attachments/assets/10affe8a-44c6-4e2b-a861-5239a7fc891f)
+
+![image](https://github.com/user-attachments/assets/b1c25388-b970-4884-aaac-5ac1eee3dbf0)
+
+</li>
+
+<li>
+	D-Flipflop Constant 2 with Asynchronous Reset (active high)
+
+	```
+ 	iverilog dff_const2.v tb_dff_const2.v
+  	./a.out
+   	gtkwave tb_dff_const2.vcd
+    	```
+
+	```
+ 	//Design
+	module dff_const2(input clk, input reset, output reg q); 
+ 	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
+			q <= 1'b1;
+		else
+			q <= 1'b1;
+   	end
+	endmodule
+ 	//Testbench
+  	module tb_dff_const2; 
+		reg clk, reset;
+		wire q;
+
+  		dff_const2 uut (.clk(clk),.reset(reset),.q(q));
+
+    		initial begin
+			$dumpfile("tb_dff_const1.vcd");
+			$dumpvars(0,tb_dff_const1);
+			// Initialize Inputs
+			clk = 0;
+			reset = 1;
+			#3000 $finish;
+		end
+
+		always #10 clk = ~clk;
+		always #1547 reset=~reset;
+	endmodule
+	```
+ 
+![image](https://github.com/user-attachments/assets/a16f3a0c-92cf-4c77-bb2e-d85fac9a92e0)
+
+![image](https://github.com/user-attachments/assets/144e8a14-8939-4dd4-95a0-12ac6c06f4f3)
+
+From the waveform, it can be observed that the Q output is always high irrespective of reset.
+  
+	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog dff_const2.v
+	4. synth -top dff_const2
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	```
+
+![image](https://github.com/user-attachments/assets/8d5c6e91-e19a-4c5b-8c40-860f7f03b0b2)
+
+![image](https://github.com/user-attachments/assets/042aefa3-f668-44c8-af58-a847229745fd)
+
+</li>
+
+<li>
+	D-Flipflop Constant 3 with Asynchronous Reset (active low)
+
+	```
+ 	//Design
+	module dff_const3(input clk, input reset, output reg q); 
+		reg q1;
+ 	
+  		always @(posedge clk, posedge reset)
+		begin
+			if(reset)
+			begin
+    				q <= 1'b1;
+				q1 <= 1'b0;
+    			end
+       			else
+	  		begin	
+     				q1 <= 1'b1;
+				q <= q1;
+	   		end
+      		end
+	endmodule
+	```
+   
+	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog dff_const3.v
+	4. synth -top dff_const3
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	```
+
+![image](https://github.com/user-attachments/assets/1af1fed7-1bdb-4322-a181-e86dc215895b)
+
+![image](https://github.com/user-attachments/assets/d3060b67-555b-497c-8fea-998b09aadbac)
+
+This module defines a D flip-flop, for a positive edge of reset, q is set to 1 and q1 is set to 0. On each clock cycle, q1 is set to 1, and q is updated with the value of q1.
+
+
+When synthesized, the design will result in a flip-flop where q becomes 1 after the first clock cycle post-reset and stays 1 afterward.
+
+</li>
+
+<li>
+	D-Flipflop Constant 4 with Asynchronous Reset (active high)
+
+	```
+ 	//Design
+	module dff_const4(input clk, input reset, output reg q); 
+		reg q1;
+ 	
+  		always @(posedge clk, posedge reset)
+		begin
+			if(reset)
+			begin
+    				q <= 1'b1;
+				q1 <= 1'b1;
+    			end
+       			else
+	  		begin	
+     				q1 <= 1'b1;
+				q <= q1;
+	   		end
+      		end
+	endmodule
+	```
+   
+	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog dff_const4.v
+	4. synth -top dff_const4
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	```
+
+![image](https://github.com/user-attachments/assets/cc66ffbe-41bd-4586-a380-e998318b0700)
+
+![image](https://github.com/user-attachments/assets/8c71b1d1-f523-4d79-ae2f-ed1bdbd72794)
+
+This module defines a D flip-flop that sets both q and q1 to 1 on a positive edge of reset. On each clock cycle, q1 remains 1, and q is updated with the value of q1 (which is always 1).
+
+When synthesized, the design will result in a flip-flop where q is always 1, regardless of the reset or clock state.
+
+</li>
+
+<li>
+	D-Flipflop Constant 5 with Asynchronous Reset
+
+	```
+ 	//Design
+	module dff_const5(input clk, input reset, output reg q); 
+		reg q1;
+ 	
+  		always @(posedge clk, posedge reset)
+		begin
+			if(reset)
+			begin
+    				q <= 1'b0;
+				q1 <= 1'b0;
+    			end
+       			else
+	  		begin	
+     				q1 <= 1'b1;
+				q <= q1;
+	   		end
+      		end
+	endmodule
+	```
+   
+	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog dff_const5.v
+	4. synth -top dff_const5
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	```
+
+![image](https://github.com/user-attachments/assets/a9a40c85-1617-41fd-a020-30be33af4883)
+
+![image](https://github.com/user-attachments/assets/20961f54-39d7-469f-9950-9a753ba71660)
+
+This module defines a D flip-flop that resets both q and q1 to 0 on a positive edge of reset. On each clock cycle, it sets q1 to 1 and then updates q with the value of q1 (which will always be 1 after the first cycle).
+
+When synthesized, the design will result in a flip-flop where q is always 1 after the first clock cycle post-reset.
+
+</li>
+
+<li>
+	Counter Optimization 1:
+
+ 	```
+  	//Design	
+	module counter_opt (input clk, input reset, output q);
+		reg [2:0] count;
+		assign q = count[0];
+		
+  		always @(posedge clk,posedge reset)
+		begin
+			if(reset)
+				count <= 3'b000;
+   			else
+				count <= count + 1;
+		end
+	endmodule
+  	```
+  
+  	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog counter_opt.v
+	4. synth -top counter_opt
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	```
+
+![image](https://github.com/user-attachments/assets/a5754bb9-dd7c-41e8-8893-1d705f3a9536)
+
+![image](https://github.com/user-attachments/assets/e8871085-5083-4bcc-81a2-9c67b0eba6e4)
+ 
+</li>
+
+<li>
+	Counter Optimization 2:
+
+ 	```
+  	//Design	
+	module counter_opt2 (input clk, input reset, output q);
+		reg [2:0] count;
+		assign q = (count[2:0] == 3'b100);
+		
+  		always @(posedge clk,posedge reset)
+		begin
+			if(reset)
+				count <= 3'b000;
+   			else
+				count <= count + 1;
+		end
+	endmodule
+  	```
+  
+  	```
+	1. yosys
+	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	3. read_verilog counter_opt2.v
+	4. synth -top counter_opt2
+	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	7. show
+	```
+
+![image](https://github.com/user-attachments/assets/1915bab8-3075-4ba7-bfa3-2aa0e2b9184e)
+
+![image](https://github.com/user-attachments/assets/5ed4c2ef-3367-4499-a9cc-900694e12fcb)
+ 
+</li>
 
 </li>
 
