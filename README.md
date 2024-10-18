@@ -1217,11 +1217,26 @@ endmodule
 
   <details>
 	  <summary>Day 2:</summary>
-   <li>
+  
+<li>
 	   Yosys Synthesis for Multiple Modules: This tutorial involved the synthesis of a design file that has more than one module.
 
 ```
 //Design
+
+module sub_module2 (input a, input b, output y);
+	assign y = a | b;
+endmodule
+
+module sub_module1 (input a, input b, output y);
+	assign y = a&b;
+endmodule
+
+module multiple_modules (input a, input b, input c, output y);
+	wire net1;
+	sub_module1 u1(.a(a),.b(b),.y(net1)); //net1 = a&b
+	sub_module2 u2(.a(net1),.b(c),.y(y)); //y = netic,ie y = a&b + c;
+endmodule
 ```
 
 ```
@@ -1234,6 +1249,7 @@ endmodule
 7. write_verilog -noattr multiple_modules_netlist.v
 8. gvim multiple_modules_netlist.v
 ```
+
    </li>
 
 ```
@@ -1379,7 +1395,35 @@ endmodule
 
       		```
 		//Design
+  		module dff_asyncres(input clk, input async_reset, input d, output reg q);
+    			always@(posedge clk, posedge async_reset)
+       			begin
+	  			if(async_reset)
+      					q <= 1'b0;
+	   			else
+       					q <= d;
+	    		end
+       		endmodule
   		//Testbench
+    		module tb_dff_asyncres; 
+			reg clk, async_reset, d;
+			wire q;
+			dff_asyncres uut (.clk(clk),.async_reset (async_reset),.d(d),.q(q));
+
+      			initial begin
+				$dumpfile("tb_dff_asyncres.vcd");
+				$dumpvars(0,tb_dff_asyncres);
+				// Initialize Inputs
+				clk = 0;
+				async_reset = 1;
+				d = 0;
+				#3000 $finish;
+			end
+				
+    			always #10 clk = ~clk;
+			always #23 d = ~d;
+			always #547 async_reset=~async_reset; 
+   		endmodule
     		```
 
       ![image](https://github.com/user-attachments/assets/27de48d3-f468-412e-9270-07c14601cecc)
@@ -1401,7 +1445,35 @@ endmodule
 
 		```
 		//Design
-  		//Testbench
+  		module dff_async_set(input clk, input async_set, input d, output reg q);
+    			always@(posedge clk, posedge async_set)
+       			begin
+	  			if(async_set)
+      					q <= 1'b1;
+	   			else
+       					q <= d;
+	    		end
+       		endmodule
+    		//Testbench
+      		module tb_dff_async_set; 
+			reg clk, async_set, d;
+			wire q;
+			dff_async_set uut (.clk(clk),.async_set (async_set),.d(d),.q(q));
+
+      			initial begin
+				$dumpfile("tb_dff_async_set.vcd");
+				$dumpvars(0,tb_dff_async_set);
+				// Initialize Inputs
+				clk = 0;
+				async_set = 1;
+				d = 0;
+				#3000 $finish;
+			end
+				
+    			always #10 clk = ~clk;
+			always #23 d = ~d;
+			always #547 async_set=~async_set; 
+   		endmodule
     		```
 
       ![image](https://github.com/user-attachments/assets/149d288a-97e1-43a8-8871-bedd91fb7bac)
@@ -1423,7 +1495,35 @@ From the waveform, it can be observed that the Q output changes to one when the 
 
 		```
 		//Design
-  		//Testbench
+  		module dff_syncres(input clk, input sync_reset, input d, output reg q);
+    			always@(posedge clk)
+       			begin
+	  			if(sync_reset)
+      					q <= 1'b0;
+	   			else
+       					q <= d;
+	    		end
+       		endmodule
+    		//Testbench
+      		module tb_dff_syncres; 
+			reg clk, syncres, d;
+			wire q;
+			dff_asyncres uut (.clk(clk),.sync_reset (sync_reset),.d(d),.q(q));
+
+      			initial begin
+				$dumpfile("tb_dff_syncres.vcd");
+				$dumpvars(0,tb_dff_syncres);
+				// Initialize Inputs
+				clk = 0;
+				sync_reset = 1;
+				d = 0;
+				#3000 $finish;
+			end
+				
+    			always #10 clk = ~clk;
+			always #23 d = ~d;
+			always #547 sync_reset=~async_reset; 
+   		endmodule
     		```
       
 	![image](https://github.com/user-attachments/assets/78430bfa-a730-4ef5-9d26-49e3517b7584)
@@ -1440,7 +1540,6 @@ From the waveform, it can be observed that the Q output changes to zero when the
 	<li>
 		Asynchronous Reset
 		
-  
   		```
 		1. yosys
 		2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -1453,20 +1552,33 @@ From the waveform, it can be observed that the Q output changes to zero when the
 		```
 
   		```
-    		//Generated Netlist
+    		//Generated Netlist   		
+		module dff_asyncres (clk, async_reset, d, q);
+			wire _0_;
+			wire _1_;
+			wire _2_;
+			input async_reset;
+			input clk;
+			input d;
+			output q;
+			
+   			sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+			sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+			assign _0_ = async_reset;
+			assign _2_ = _1_;
+		endmodule
       		```
 
- ![image](https://github.com/user-attachments/assets/6f67adf6-ebc1-49a4-b8b0-ae1a09f76897)
+![image](https://github.com/user-attachments/assets/6f67adf6-ebc1-49a4-b8b0-ae1a09f76897)
 
- ![image](https://github.com/user-attachments/assets/20a15008-6b31-49e5-b2c4-9ae3d1bfdb55)
+![image](https://github.com/user-attachments/assets/20a15008-6b31-49e5-b2c4-9ae3d1bfdb55)
 
 ![image](https://github.com/user-attachments/assets/d3723b64-5e45-4589-996b-20d327de7485)
 
 	</li>
 
  	<li>
-		Asynchronous Set
-		
+		Asynchronous Set		
   
   		```
 		1. yosys
@@ -1480,7 +1592,21 @@ From the waveform, it can be observed that the Q output changes to zero when the
 		```
 
   		```
-    		//Generated Netlist
+    		//Generated Netlist   		
+		module dff_async_set (clk, async_set, d, q);
+			wire _0_;
+			wire _1_;
+			wire _2_;
+			input async_set;
+			input clk;
+			input d;
+			output q;
+			
+   			sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+			sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+			assign _0_ = async_set;
+			assign _2_ = _1_;
+		endmodule
       		```
 
 ![image](https://github.com/user-attachments/assets/2e048513-b8cd-460a-972c-b119e13efef6)
@@ -1507,7 +1633,21 @@ From the waveform, it can be observed that the Q output changes to zero when the
 		```
 
   		```
-    		//Generated Netlist
+    		//Generated Netlist   		
+		module dff_syncres (clk, sync_reset, d, q);
+			wire _0_;
+			wire _1_;
+			wire _2_;
+			input sync_reset;
+			input clk;
+			input d;
+			output q;
+			
+   			sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+			sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+			assign _0_ = sync_reset;
+			assign _2_ = _1_;
+		endmodule
       		```
 
 ![image](https://github.com/user-attachments/assets/18154798-941b-485a-964c-be8bba5e15de)
@@ -1727,7 +1867,22 @@ endmodule
 
 ```
 //Design
-To be added
+
+module sub_module1(input a, input b, output y);
+	assign y = a & b;
+endmodule
+
+module sub_module2 (input a, input b output y);
+	assign y = a^b;
+endmodule
+و
+module multiple_module_opt(input a, input b input c, input d output y);
+	wire n1,n2, n3;
+
+	sub_module1 U1 (.a(a), .b(1'b1), .y(n1)); sub_module2 U2 (.a(n1), .b(1'b0), .y(n)); 	sub_module2 U3 (.a(b), .b(d), .y(n3));
+
+	assign y = c | (b & n1);
+endmodule
 ```
 
 ![image](https://github.com/user-attachments/assets/88629e12-376e-4c2a-80b0-48ed974a0c34)
@@ -1750,10 +1905,21 @@ To be added
 
 ```
 //Design
-To be added
+module sub_module(input a input b output y);
+	assign y = a & b;
+endmodule
+
+module multiple_module_opt2(input a, input b input c, input d, output y);
+	wire n1,n2, n3;
+
+	sub_module U1 (.a(a), .b(1'b0), y(n));
+	sub_module U2 (.a(b), .b(c), .y(n2));
+	sub_module U3 (.a(n2), .b(d), .y(n));
+	sub_module U4 (.a(n3), .b(n1), .y(y));
+endmodule
 ```
 
-
+Add slide 16 to 20
 
 </li>
 
@@ -1935,7 +2101,7 @@ gtkwave tb_blocking_caveat.vcd
 
 ![image](https://github.com/user-attachments/assets/1d502557-285a-478f-bfc9-d8335c2bbcc0)
 
-![image](https://github.com/user-attachments/assets/80330309-39bc-49c8-8204-fcface89360a)
+![image](https://github.com/user-attachments/assets/9f79776e-875f-4d09-a81f-160345de59d5)
 
 As depicted by the purple box in the waveform, when A and B go zero, the OR gate output should be zero (X equal to zero), and the AND gate output should also be zero (same as D output). But, the AND gate input of X takes the previous value of A|B equal to one, based on the design created by the blocking statement, hence the discrepancy in the output.
 
