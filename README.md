@@ -1807,7 +1807,6 @@ endmodule
 
 ![image](https://github.com/user-attachments/assets/5d21faca-631d-4fb3-847f-2b741d26d39b)
 
-![image](https://github.com/user-attachments/assets/02934cfe-8b3b-48f8-bdd2-190154eb378b)
 
 </li>
 
@@ -1909,45 +1908,44 @@ endmodule
 
 <li>
 	D-Flipflop Constant 1 with Asynchronous Reset (active low)
-
 	
- 	```
- 	iverilog dff_const1.v tb_dff_const1.v
-  	./a.out
-   	gtkwave tb_dff_const1.vcd
-    	```
+```
+iverilog dff_const1.v tb_dff_const1.v
+./a.out
+gtkwave tb_dff_const1.vcd
+```
 
-	```
- 	//Design
-	module dff_const1(input clk, input reset, output reg q); 
- 	always @(posedge clk, posedge reset)
-	begin
-		if(reset)
-			q <= 1'b0;
-		else
-			q <= 1'b1;
-   	end
-	endmodule
- 	//Testbench
-  	module tb_dff_const1; 
-		reg clk, reset;
-		wire q;
+```
+//Design
+module dff_const1(input clk, input reset, output reg q); 
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b0;
+	else
+		q <= 1'b1;
+end
+endmodule
+//Testbench
+module tb_dff_const1; 
+	reg clk, reset;
+	wire q;
 
-  		dff_const1 uut (.clk(clk),.reset(reset),.q(q));
+	dff_const1 uut (.clk(clk),.reset(reset),.q(q));
 
-    		initial begin
-			$dumpfile("tb_dff_const1.vcd");
-			$dumpvars(0,tb_dff_const1);
-			// Initialize Inputs
-			clk = 0;
-			reset = 1;
-			#3000 $finish;
-		end
+	initial begin
+		$dumpfile("tb_dff_const1.vcd");
+		$dumpvars(0,tb_dff_const1);
+		// Initialize Inputs
+		clk = 0;
+		reset = 1;
+		#3000 $finish;
+	end
 
-		always #10 clk = ~clk;
-		always #1547 reset=~reset;
-	endmodule
-	```
+	always #10 clk = ~clk;
+	always #1547 reset=~reset;
+endmodule
+```
  
 ![image](https://github.com/user-attachments/assets/02b17971-01cb-4fc4-8315-21f9e17fa47d)
 
@@ -1955,15 +1953,14 @@ endmodule
 
 From the waveform, it can be observed that the Q output is always high when reset is zero, and reset doesn't depend on clock edge.
   
-	
- 	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog dff_const1.v
-	4. synth -top dff_const1
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	```
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog dff_const1.v
+4. synth -top dff_const1
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+```
 
 ![image](https://github.com/user-attachments/assets/10affe8a-44c6-4e2b-a861-5239a7fc891f)
 
@@ -1974,60 +1971,58 @@ From the waveform, it can be observed that the Q output is always high when rese
 <li>
 	D-Flipflop Constant 2 with Asynchronous Reset (active high)
 
-	
- 	```
- 	iverilog dff_const2.v tb_dff_const2.v
-  	./a.out
-   	gtkwave tb_dff_const2.vcd
-    	```
+```
+iverilog dff_const2.v tb_dff_const2.v
+./a.out
+gtkwave tb_dff_const2.vcd
+```
 
-	```
- 	//Design
-	module dff_const2(input clk, input reset, output reg q); 
- 	always @(posedge clk, posedge reset)
-	begin
-		if(reset)
-			q <= 1'b1;
-		else
-			q <= 1'b1;
-   	end
-	endmodule
- 	//Testbench
-  	module tb_dff_const2; 
-		reg clk, reset;
-		wire q;
+```
+//Design
+module dff_const2(input clk, input reset, output reg q); 
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b1;
+	else
+		q <= 1'b1;
+end
+endmodule
+//Testbench
+module tb_dff_const2; 
+	reg clk, reset;
+	wire q;
 
-  		dff_const2 uut (.clk(clk),.reset(reset),.q(q));
+	dff_const2 uut (.clk(clk),.reset(reset),.q(q));
 
-    		initial begin
-			$dumpfile("tb_dff_const1.vcd");
-			$dumpvars(0,tb_dff_const1);
-			// Initialize Inputs
-			clk = 0;
-			reset = 1;
-			#3000 $finish;
-		end
+	initial begin
+		$dumpfile("tb_dff_const1.vcd");
+		$dumpvars(0,tb_dff_const1);
+		// Initialize Inputs
+		clk = 0;
+		reset = 1;
+		#3000 $finish;
+	end
 
-		always #10 clk = ~clk;
-		always #1547 reset=~reset;
-	endmodule
-	```
+	always #10 clk = ~clk;
+	always #1547 reset=~reset;
+endmodule
+```
  
 ![image](https://github.com/user-attachments/assets/a16f3a0c-92cf-4c77-bb2e-d85fac9a92e0)
 
 ![image](https://github.com/user-attachments/assets/144e8a14-8939-4dd4-95a0-12ac6c06f4f3)
 
 From the waveform, it can be observed that the Q output is always high irrespective of reset.
-
   
-	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog dff_const2.v
-	4. synth -top dff_const2
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	```
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog dff_const2.v
+4. synth -top dff_const2
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+```
 
 ![image](https://github.com/user-attachments/assets/8d5c6e91-e19a-4c5b-8c40-860f7f03b0b2)
 
@@ -2038,36 +2033,35 @@ From the waveform, it can be observed that the Q output is always high irrespect
 <li>
 	D-Flipflop Constant 3 with Asynchronous Reset (active low)
 
+```
+//Design
+module dff_const3(input clk, input reset, output reg q); 
+	reg q1;
 
-	```
- 	//Design
-	module dff_const3(input clk, input reset, output reg q); 
-		reg q1;
- 	
-  		always @(posedge clk, posedge reset)
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
 		begin
-			if(reset)
-			begin
-    				q <= 1'b1;
-				q1 <= 1'b0;
-    			end
-       			else
-	  		begin	
-     				q1 <= 1'b1;
-				q <= q1;
-	   		end
-      		end
-	endmodule
-	```
-   
-	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog dff_const3.v
-	4. synth -top dff_const3
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	```
+			q <= 1'b1;
+			q1 <= 1'b0;
+		end
+		else
+		begin	
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+endmodule
+```
+
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog dff_const3.v
+4. synth -top dff_const3
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+```
 
 ![image](https://github.com/user-attachments/assets/1af1fed7-1bdb-4322-a181-e86dc215895b)
 
@@ -2083,36 +2077,35 @@ When synthesized, the design will result in a flip-flop where q becomes 1 after 
 <li>
 	D-Flipflop Constant 4 with Asynchronous Reset (active high)
 
+```
+//Design
+module dff_const4(input clk, input reset, output reg q); 
+	reg q1;
 
-	```
- 	//Design
-	module dff_const4(input clk, input reset, output reg q); 
-		reg q1;
- 	
-  		always @(posedge clk, posedge reset)
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
 		begin
-			if(reset)
-			begin
-    				q <= 1'b1;
-				q1 <= 1'b1;
-    			end
-       			else
-	  		begin	
-     				q1 <= 1'b1;
-				q <= q1;
-	   		end
-      		end
-	endmodule
-	```
-   
-	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog dff_const4.v
-	4. synth -top dff_const4
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	```
+			q <= 1'b1;
+			q1 <= 1'b1;
+		end
+		else
+		begin	
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+endmodule
+```
+
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog dff_const4.v
+4. synth -top dff_const4
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+```
 
 ![image](https://github.com/user-attachments/assets/cc66ffbe-41bd-4586-a380-e998318b0700)
 
@@ -2127,36 +2120,35 @@ When synthesized, the design will result in a flip-flop where q is always 1, reg
 <li>
 	D-Flipflop Constant 5 with Asynchronous Reset
 
+```
+//Design
+module dff_const5(input clk, input reset, output reg q); 
+	reg q1;
 
-	```
- 	//Design
-	module dff_const5(input clk, input reset, output reg q); 
-		reg q1;
- 	
-  		always @(posedge clk, posedge reset)
+	always @(posedge clk, posedge reset)
+	begin
+		if(reset)
 		begin
-			if(reset)
-			begin
-    				q <= 1'b0;
-				q1 <= 1'b0;
-    			end
-       			else
-	  		begin	
-     				q1 <= 1'b1;
-				q <= q1;
-	   		end
-      		end
-	endmodule
-	```
-   
-	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog dff_const5.v
-	4. synth -top dff_const5
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	```
+			q <= 1'b0;
+			q1 <= 1'b0;
+		end
+		else
+		begin	
+			q1 <= 1'b1;
+			q <= q1;
+		end
+	end
+endmodule
+```
+
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog dff_const5.v
+4. synth -top dff_const5
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+```
 
 ![image](https://github.com/user-attachments/assets/a9a40c85-1617-41fd-a020-30be33af4883)
 
@@ -2171,31 +2163,30 @@ When synthesized, the design will result in a flip-flop where q is always 1 afte
 <li>
 	Counter Optimization 1:
 
+```
+//Design	
+module counter_opt (input clk, input reset, output q);
+	reg [2:0] count;
+	assign q = count[0];
+	
+	always @(posedge clk,posedge reset)
+	begin
+		if(reset)
+			count <= 3'b000;
+		else
+			count <= count + 1;
+	end
+endmodule
+```
 
- 	```
-  	//Design	
-	module counter_opt (input clk, input reset, output q);
-		reg [2:0] count;
-		assign q = count[0];
-		
-  		always @(posedge clk,posedge reset)
-		begin
-			if(reset)
-				count <= 3'b000;
-   			else
-				count <= count + 1;
-		end
-	endmodule
-  	```
-  
-  	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog counter_opt.v
-	4. synth -top counter_opt
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	```
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog counter_opt.v
+4. synth -top counter_opt
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+```
 
 ![image](https://github.com/user-attachments/assets/a5754bb9-dd7c-41e8-8893-1d705f3a9536)
 
@@ -2206,31 +2197,30 @@ When synthesized, the design will result in a flip-flop where q is always 1 afte
 <li>
 	Counter Optimization 2:
 
+```
+//Design	
+module counter_opt2 (input clk, input reset, output q);
+	reg [2:0] count;
+	assign q = (count[2:0] == 3'b100);
+	
+	always @(posedge clk,posedge reset)
+	begin
+		if(reset)
+			count <= 3'b000;
+		else
+			count <= count + 1;
+	end
+endmodule
+```
 
- 	```
-  	//Design	
-	module counter_opt2 (input clk, input reset, output q);
-		reg [2:0] count;
-		assign q = (count[2:0] == 3'b100);
-		
-  		always @(posedge clk,posedge reset)
-		begin
-			if(reset)
-				count <= 3'b000;
-   			else
-				count <= count + 1;
-		end
-	endmodule
-  	```
-  
-  	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog counter_opt2.v
-	4. synth -top counter_opt2
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	```
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog counter_opt2.v
+4. synth -top counter_opt2
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+```
 
 ![image](https://github.com/user-attachments/assets/1915bab8-3075-4ba7-bfa3-2aa0e2b9184e)
 
