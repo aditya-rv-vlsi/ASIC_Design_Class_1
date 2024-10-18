@@ -1304,7 +1304,7 @@ endmodule
 
 ![image](https://github.com/user-attachments/assets/7e9b0cd5-09b5-48cd-93a2-5d55912a9d50)
 
-![image](https://github.com/user-attachments/assets/373f0f39-5cb2-41fd-aa24-0aaae1c6b74b)
+![image](https://github.com/user-attachments/assets/ef04443b-c3cc-453e-86c8-4408eb35716a)
 
 <li>
 	Use of Module Level Synthesis: This method is preferred when multiple instances of same module are used. The synthesis is carried out once and is replicate multiple times, and the multiple instances of the same module are stitched together in the top module. This method is helpful when making use of divide and conquer algorithm
@@ -1326,8 +1326,7 @@ endmodule
 </li>
 
 <li>
-	Use of Flattening: This method is used to reduce the size of the circuit generated. This is carried out on the multiple modules file. The command "flatten" is made use of.
-
+	Use of Flattening: Merges all hierarchical modules in the design into a single module to create a flat netlist.
  ```
 1. yosys
 2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -1387,44 +1386,44 @@ endmodule
 
 Asynchronous Reset
 
-	```
-	iverilog dff_asyncres.v tb_dff_asyncres.v
-	./a.out
-	gtkwave tb_dff_asyncres.vcd
-	```
+```
+iverilog dff_asyncres.v tb_dff_asyncres.v
+./a.out
+gtkwave tb_dff_asyncres.vcd
+```
 
-	```
-	//Design
-	module dff_asyncres(input clk, input async_reset, input d, output reg q);
-		always@(posedge clk, posedge async_reset)
-		begin
-			if(async_reset)
-				q <= 1'b0;
-			else
-				q <= d;
-		end
-	endmodule
-	//Testbench
-	module tb_dff_asyncres; 
-		reg clk, async_reset, d;
-		wire q;
-		dff_asyncres uut (.clk(clk),.async_reset (async_reset),.d(d),.q(q));
+```
+//Design
+module dff_asyncres(input clk, input async_reset, input d, output reg q);
+	always@(posedge clk, posedge async_reset)
+	begin
+		if(async_reset)
+			q <= 1'b0;
+		else
+			q <= d;
+	end
+endmodule
+//Testbench
+module tb_dff_asyncres; 
+	reg clk, async_reset, d;
+	wire q;
+	dff_asyncres uut (.clk(clk),.async_reset (async_reset),.d(d),.q(q));
 
-		initial begin
-			$dumpfile("tb_dff_asyncres.vcd");
-			$dumpvars(0,tb_dff_asyncres);
-			// Initialize Inputs
-			clk = 0;
-			async_reset = 1;
-			d = 0;
-			#3000 $finish;
-		end
-			
-		always #10 clk = ~clk;
-		always #23 d = ~d;
-		always #547 async_reset=~async_reset; 
-	endmodule
-	```
+	initial begin
+		$dumpfile("tb_dff_asyncres.vcd");
+		$dumpvars(0,tb_dff_asyncres);
+		// Initialize Inputs
+		clk = 0;
+		async_reset = 1;
+		d = 0;
+		#3000 $finish;
+	end
+		
+	always #10 clk = ~clk;
+	always #23 d = ~d;
+	always #547 async_reset=~async_reset; 
+endmodule
+```
 
 ![image](https://github.com/user-attachments/assets/27de48d3-f468-412e-9270-07c14601cecc)
 
@@ -1434,44 +1433,44 @@ Asynchronous Reset
 
 Asynchronous Set
 
-	```
-	iverilog dff_async_set.v tb_dff_async_set.v
-	./a.out
-	gtkwave tb_dff_async_set.vcd
-	```
+```
+iverilog dff_async_set.v tb_dff_async_set.v
+./a.out
+gtkwave tb_dff_async_set.vcd
+```
 
-	```
-	//Design
-	module dff_async_set(input clk, input async_set, input d, output reg q);
-		always@(posedge clk, posedge async_set)
-		begin
-			if(async_set)
-				q <= 1'b1;
-			else
-				q <= d;
-		end
-	endmodule
-	//Testbench
-	module tb_dff_async_set; 
-		reg clk, async_set, d;
-		wire q;
-		dff_async_set uut (.clk(clk),.async_set (async_set),.d(d),.q(q));
+```
+//Design
+module dff_async_set(input clk, input async_set, input d, output reg q);
+	always@(posedge clk, posedge async_set)
+	begin
+		if(async_set)
+			q <= 1'b1;
+		else
+			q <= d;
+	end
+endmodule
+//Testbench
+module tb_dff_async_set; 
+	reg clk, async_set, d;
+	wire q;
+	dff_async_set uut (.clk(clk),.async_set (async_set),.d(d),.q(q));
 
-		initial begin
-			$dumpfile("tb_dff_async_set.vcd");
-			$dumpvars(0,tb_dff_async_set);
-			// Initialize Inputs
-			clk = 0;
-			async_set = 1;
-			d = 0;
-			#3000 $finish;
-		end
-			
-		always #10 clk = ~clk;
-		always #23 d = ~d;
-		always #547 async_set=~async_set; 
-	endmodule
-	```
+	initial begin
+		$dumpfile("tb_dff_async_set.vcd");
+		$dumpvars(0,tb_dff_async_set);
+		// Initialize Inputs
+		clk = 0;
+		async_set = 1;
+		d = 0;
+		#3000 $finish;
+	end
+		
+	always #10 clk = ~clk;
+	always #23 d = ~d;
+	always #547 async_set=~async_set; 
+endmodule
+```
 
 ![image](https://github.com/user-attachments/assets/149d288a-97e1-43a8-8871-bedd91fb7bac)
 
@@ -1481,44 +1480,44 @@ From the waveform, it can be observed that the Q output changes to one when the 
 
 Synchronous Reset
 
-	```
-	iverilog dff_syncres.v tb_dff_syncres.v
-	./a.out
-	gtkwave tb_dff_syncres.vcd
-	```
+```
+iverilog dff_syncres.v tb_dff_syncres.v
+./a.out
+gtkwave tb_dff_syncres.vcd
+```
 
-	```
-	//Design
-	module dff_syncres(input clk, input sync_reset, input d, output reg q);
-		always@(posedge clk)
-		begin
-			if(sync_reset)
-				q <= 1'b0;
-			else
-				q <= d;
-		end
-	endmodule
-	//Testbench
-	module tb_dff_syncres; 
-		reg clk, syncres, d;
-		wire q;
-		dff_asyncres uut (.clk(clk),.sync_reset (sync_reset),.d(d),.q(q));
+```
+//Design
+module dff_syncres(input clk, input sync_reset, input d, output reg q);
+	always@(posedge clk)
+	begin
+		if(sync_reset)
+			q <= 1'b0;
+		else
+			q <= d;
+	end
+endmodule
+//Testbench
+module tb_dff_syncres; 
+	reg clk, syncres, d;
+	wire q;
+	dff_asyncres uut (.clk(clk),.sync_reset (sync_reset),.d(d),.q(q));
 
-		initial begin
-			$dumpfile("tb_dff_syncres.vcd");
-			$dumpvars(0,tb_dff_syncres);
-			// Initialize Inputs
-			clk = 0;
-			sync_reset = 1;
-			d = 0;
-			#3000 $finish;
-		end
-			
-		always #10 clk = ~clk;
-		always #23 d = ~d;
-		always #547 sync_reset=~async_reset; 
-	endmodule
-	```
+	initial begin
+		$dumpfile("tb_dff_syncres.vcd");
+		$dumpvars(0,tb_dff_syncres);
+		// Initialize Inputs
+		clk = 0;
+		sync_reset = 1;
+		d = 0;
+		#3000 $finish;
+	end
+		
+	always #10 clk = ~clk;
+	always #23 d = ~d;
+	always #547 sync_reset=~async_reset; 
+endmodule
+```
       
 ![image](https://github.com/user-attachments/assets/78430bfa-a730-4ef5-9d26-49e3517b7584)
 
@@ -1533,34 +1532,34 @@ From the waveform, it can be observed that the Q output changes to zero when the
 	
 Asynchronous Reset
 	
-	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog dff_asyncres.v
-	4. synth -top dff_asyncres
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	8. write_verilog -noattr dff_asyncres_netlist.v
-	9. gvim dff_asyncres_netlist.v
-	```
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog dff_asyncres.v
+4. synth -top dff_asyncres
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+8. write_verilog -noattr dff_asyncres_netlist.v
+9. gvim dff_asyncres_netlist.v
+```
 
-	```
-	//Generated Netlist   		
-	module dff_asyncres (clk, async_reset, d, q);
-		wire _0_;
-		wire _1_;
-		wire _2_;
-		input async_reset;
-		input clk;
-		input d;
-		output q;
-		
-		sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
-		sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
-		assign _0_ = async_reset;
-		assign _2_ = _1_;
-	endmodule
-	```
+```
+//Generated Netlist   		
+module dff_asyncres (clk, async_reset, d, q);
+	wire _0_;
+	wire _1_;
+	wire _2_;
+	input async_reset;
+	input clk;
+	input d;
+	output q;
+	
+	sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+	sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+	assign _0_ = async_reset;
+	assign _2_ = _1_;
+endmodule
+```
 
 ![image](https://github.com/user-attachments/assets/6f67adf6-ebc1-49a4-b8b0-ae1a09f76897)
 
@@ -1570,34 +1569,34 @@ Asynchronous Reset
 
 Asynchronous Set		
   
-	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog dff_async_set.v
-	4. synth -top dff_async_set
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	8. write_verilog -noattr dff_async_set_netlist.v
-	9. gvim dff_async_set_netlist.v
-	```
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog dff_async_set.v
+4. synth -top dff_async_set
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+8. write_verilog -noattr dff_async_set_netlist.v
+9. gvim dff_async_set_netlist.v
+```
 
-	```
-	//Generated Netlist   		
-	module dff_async_set (clk, async_set, d, q);
-		wire _0_;
-		wire _1_;
-		wire _2_;
-		input async_set;
-		input clk;
-		input d;
-		output q;
-		
-		sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
-		sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
-		assign _0_ = async_set;
-		assign _2_ = _1_;
-	endmodule
-	```
+```
+//Generated Netlist   		
+module dff_async_set (clk, async_set, d, q);
+	wire _0_;
+	wire _1_;
+	wire _2_;
+	input async_set;
+	input clk;
+	input d;
+	output q;
+	
+	sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+	sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+	assign _0_ = async_set;
+	assign _2_ = _1_;
+endmodule
+```
 
 ![image](https://github.com/user-attachments/assets/2e048513-b8cd-460a-972c-b119e13efef6)
 
@@ -1607,34 +1606,34 @@ Asynchronous Set
 
 Synchronous Reset
   
-	```
-	1. yosys
-	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	3. read_verilog dff_syncres.v
-	4. synth -top dff_syncres
-	5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-	7. show
-	8. write_verilog -noattr dff_syncres_netlist.v
-	9. gvim dff_syncres_netlist.v
-	```
+```
+1. yosys
+2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+3. read_verilog dff_syncres.v
+4. synth -top dff_syncres
+5. dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+7. show
+8. write_verilog -noattr dff_syncres_netlist.v
+9. gvim dff_syncres_netlist.v
+```
 
-	```
-	//Generated Netlist   		
-	module dff_syncres (clk, sync_reset, d, q);
-		wire _0_;
-		wire _1_;
-		wire _2_;
-		input sync_reset;
-		input clk;
-		input d;
-		output q;
-		
-		sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
-		sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
-		assign _0_ = sync_reset;
-		assign _2_ = _1_;
-	endmodule
-	```
+```
+//Generated Netlist   		
+module dff_syncres (clk, sync_reset, d, q);
+	wire _0_;
+	wire _1_;
+	wire _2_;
+	input sync_reset;
+	input clk;
+	input d;
+	output q;
+	
+	sky130_fd_sc_hd__clkinv_1 _3_ (.A(_0_),.Y(_1_));
+	sky130_fd_sc_hd__dfrtp_1 _4_ (.CLK(clk),.D(d),.RESET_B(_2_),.Q(q));
+	assign _0_ = sync_reset;
+	assign _2_ = _1_;
+endmodule
+```
 
 ![image](https://github.com/user-attachments/assets/18154798-941b-485a-964c-be8bba5e15de)
 
