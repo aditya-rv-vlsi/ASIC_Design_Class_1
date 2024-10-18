@@ -2407,7 +2407,8 @@ gtkwave tb_blocking_caveat.vcd
 
 ![image](https://github.com/user-attachments/assets/1d502557-285a-478f-bfc9-d8335c2bbcc0)
 
-![image](https://github.com/user-attachments/assets/9f79776e-875f-4d09-a81f-160345de59d5)
+![image](https://github.com/user-attachments/assets/1ed038db-69e3-4f36-856b-964fbac274e9)
+
 
 As depicted by the purple box in the waveform, when A and B go zero, the OR gate output should be zero (X equal to zero), and the AND gate output should also be zero (same as D output). But, the AND gate input of X takes the previous value of A|B equal to one, based on the design created by the blocking statement, hence the discrepancy in the output.
 
@@ -2449,9 +2450,9 @@ endmodule
 ![image](https://github.com/user-attachments/assets/c6303c2a-5344-4e36-8250-3c5515c08c76)
 
 ```
-iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux.v tb_bad_mux.v
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat.v tb_blocking_caveat.v
 ./a.out
-gtkwave tb_bad_mux.vcd
+gtkwave tb_blocking_caveat.vcd
 ```
 
 ![image](https://github.com/user-attachments/assets/f1c71b28-c316-4250-9f23-d49187985694)
