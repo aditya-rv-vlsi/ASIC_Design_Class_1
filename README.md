@@ -2405,7 +2405,7 @@ gtkwave tb_blocking_caveat.vcd
 
 ![image](https://github.com/user-attachments/assets/6811ccd8-9db9-436c-930f-6b50382c6831)
 
-![image](https://github.com/user-attachments/assets/1d502557-285a-478f-bfc9-d8335c2bbcc0)
+![image](https://github.com/user-attachments/assets/daf727a1-8d0c-4e5e-b626-71167015f194)
 
 ![image](https://github.com/user-attachments/assets/1ed038db-69e3-4f36-856b-964fbac274e9)
 
