@@ -1304,8 +1304,6 @@ endmodule
 
 ![image](https://github.com/user-attachments/assets/7e9b0cd5-09b5-48cd-93a2-5d55912a9d50)
 
-![image](https://github.com/user-attachments/assets/ef04443b-c3cc-453e-86c8-4408eb35716a)
-
 <li>
 	Use of Module Level Synthesis: This method is preferred when multiple instances of same module are used. The synthesis is carried out once and is replicate multiple times, and the multiple instances of the same module are stitched together in the top module. This method is helpful when making use of divide and conquer algorithm
 
@@ -1860,11 +1858,13 @@ endmodule
 module sub_module2 (input a, input b output y);
 	assign y = a^b;
 endmodule
-و
+
 module multiple_module_opt(input a, input b input c, input d output y);
 	wire n1,n2, n3;
 
-	sub_module1 U1 (.a(a), .b(1'b1), .y(n1)); sub_module2 U2 (.a(n1), .b(1'b0), .y(n)); 	sub_module2 U3 (.a(b), .b(d), .y(n3));
+	sub_module1 U1 (.a(a), .b(1'b1), .y(n1));
+	sub_module2 U2 (.a(n1), .b(1'b0), .y(n));
+	sub_module2 U3 (.a(b), .b(d), .y(n3));
 
 	assign y = c | (b & n1);
 endmodule
