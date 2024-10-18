@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/1964151f-8e38-4ebb-bc39-c7aeba07e3f0)# ASIC_Design_Class_1
+# ASIC_Design_Class_1
 This is the Github repository of **Aditya R Venkateshwaran, MT2024502** for the ASIC Design Class of Aug 2024 to Dec 2024. The following items can be found in this repository, the name of the file indicative of the experiment number:
 
 1. Documentation for each of the experiments conducted during the labs
@@ -1841,6 +1841,7 @@ endmodule
 
 <li>
 	Multiple Module Optimization-1
+
 ```
 1. yosys
 2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -1879,6 +1880,7 @@ endmodule
 
 <li>
 	Multiple Module Optimization-2
+
 ```
 1. yosys
 2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -1904,10 +1906,12 @@ module multiple_module_opt2(input a, input b input c, input d, output y);
 	sub_module U4 (.a(n3), .b(n1), .y(y));
 endmodule
 ```
+
 <li>
 	D-Flipflop Constant 1 with Asynchronous Reset (active low)
 
-	```
+	
+ 	```
  	iverilog dff_const1.v tb_dff_const1.v
   	./a.out
    	gtkwave tb_dff_const1.vcd
@@ -1951,7 +1955,8 @@ endmodule
 
 From the waveform, it can be observed that the Q output is always high when reset is zero, and reset doesn't depend on clock edge.
   
-	```
+	
+ 	```
 	1. yosys
 	2. read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 	3. read_verilog dff_const1.v
@@ -1969,7 +1974,8 @@ From the waveform, it can be observed that the Q output is always high when rese
 <li>
 	D-Flipflop Constant 2 with Asynchronous Reset (active high)
 
-	```
+	
+ 	```
  	iverilog dff_const2.v tb_dff_const2.v
   	./a.out
    	gtkwave tb_dff_const2.vcd
@@ -2012,6 +2018,7 @@ From the waveform, it can be observed that the Q output is always high when rese
 ![image](https://github.com/user-attachments/assets/144e8a14-8939-4dd4-95a0-12ac6c06f4f3)
 
 From the waveform, it can be observed that the Q output is always high irrespective of reset.
+
   
 	```
 	1. yosys
@@ -2030,6 +2037,7 @@ From the waveform, it can be observed that the Q output is always high irrespect
 
 <li>
 	D-Flipflop Constant 3 with Asynchronous Reset (active low)
+
 
 	```
  	//Design
@@ -2075,6 +2083,7 @@ When synthesized, the design will result in a flip-flop where q becomes 1 after 
 <li>
 	D-Flipflop Constant 4 with Asynchronous Reset (active high)
 
+
 	```
  	//Design
 	module dff_const4(input clk, input reset, output reg q); 
@@ -2117,6 +2126,7 @@ When synthesized, the design will result in a flip-flop where q is always 1, reg
 
 <li>
 	D-Flipflop Constant 5 with Asynchronous Reset
+
 
 	```
  	//Design
@@ -2161,6 +2171,7 @@ When synthesized, the design will result in a flip-flop where q is always 1 afte
 <li>
 	Counter Optimization 1:
 
+
  	```
   	//Design	
 	module counter_opt (input clk, input reset, output q);
@@ -2194,6 +2205,7 @@ When synthesized, the design will result in a flip-flop where q is always 1 afte
 
 <li>
 	Counter Optimization 2:
+
 
  	```
   	//Design	
