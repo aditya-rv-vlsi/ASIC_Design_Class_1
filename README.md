@@ -2469,7 +2469,6 @@ These waveforms correspond to the GATE LEVEL SYNTHESIS for the Blocking Caveat.
 <details>
 
 ***
- 
 <summary>
 	Laboratory 10: Synthesize RISC-V and compare output with functional simulations, and show the following:
 	
@@ -2944,9 +2943,10 @@ endmodule
 
 ![image](https://github.com/user-attachments/assets/2aa3fc68-f838-47e8-a1f7-5672ee8b4c82)
 
-![image](https://github.com/user-attachments/assets/855ec7ab-7713-4cc4-b31d-6f97248502b7)
+![image](https://github.com/user-attachments/assets/409aaae5-1053-4201-b803-b18b992d2e24)
 
-![image](https://github.com/user-attachments/assets/ac49d7c7-ba17-4ff4-b23f-fa996a302500)
+![image](https://github.com/user-attachments/assets/7e174940-4fe7-4724-8d1d-d08fc22a989d)
+
 
 
 **Output Waveforms:** 
@@ -2957,7 +2957,7 @@ Before Synthesis
 
 After Synthesis
 
-![image](https://github.com/user-attachments/assets/7865e1c9-4dd5-48e9-9b3f-09f45235794e)
+![image](https://github.com/user-attachments/assets/a6044ac9-6c38-470d-92af-b52c50d31d6e)
 
 
 It can be observed that the waveforms before (pre_synth_sim) and after (post_synth_sim) Yosys synthesis are the same. 
