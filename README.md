@@ -2465,3 +2465,10 @@ These waveforms correspond to the GATE LEVEL SYNTHESIS for the Blocking Caveat.
 
   </details>
 </details>
+
+<details>
+	Laboratory 10: Synthesize RISC-V and compare output with functional simulations, and show the following:
+	
+	1. Functionality vs Synthesized output waveform comparison. They should match. Plot atleast for top 20 cycles (20 ups and 20 downs)
+	2. Synthesize output window CLEARLY showing standard cells in the gtkwave window along with your login name
+</details>
