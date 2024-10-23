@@ -2467,10 +2467,27 @@ These waveforms correspond to the GATE LEVEL SYNTHESIS for the Blocking Caveat.
 </details>
 
 <details>
+
+***
+ 
 <summary>
 	Laboratory 10: Synthesize RISC-V and compare output with functional simulations, and show the following:
 	
 	1) Functionality vs Synthesized output waveform comparison. They should match. Plot atleast for top 20 cycles (20 ups and 20 downs)
 	2) Synthesize output window CLEARLY showing standard cells in the gtkwave window along with your login name
 </summary>	
+
+**Step 1:** Perform iverilog compilation for rvmyth.v file generated from TL Verilog using Sandpiper tool, completed back in Laboratory 6
+
+**Step 2:** Perform synthesis using Yosys
+
+**Step 3:** Use the netlist of rvmyth generated after synthesis (rvmyth_netlist.v) and run it along with the testbench.
+
+**Output Waveforms:** 
+
+
+It can be observed that the waveforms before (pre_synth_sim) and after (post_synth_sim) Yosys synthesis are the same. 
+
 </details>
+
+***
