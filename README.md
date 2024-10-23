@@ -2946,7 +2946,7 @@ endmodule
 
 ![image](https://github.com/user-attachments/assets/855ec7ab-7713-4cc4-b31d-6f97248502b7)
 
-![image](https://github.com/user-attachments/assets/a6236094-522d-427b-b27d-e7609479738c)
+![image](https://github.com/user-attachments/assets/ac49d7c7-ba17-4ff4-b23f-fa996a302500)
 
 
 **Output Waveforms:** 
@@ -2957,7 +2957,7 @@ Before Synthesis
 
 After Synthesis
 
-![image](https://github.com/user-attachments/assets/3d1be6e3-7937-4744-ab95-cbed66e49ba7)
+![image](https://github.com/user-attachments/assets/7865e1c9-4dd5-48e9-9b3f-09f45235794e)
 
 
 It can be observed that the waveforms before (pre_synth_sim) and after (post_synth_sim) Yosys synthesis are the same. 
