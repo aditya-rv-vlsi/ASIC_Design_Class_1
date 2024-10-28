@@ -2973,8 +2973,7 @@ It can be observed that the waveforms before (pre_synth_sim) and after (post_syn
 	Laboratory 11: Perform Static Timing Analysis on the synthesized RISC-V netlist from Laboratory 10.
 </summary>
 
-**What is STA?**
-Static Timing Analysis (STA) is a method used in digital circuit design to verify the timing performance of a circuit without requiring dynamic simulation. It checks whether the circuit meets its timing constraints by analyzing the timing paths in the design. Here are some key aspects of STA:
+**What is STA?:** Static Timing Analysis (STA) is a method used in digital circuit design to verify the timing performance of a circuit without requiring dynamic simulation. It checks whether the circuit meets its timing constraints by analyzing the timing paths in the design. Here are some key aspects of STA:
 
 <li>Timing Paths: STA evaluates all possible paths through a circuit from input to output, taking into account the propagation delays of gates and interconnects.
 </li>
@@ -2990,8 +2989,7 @@ Static Timing Analysis (STA) is a method used in digital circuit design to verif
 Overall, STA is crucial for ensuring that digital circuits operate reliably at the intended speeds and for identifying potential timing issues early in the design process.
 
 
-**Why STA?**
-Static Timing Analysis (STA) is performed for several critical reasons in digital circuit design:
+**Why STA?:** Static Timing Analysis (STA) is performed for several critical reasons in digital circuit design:
 
 <li>Timing Verification: STA ensures that the design meets its specified timing constraints. It verifies that data signals can propagate through the circuit within the required time limits, ensuring that outputs are stable and valid when needed.</li>
 
@@ -3009,7 +3007,9 @@ Static Timing Analysis (STA) is performed for several critical reasons in digita
 
 <li>Support for Variability: STA can incorporate variations in manufacturing processes, temperature, and voltage (PVT variations) to ensure robust performance across different conditions.</li>
 
+
 **Optimization Techniques:**
+
 <li>Buffer Insertion: Adds buffers to reduce delay in long paths.</li>
 <li>Gate Sizing: Resizes gates to improve timing on critical paths.</li>
 <li>Clock Tree Optimization (CTO): Minimizes skew and jitter in the clock distribution network. By ensuring that timing analysis is thorough and covers all potential scenarios, STA plays a crucial role in achieving reliable and high-performance ASIC designs.</li>
@@ -3024,7 +3024,7 @@ STA performed for the synthesized RISC-V netlist:
 
 
 ```
-cd /OpenSTA/app
+cd /home/aditya/OpenSTA/app
 ./sta
 read_liberty /home/aditya/OpenSTA/app/ASIC_Files/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_verilog /home/aditya/VSDBabySoC/src/module/vsdbabysoc_netlist.v
@@ -3039,11 +3039,11 @@ report_checks -path_delay min
 ```
 
 
-<li>Clock period: 10.1 nanoseconds</li>
-<li>Setup uncertainty: 5% of clock period = 0.505 ns</li>
-<li>Clock transition: 5% of clock period = 0.505 ns</li>
-<li>Hold uncertainty: 8% of clock period = 0.808 ns</li>
-<li>Input transition: 8% of clock period = 0.808 ns</li>
+<li>Clock period      =  10.1 nanoseconds</li>
+<li>Setup uncertainty =  5% of clock period = 0.505 ns</li>
+<li>Clock transition  =  5% of clock period = 0.505 ns</li>
+<li>Hold uncertainty  =  8% of clock period = 0.808 ns</li>
+<li>Input transition  =  8% of clock period = 0.808 ns</li>
 
 The timing reports can be observed based on the following screenshots:
 
