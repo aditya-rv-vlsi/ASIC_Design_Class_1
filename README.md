@@ -2469,6 +2469,7 @@ These waveforms correspond to the GATE LEVEL SYNTHESIS for the Blocking Caveat.
 <details>
 
 ***
+
 <summary>
 	Laboratory 10: Synthesize RISC-V and compare output with functional simulations, and show the following:
 	
@@ -2965,3 +2966,98 @@ It can be observed that the waveforms before (pre_synth_sim) and after (post_syn
 </details>
 
 ***
+
+<details>
+	
+<summary>
+	Laboratory 11: Perform Static Timing Analysis on the synthesized RISC-V netlist from Laboratory 10.
+</summary>
+
+**What is STA?**
+Static Timing Analysis (STA) is a method used in digital circuit design to verify the timing performance of a circuit without requiring dynamic simulation. It checks whether the circuit meets its timing constraints by analyzing the timing paths in the design. Here are some key aspects of STA:
+
+<li>Timing Paths: STA evaluates all possible paths through a circuit from input to output, taking into account the propagation delays of gates and interconnects.
+</li>
+
+<li>Setup and Hold Times: It checks for setup and hold time violations. The setup time is the minimum time before the clock edge that the input data must be stable, while the hold time is the minimum time after the clock edge that the data must remain stable.</li>
+
+<li>Clock Constraints: STA incorporates clock definitions, including the clock frequency, period, and any variations (like skew or jitter).</li>
+
+<li>Worst-case Scenario: STA assumes worst-case conditions for delay values (like maximum load, temperature, and voltage) to ensure that the circuit will perform correctly under all expected operating conditions.</li>
+
+<li>Tools: There are various tools for performing STA, such as Synopsys PrimeTime, Cadence Tempus, and others, which automate the process and provide detailed reports on timing violations. This repo details the use of an opensource tool OpenSTA.</li>
+
+Overall, STA is crucial for ensuring that digital circuits operate reliably at the intended speeds and for identifying potential timing issues early in the design process.
+
+
+**Why STA?**
+Static Timing Analysis (STA) is performed for several critical reasons in digital circuit design:
+
+<li>Timing Verification: STA ensures that the design meets its specified timing constraints. It verifies that data signals can propagate through the circuit within the required time limits, ensuring that outputs are stable and valid when needed.</li>
+
+<li>Identify Timing Violations: It helps identify setup and hold time violations, which can lead to incorrect operation of flip-flops and other sequential elements.</li>
+
+<li>Performance Optimization: By analyzing the timing paths, designers can identify critical paths that limit the maximum operating frequency. </li>
+
+<li>Early Detection of Issues: STA allows for early detection of timing issues during the design process, reducing the risk of costly iterations and revisions in later stages, such as post-layout or during fabrication.</li>
+
+<li>Power Consumption Analysis: Timing analysis can also help in understanding the impact of clock frequency on power consumption. </li>
+
+<li>Design Validation: STA provides a level of assurance that the design will work correctly under the specified operating conditions.</li>
+
+<li>Automation: STA tools can automatically analyze complex designs, making it more efficient than traditional dynamic simulations, especially for large-scale integrated circuits.</li>
+
+<li>Support for Variability: STA can incorporate variations in manufacturing processes, temperature, and voltage (PVT variations) to ensure robust performance across different conditions.</li>
+
+**Optimization Techniques:**
+<li>Buffer Insertion: Adds buffers to reduce delay in long paths.</li>
+<li>Gate Sizing: Resizes gates to improve timing on critical paths.</li>
+<li>Clock Tree Optimization (CTO): Minimizes skew and jitter in the clock distribution network. By ensuring that timing analysis is thorough and covers all potential scenarios, STA plays a crucial role in achieving reliable and high-performance ASIC designs.</li>
+
+**reg2reg Path:** A reg2reg path (register-to-register path) refers to a timing path in a digital circuit that connects two sequential elements, specifically flip-flops or registers. This path is crucial in the context of Static Timing Analysis (STA) because it represents the flow of data from one register to another through combinational logic.
+
+Reg2reg paths are essential for ensuring proper data flow and synchronization in digital circuits, especially in designs with pipelining or sequential operations. Analyzing these paths helps in verifying that the data processing occurs correctly across clock cycles, thereby ensuring the overall functionality and reliability of the circuit.
+
+**clk2reg Path:** A clk2reg path (clock-to-register path) refers to a timing path in a digital circuit that connects the clock signal to a register (flip-flop). This path is crucial for ensuring that the register operates correctly in response to clock events.
+
+STA performed for the synthesized RISC-V netlist:
+
+
+```
+cd /OpenSTA/app
+./sta
+read_liberty /home/aditya/OpenSTA/app/ASIC_Files/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog /home/aditya/VSDBabySoC/src/module/vsdbabysoc_netlist.v
+link_design rvmyth
+create_clock -name CLK -period 10.1 [get_ports CLK]
+set_clock_uncertainty [expr 0.05*10.1] -setup [get_clocks CLK]
+set_clock_uncertainty [expr 0.08*10.1] -hold [get_clocks CLK]
+set_clock_transition [expr 0.05*10] [get_clocks CLK]
+set_input_transition [expr 0.08*10] [all_inputs]
+report_checks -path_delay max
+report_checks -path_delay min
+```
+
+
+<li>Clock period: 10.1 nanoseconds</li>
+<li>Setup uncertainty: 5% of clock period = 0.505 ns</li>
+<li>Clock transition: 5% of clock period = 0.505 ns</li>
+<li>Hold uncertainty: 8% of clock period = 0.808 ns</li>
+<li>Input transition: 8% of clock period = 0.808 ns</li>
+
+The timing reports can be observed based on the following screenshots:
+
+![image](https://github.com/user-attachments/assets/57c4cebe-ba7a-4cde-bc44-fd18b1f85b03)
+
+
+Max timing report: Indicates setp slack
+
+![image](https://github.com/user-attachments/assets/fd8750f8-8b3f-4a66-9922-a7c4e9e948a3)
+
+Min timing report: Indicates hold slack
+
+![image](https://github.com/user-attachments/assets/55b136b2-a762-4b52-ad44-118dd6b8e3fc)
+
+
+</details>
+
