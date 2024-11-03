@@ -3185,6 +3185,9 @@ report_wns -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_wns.txt
 
 ![image](https://github.com/user-attachments/assets/a8242f24-b26b-4467-8c02-296e85f79dc3)
 
+**From the graphs we can infer:**
+<li>Worst hold slack - sky130_fd_sc_hd__ss_n40C_1v28 PVT Corner library file</li>
+<li>Worst setup slack - sky130_fd_sc_hd__ff_n40C_1v95 PVT Corner library file</li>
 
 
 
