@@ -3061,3 +3061,132 @@ Min timing report: Indicates hold slack
 
 </details>
 
+***
+
+<details>
+	
+<summary>
+	Laboratory 12: Perform Static Timing Analysis on the synthesized RISC-V netlist from Laboratory 10, using different PVT files.
+</summary>
+
+In this lab, we will be checking for the worst setup/hold slacks using different PVT Corner library files.
+
+Create the following vsdbabysoc_synthesis.sdc constraints file
+
+```
+# Create clock with new period
+create_clock [get_pins pll/CLK] -name clk -period 10.1 -waveform {0 5.05}
+
+# Set loads
+set_load -pin_load 0.5 [get_ports OUT]
+set_load -min -pin_load 0.5 [get_ports OUT]
+
+# Set clock latency
+set_clock_latency 1 [get_clocks clk]
+set_clock_latency -source 2 [get_clocks clk]
+
+# Set clock uncertainty
+set_clock_uncertainty 0.505 [get_clocks clk]  ; # 5% of clock period for setup
+set_clock_uncertainty -hold 0.808 [get_clocks clk] ; # 8% of clock period for hold
+
+# Set maximum delay
+set_max_delay 10.1 -from [get_pins dac/OUT] -to [get_ports OUT]
+
+# Set input delay for VCO_IN
+set_input_delay -clock clk -max 4 [get_ports VCO_IN]
+set_input_delay -clock clk -min 1 [get_ports VCO_IN]
+
+# Set input delay for ENb_VCO
+set_input_delay -clock clk -max 4 [get_ports ENb_VCO]
+set_input_delay -clock clk -min 1 [get_ports ENb_VCO]
+
+# Set input delay for ENb_CP
+set_input_delay -clock clk -max 4 [get_ports ENb_CP]
+set_input_delay -clock clk -min 1 [get_ports ENb_CP]
+
+# Set input transition for VCO_IN
+set_input_transition -max 0.505 [get_ports VCO_IN] ; # 5% of clock
+set_input_transition -min 0.808 [get_ports VCO_IN] ; # adjust if needed
+
+# Set input transition for ENb_VCO
+set_input_transition -max 0.505 [get_ports ENb_VCO] ; # 5% of clock
+set_input_transition -min 0.808 [get_ports ENb_VCO] ; # adjust if needed
+
+# Set input transition for ENb_CP
+set_input_transition -max 0.505 [get_ports ENb_CP] ; # 5% of clock
+set_input_transition -min 0.808 [get_ports ENb_CP] ; # adjust if needed
+```
+
+Enter the following commands
+
+```
+cd /home/aditya/OpenSTA/app
+./sta
+
+set list_of_lib_files(1) "sky130_fd_sc_hd__tt_025C_1v80.lib"
+set list_of_lib_files(2) "sky130_fd_sc_hd__tt_100C_1v80.lib"
+set list_of_lib_files(3) "sky130_fd_sc_hd__ff_100C_1v65.lib"
+set list_of_lib_files(4) "sky130_fd_sc_hd__ff_100C_1v95.lib"
+set list_of_lib_files(5) "sky130_fd_sc_hd__ff_n40C_1v56.lib"
+set list_of_lib_files(6) "sky130_fd_sc_hd__ff_n40C_1v65.lib"
+set list_of_lib_files(7) "sky130_fd_sc_hd__ff_n40C_1v76.lib"
+set list_of_lib_files(8) "sky130_fd_sc_hd__ff_n40C_1v95.lib"
+set list_of_lib_files(9) "sky130_fd_sc_hd__ss_100C_1v40.lib"
+set list_of_lib_files(10) "sky130_fd_sc_hd__ss_100C_1v60.lib"
+set list_of_lib_files(11) "sky130_fd_sc_hd__ss_n40C_1v28.lib"
+set list_of_lib_files(12) "sky130_fd_sc_hd__ss_n40C_1v35.lib"
+set list_of_lib_files(13) "sky130_fd_sc_hd__ss_n40C_1v40.lib"
+set list_of_lib_files(14) "sky130_fd_sc_hd__ss_n40C_1v44.lib"
+set list_of_lib_files(15) "sky130_fd_sc_hd__ss_n40C_1v60.lib"
+set list_of_lib_files(16) "sky130_fd_sc_hd__ss_n40C_1v76.lib"
+
+for {set i 1} {$i <= [array size list_of_lib_files]} {incr i} {
+read_liberty /home/aditya/OpenSTA/app/timing_library/$list_of_lib_files($i)
+read_liberty -min avsdpll.lib
+read_liberty -max avsdpll.lib
+read_liberty -min avsddac.lib
+read_liberty -max avsddac.lib
+read_verilog  vsdbabysoc_netlist.v
+link_design vsdbabysoc
+read_sdc vsdbabysoc_synthesis.sdc
+check_setup -verbose
+report_checks -path_delay min_max -fields {nets cap slew input_pins fanout} -digits {4} > /home/aditya/OpenSTA/app/min_max_$list_of_lib_files($i).txt
+
+exec echo "$list_of_lib_files($i)" >> /home/aditya/OpenSTA/app/Outputs/sta_worst_max_slack.txt
+report_worst_slack -max -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_worst_max_slack.txt
+
+exec echo "$list_of_lib_files($i)" >> /home/aditya/OpenSTA/app/Outputs/sta_worst_min_slack.txt
+report_worst_slack -min -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_worst_min_slack.txt
+
+exec echo "$list_of_lib_files($i)" >> /home/aditya/OpenSTA/app/Outputs/sta_tns.txt
+report_tns -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_tns.txt
+
+exec echo "$list_of_lib_files($i)" >> /home/aditya/OpenSTA/app/Outputs/sta_wns.txt
+report_wns -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_wns.txt
+}
+```
+
+![image](https://github.com/user-attachments/assets/a24ffe63-8d6c-43db-9d9c-ed88cef0cbb4)
+
+
+1. Worst Setup Slack
+
+![image](https://github.com/user-attachments/assets/2ce4fe0f-7e56-44c1-8dfa-d5b4efb93cfe)
+
+2. Worst Hold Slack
+
+![image](https://github.com/user-attachments/assets/950b1432-2974-441e-a9d2-57b9382ddad9)
+   
+3. WNS
+
+![image](https://github.com/user-attachments/assets/511df462-3c46-47e7-9b23-d2896efff327)
+
+4. TNS
+
+![image](https://github.com/user-attachments/assets/a8242f24-b26b-4467-8c02-296e85f79dc3)
+
+
+
+
+
+
