@@ -3073,6 +3073,13 @@ In this lab, we will be checking for the worst setup/hold slacks using different
 
 Create the following vsdbabysoc_synthesis.sdc constraints file
 
+![image](https://github.com/user-attachments/assets/3ed5b8b4-fe05-440b-9a44-882e2fa5fcec)
+
+```
+cd /home/aditya/OpenSTA/app
+gedit vsdbabysoc_synthesis.sdc
+```
+
 ```
 # Create clock with new period
 create_clock [get_pins pll/CLK] -name clk -period 10.1 -waveform {0 5.05}
@@ -3120,7 +3127,6 @@ set_input_transition -min 0.808 [get_ports ENb_CP] ; # adjust if needed
 Enter the following commands
 
 ```
-cd /home/aditya/OpenSTA/app
 ./sta
 
 set list_of_lib_files(1) "sky130_fd_sc_hd__tt_025C_1v80.lib"
