@@ -3205,7 +3205,7 @@ report_wns -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_wns.txt
 
 <details>
 
-<summary> Section 1 - Introduction to open-source EDA, OpenLANE and Sky130 PDK </summary>
+<summary> Day 1 - Introduction to open-source EDA, OpenLANE and Sky130 PDK </summary>
 
 1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
 Commands to invoke the OpenLANE flow and perform synthesis
@@ -3263,10 +3263,10 @@ Calculation of Flop Ratio and DFF % from synthesis statistics report file
 <details>
 
 <summary>
-	Section 2 - Good floorplan versus bad floorplan, and introduction to library cells 
+	Day 2 - Good floorplan versus bad floorplan, and introduction to library cells 
 </summary>
 
-Section 2 tasks:-
+Day 2 tasks:-
 
 Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
 Calculate the die area in microns from the values in floorplan def.
@@ -3373,7 +3373,7 @@ Commands to load placement def in magic in another terminal
 
 ```
 # Change directory to path containing generated placement def
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/placement/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/10-11_01-27/results/placement/
 
 # Command to load the placement def in magic tool
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
@@ -3388,13 +3388,123 @@ Screenshots of floorplan def in magic
 Commands to exit from current run
 
 ```
-# Exit from OpenLANE flow
-exit
-
-# Exit from OpenLANE flow docker sub-system
-exit
+exit # Exit from OpenLANE flow
+exit # Exit from OpenLANE flow docker sub-system
 ```
 
+</details> 
+<details>
+
+<summary> Day 3 - Design library cell using Magic Layout and ngspice characterization </summary>
+
+Section 3 tasks:-
+Clone custom inverter standard cell design from github repository: 
+Load the custom inverter layout in magic and explore.
+Spice extraction of inverter in magic.
+Editing the spice model file for analysis through simulation.
+Post-layout ngspice simulations.
+Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
+
+Section 3 - Tasks 1 to 5 files, reports and logs can be found in the following folder:
+
+Section 3 - Task 6 files, reports and logs can be found in the following folder:
+
+1. Clone custom inverter standard cell design from github repository
+
+```
+# Change directory to openlane
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+# Clone the repository with custom inverter design
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+
+# Change into repository directory
+cd vsdstdcelldesign
+
+# Copy magic tech file to the repo directory for easy access
+cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
+
+# Check contents whether everything is present
+ls
+
+# Command to open custom inverter layout in magic
+magic -T sky130A.tech sky130_inv.mag &
+```
+
+Screenshot of commands run
+
+![image](https://github.com/user-attachments/assets/78ee3d88-1eb7-4ff0-9ff0-44baae625b4e)
+
+![image](https://github.com/user-attachments/assets/2e75bfa8-535a-4591-b09f-6c37e589d5f1)
+
+2. Load the custom inverter layout in magic and explore.
+
+Screenshot of custom inverter layout in magic
+
+![image](https://github.com/user-attachments/assets/bbfcd869-b2ce-425d-a134-34c677f236e0)
+
+NMOS and PMOS identified
+
+![image](https://github.com/user-attachments/assets/ec087768-7b42-4670-8339-f1313fb3af81)
+
+![image](https://github.com/user-attachments/assets/d7a8fa4a-c680-489d-95cb-8c0dcca1e265)
+
+Output Y connectivity to PMOS and NMOS drain verified
+
+![image](https://github.com/user-attachments/assets/3ea96322-0358-4732-af6c-a1be274347ac)
+
+PMOS source connectivity to VDD (here VPWR) verified
+
+![image](https://github.com/user-attachments/assets/d779a70f-9dfe-4dd9-ae34-7d7a960f2506)
+
+NMOS source connectivity to VSS (here VGND) verified
+
+![image](https://github.com/user-attachments/assets/81b393f3-144a-4c42-866c-e81ae41a0fd4)
+
+Deleting necessary layout part to see DRC error
+
+
+
+3. Spice extraction of inverter in magic.
+Commands for spice extraction of the custom inverter layout to be used in tkcon window of magic
+
+```
+# Check current directory
+pwd
+
+# Extraction command to extract to .ext format
+extract all
+
+# Before converting ext to spice this command enable the parasitic extraction also
+ext2spice cthresh 0 rthresh 0
+
+# Converting to ext to spice
+ext2spice
+```
+
+Screenshot of tkcon window after running above commands
+
+![image](https://github.com/user-attachments/assets/c129705b-088e-4ce5-904f-19bd9a54b06c)
+
+Screenshot of created spice file
+
+![image](https://github.com/user-attachments/assets/a902ba3a-6dd5-46ef-9023-fb089aafc56d)
+
+4. Editing the spice model file for analysis through simulation.
+Measuring unit distance in layout grid
+
+5. Post-layout ngspice simulations.
+Commands for ngspice simulation
+
+```
+# Command to directly load spice file for simulation to ngspice
+ngspice sky130_inv.spice
+
+# Now that we have entered ngspice with the simulation spice file loaded we just have to load the plot
+plot y vs time a
+```
+
+Screenshots of ngspice run
 
 </details>
 
