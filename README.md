@@ -3201,11 +3201,7 @@ report_wns -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_wns.txt
 
 <details>
 
-<summary>
-	
-	Laboratory 13: Complete the ""Advanced Physical Design using OpenLane"" workshop on VSDIAT platform, and create an inverter with your name in it. Document all labs.
-
-</summary>
+<summary>Laboratory 13: Complete the Advanced Physical Design using OpenLane workshop on VSDIAT platform, and create an inverter with your name in it. Document all labs.</summary>
 
 <details>
 
@@ -3342,7 +3338,7 @@ Equidistant placement of ports
  
 Port layer as set through config.tcl
 
-
+![image](https://github.com/user-attachments/assets/133566a7-5c83-4cb9-9876-7faec9acdee9)
 
 Decap Cells and Tap Cells
 
@@ -3355,6 +3351,7 @@ Diagonally equidistant Tap cells
 
 Unplaced standard cells at the origin
 
+![image](https://github.com/user-attachments/assets/81bfcab5-0031-4cb3-857e-82f9caafc5b3)
 
 4. Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
 Command to run placement
