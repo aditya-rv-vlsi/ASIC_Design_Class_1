@@ -3195,6 +3195,214 @@ report_wns -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_wns.txt
 <li>Worst hold slack - sky130_fd_sc_hd__ss_n40C_1v28 PVT Corner library file</li>
 <li>Worst setup slack - sky130_fd_sc_hd__ff_n40C_1v95 PVT Corner library file</li>
 
+</details>
+
+***
+
+<details>
+
+<summary>
+	
+	Laboratory 13: Complete the ""Advanced Physical Design using OpenLane"" workshop on VSDIAT platform, and create an inverter with your name in it. Document all labs.
+
+</summary>
+
+<details>
+
+<summary> Section 1 - Introduction to open-source EDA, OpenLANE and Sky130 PDK </summary>
+
+1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
+Commands to invoke the OpenLANE flow and perform synthesis
+
+```
+# Change directory to openlane flow directory
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+# alias docker='docker run -it -v $(pwd):/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/openlane:v0.21'
+# Since we have aliased the long command to 'docker' we can invoke the OpenLANE flow docker sub-system by just running this command
+docker
+
+# Now that we have entered the OpenLANE flow contained docker sub-system we can invoke the OpenLANE flow in the Interactive mode using the following command
+./flow.tcl -interactive
+
+# Now that OpenLANE flow is open we have to input the required packages for proper functionality of the OpenLANE flow
+package require openlane 0.9
+
+# Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
+prep -design picorv32a
+
+# Now that the design is prepped and ready, we can run synthesis using following command
+run_synthesis
+
+# Exit from OpenLANE flow
+exit
+
+# Exit from OpenLANE flow docker sub-system
+exit
+```
+
+Relevant screenshots
+
+![image](https://github.com/user-attachments/assets/0bd0631c-e4d4-4560-96af-96ab2d676f9f)
+
+![image](https://github.com/user-attachments/assets/253b1db7-26bb-4d4c-98a9-f1728c9bb69d)
+
+![image](https://github.com/user-attachments/assets/48015114-5e6b-4c50-b2ff-c42d2cca9048)
+
+2. Calculate the flop ratio.
+Screenshots of synthesis statistics report file with required values highlighted
+
+![image](https://github.com/user-attachments/assets/f97b806d-7c20-439d-9e19-7a9227fe2c6c)
+
+![image](https://github.com/user-attachments/assets/0737dde2-d603-4644-abef-4694df9b3245)
+
+
+
+Calculation of Flop Ratio and DFF % from synthesis statistics report file
+
+ 
+</details>
+
+
+<details>
+
+<summary>
+	Section 2 - Good floorplan versus bad floorplan, and introduction to library cells 
+</summary>
+
+Section 2 tasks:-
+
+Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
+Calculate the die area in microns from the values in floorplan def.
+Load generated floorplan def in magic tool and explore the floorplan.
+Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
+Load generated placement def in magic tool and explore the placement.
+
+All section 2 logs, reports and results can be found in following run folder:
+
+1. Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
+Commands to invoke the OpenLANE flow and perform floorplan
+
+```
+# Change directory to openlane flow directory
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+# alias docker='docker run -it -v $(pwd):/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/openlane:v0.21'
+# Since we have aliased the long command to 'docker' we can invoke the OpenLANE flow docker sub-system by just running this command
+docker
+# Now that we have entered the OpenLANE flow contained docker sub-system we can invoke the OpenLANE flow in the Interactive mode using the following command
+./flow.tcl -interactive
+
+# Now that OpenLANE flow is open we have to input the required packages for proper functionality of the OpenLANE flow
+package require openlane 0.9
+
+# Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
+prep -design picorv32a
+
+# Now that the design is prepped and ready, we can run synthesis using following command
+run_synthesis
+
+# Now we can run floorplan
+run_floorplan
+```
+
+Screenshot of floorplan run
+
+![image](https://github.com/user-attachments/assets/56833213-d457-4c66-868e-f43921caac90)
+
+![image](https://github.com/user-attachments/assets/bce7ae59-1c19-4f98-a369-afba8be2c47a)
+
+2. Calculate the die area in microns from the values in floorplan def.
+Screenshot of contents of floorplan def
+
+![image](https://github.com/user-attachments/assets/abd29890-2be7-4cfe-af90-27ac545cb836)
+
+![image](https://github.com/user-attachments/assets/74aa429f-eb08-4a74-8267-ce4997996f09)
+
+ According to Floorplan def
+
+3. Load generated floorplan def in magic tool and explore the floorplan.
+Commands to load floorplan def in magic in another terminal
+
+```
+# Change directory to path containing generated floorplan def
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
+
+# Command to load the floorplan def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+```
+
+Screenshots of floorplan def in magic
+
+![image](https://github.com/user-attachments/assets/f47f0c58-4128-4400-a5b3-1fadb048c014)
+
+Equidistant placement of ports
+ 
+![image](https://github.com/user-attachments/assets/14d01780-99ca-41ec-ac65-8a2e36017746)
+ 
+Port layer as set through config.tcl
+
+
+
+Decap Cells and Tap Cells
+
+![image](https://github.com/user-attachments/assets/a9c1b4d2-1d83-4bf6-b096-1cce6075b1ec)
+
+Diagonally equidistant Tap cells
+
+![image](https://github.com/user-attachments/assets/be511c5b-58e8-459f-b9bc-bfa6d0c022ca)
+
+
+Unplaced standard cells at the origin
+
+
+4. Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
+Command to run placement
+
+```
+# Congestion aware placement by default
+run_placement
+```
+
+Screenshots of placement run
+
+![image](https://github.com/user-attachments/assets/767d43cd-57f9-4076-8ffa-56d7e63a7bd3)
+
+![image](https://github.com/user-attachments/assets/189d994c-4f5f-4a7e-b78d-1df5eec741f5)
+
+
+5. Load generated placement def in magic tool and explore the placement.
+Commands to load placement def in magic in another terminal
+
+```
+# Change directory to path containing generated placement def
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/placement/
+
+# Command to load the placement def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+
+Screenshots of floorplan def in magic
+
+![image](https://github.com/user-attachments/assets/67ff0a63-4015-4dc4-bfbf-33da1be64fa2)
+
+![image](https://github.com/user-attachments/assets/9c5ba413-ca81-4a01-82b1-93e9fc744b1e)
+
+Commands to exit from current run
+
+```
+# Exit from OpenLANE flow
+exit
+
+# Exit from OpenLANE flow docker sub-system
+exit
+```
+
+
+</details>
+
+ 
+</details>
 
 
 
