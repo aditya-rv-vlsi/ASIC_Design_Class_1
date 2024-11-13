@@ -3252,10 +3252,10 @@ Screenshots of synthesis statistics report file with required values highlighted
 
 ![image](https://github.com/user-attachments/assets/0737dde2-d603-4644-abef-4694df9b3245)
 
-
-
 Calculation of Flop Ratio and DFF % from synthesis statistics report file
 
+$\`Flop Ratio = 1613/14876 = 0.108429685 `$
+$\` Percentage of DFFs = 0.108429685*100 = 10.8429685 `$
  
 </details>
 
@@ -3268,11 +3268,13 @@ Calculation of Flop Ratio and DFF % from synthesis statistics report file
 
 Day 2 tasks:-
 
-Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
-Calculate the die area in microns from the values in floorplan def.
-Load generated floorplan def in magic tool and explore the floorplan.
-Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
-Load generated placement def in magic tool and explore the placement.
+1. Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
+2. Calculate the die area in microns from the values in floorplan def.
+3. Load generated floorplan def in magic tool and explore the floorplan.
+4. Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
+5. Load generated placement def in magic tool and explore the placement.
+
+$\` Area of die in microns = Die width in microns * Die height in microns `$
 
 All section 2 logs, reports and results can be found in following run folder:
 
@@ -3280,25 +3282,12 @@ All section 2 logs, reports and results can be found in following run folder:
 Commands to invoke the OpenLANE flow and perform floorplan
 
 ```
-# Change directory to openlane flow directory
 cd Desktop/work/tools/openlane_working_dir/openlane
-
-# alias docker='docker run -it -v $(pwd):/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/openlane:v0.21'
-# Since we have aliased the long command to 'docker' we can invoke the OpenLANE flow docker sub-system by just running this command
 docker
-# Now that we have entered the OpenLANE flow contained docker sub-system we can invoke the OpenLANE flow in the Interactive mode using the following command
 ./flow.tcl -interactive
-
-# Now that OpenLANE flow is open we have to input the required packages for proper functionality of the OpenLANE flow
 package require openlane 0.9
-
-# Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
 prep -design picorv32a
-
-# Now that the design is prepped and ready, we can run synthesis using following command
 run_synthesis
-
-# Now we can run floorplan
 run_floorplan
 ```
 
@@ -3317,14 +3306,12 @@ Screenshot of contents of floorplan def
 
  According to Floorplan def
 
+
 3. Load generated floorplan def in magic tool and explore the floorplan.
 Commands to load floorplan def in magic in another terminal
 
 ```
-# Change directory to path containing generated floorplan def
 cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
-
-# Command to load the floorplan def in magic tool
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
 ```
 
