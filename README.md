@@ -3888,8 +3888,9 @@ Screenshot of placement def in magic
 </details>
 
 
-<details> Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA
-</details>
+
+<details> 
+	<summary>Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA </summary>
 
 Implementation
 <li>Section 5 tasks:-</li>
@@ -4028,6 +4029,7 @@ Screenshots of commands run and timing report generated
 
 ![image](https://github.com/user-attachments/assets/fe87bc54-a4ec-4811-865f-fd4799e932eb)
 
+</details>
 
 </details>
 
