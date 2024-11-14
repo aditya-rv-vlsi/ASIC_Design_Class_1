@@ -3487,7 +3487,7 @@ Rise transition time = Time taken for output to rise to 80% - Time taken for out
 
 ![image](https://github.com/user-attachments/assets/d65bf429-0cdf-4ace-b593-d97ee3a1861f)
 
-Rise transition time = 
+Rise transition time = 2.2464 - 2.18244 = 0.06396 ns 
 
 Fall transition time calculation
 
@@ -3495,7 +3495,6 @@ Fall transition time = Time taken for output to fall to 20% - Time taken for out
 
 20% of output = 660 mV
 80% of output = 2.64 V
-
 
 20% screenshots
 
@@ -3509,7 +3508,7 @@ Fall transition time = Time taken for output to fall to 20% - Time taken for out
 
 ![image](https://github.com/user-attachments/assets/ec665a75-0816-40fe-ab3c-8361305ca963)
 
-Fall transition time = 
+Fall transition time = 4.09552 - 4.05304 = 0.04248 ns
 
 Rise Cell Delay Calculation
 
@@ -3523,7 +3522,7 @@ Rise Cell Delay = Time take for output to rise to 50% - Time taken for input to 
 
 ![image](https://github.com/user-attachments/assets/f9bd994e-b79d-4600-9704-a9219739cb30)
 
-Rise cell delay = 
+Rise cell delay = 2.2115 - 2.15005 = 0.06145
 
 Fall Cell Delay Calculation
 
@@ -3537,7 +3536,7 @@ Rise Cell Delay = Time take for output to fall to 50% - Time taken for input to 
 
 ![image](https://github.com/user-attachments/assets/e173dee6-3966-4f76-bc16-b07797ea5cba)
 
-Fall Cell Delay = 
+Fall Cell Delay = 4.07802 - 4.05 = 0.02802 ns
 
 6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
 Link to Sky130 Periphery rules: https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html
@@ -3883,6 +3882,245 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 ```
 
 Screenshot of placement def in magic
+
+
+9. Do Post-Synthesis timing analysis with OpenSTA tool.
+Since we are having 0 wns after improved timing run we are going to do timing analysis on initial run of synthesis which has lots of violations and no parameters were added to improve timing
+
+Commands to invoke the OpenLANE flow include new lef and perform synthesis
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
+set ::env(SYNTH_SIZING) 1
+
+run_synthesis
+```
+
+Commands run final screenshot
+
+![image](https://github.com/user-attachments/assets/23b7464f-020e-4ac7-9af4-f962ebc4efa0)
+
+![image](https://github.com/user-attachments/assets/455e87d0-1010-46ce-9cef-5fff6fee2122)
+
+Newly created pre_sta.conf for STA analysis in openlane directory
+
+![image](https://github.com/user-attachments/assets/037f7b53-a2ce-45f8-8ce7-2b54c78b3c44)
+
+Newly created my_base.sdc for STA analysis in openlane/designs/picorv32a/src directory based on the file openlane/scripts/base.sdc
+
+![image](https://github.com/user-attachments/assets/337a4a85-1a24-4817-8d83-70be9947583d)
+
+Commands to run STA in another terminal
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+sta pre_sta.conf
+```
+
+Screenshots of commands run
+
+![image](https://github.com/user-attachments/assets/3b7e3482-f197-48fe-bbab-91b2b364d63c)
+
+![image](https://github.com/user-attachments/assets/d4e60aba-f939-459b-aee3-f7e3cc602fa0)
+
+![image](https://github.com/user-attachments/assets/84e6c1c7-b721-413f-a96c-bd9f3e901bbb)
+
+![image](https://github.com/user-attachments/assets/7f4ff98e-9fee-4d88-9a8a-1d284523fefe)
+
+![image](https://github.com/user-attachments/assets/c5493dd3-8152-47c0-b785-fd2ded4b0d1a)
+
+Since more fanout is causing more delay we can add parameter to reduce fanout and do synthesis again
+
+Commands to include new lef and perform synthesis
+
+```
+prep -design picorv32a -tag 25-03_18-52 -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_SIZING) 1
+set ::env(SYNTH_MAX_FANOUT) 4
+proper cell or not
+echo $::env(SYNTH_DRIVING_CELL)
+run_synthesis
+```
+
+Commands run final screenshot
+
+![image](https://github.com/user-attachments/assets/a2e92808-e5b9-45f2-bbc0-d21b7b71db75)
+
+![image](https://github.com/user-attachments/assets/342163ca-e01f-4669-86d5-9abf277e0054)
+
+Commands to run STA in another terminal
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+sta pre_sta.conf
+```
+
+Screenshots of commands run
+
+![image](https://github.com/user-attachments/assets/693db67d-b803-4098-93a9-def3078b9448)
+
+![image](https://github.com/user-attachments/assets/09ede2a4-f667-47f7-9249-d19f5907ec23)
+
+10. Make timing ECO fixes to remove all violations.
+OR gate of drive strength 2 is driving 4 fanouts
+
+![image](https://github.com/user-attachments/assets/c2568b88-6ad1-436b-aff9-36f269f2aab3)
+
+Commands to perform analysis and optimize timing by replacing with OR gate of drive strength 4
+
+```
+report_net -connections _11672_
+help replace_cell
+replace_cell _14510_ sky130_fd_sc_hd__or3_4
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+Result - slack reduced
+
+![image](https://github.com/user-attachments/assets/beb215c9-d4f7-4ae1-ae82-89dc6f2345d4)
+
+![image](https://github.com/user-attachments/assets/efab5ebb-c9ed-4d72-a3fc-ef34fa985412)
+
+![image](https://github.com/user-attachments/assets/3623f144-c0c2-466b-b9f5-3a5e248b174d)
+
+OR gate of drive strength 2 is driving 4 fanouts
+
+![image](https://github.com/user-attachments/assets/e1a48893-6087-4f99-b8b8-5dc23f8b600b)
+
+Commands to perform analysis and optimize timing by replacing with OR gate of drive strength 4
+
+```
+report_net -connections _11675_
+replace_cell _14514_ sky130_fd_sc_hd__or3_4
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+
+Result - slack reduced
+
+![image](https://github.com/user-attachments/assets/a5c0ae7f-6fb3-4dc9-87d2-3369db32d1a0)
+
+![image](https://github.com/user-attachments/assets/c6d86b28-746c-42a5-9f0b-a586e61cdbde)
+
+OR gate of drive strength 2 driving OA gate has more delay
+
+![image](https://github.com/user-attachments/assets/bb990515-698d-466b-8615-32344003b425)
+
+Commands to perform analysis and optimize timing by replacing with OR gate of drive strength 4
+
+```
+report_net -connections _11668_
+replace_cell _14506_ sky130_fd_sc_hd__or4_4
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+
+Result - slack reduced
+
+![image](https://github.com/user-attachments/assets/f2e43ede-490e-46ee-a449-ad88a5af8862)
+
+![image](https://github.com/user-attachments/assets/0eee2a8d-ebae-43e6-914c-26969b688a34)
+
+Commands to verify instance _14506_ is replaced with sky130_fd_sc_hd__or4_4
+
+```
+report_checks -from _29043_ -to _30440_ -through _14506_
+```
+
+Screenshot of replaced instance
+
+![image](https://github.com/user-attachments/assets/5eff9fcd-e6d3-478a-9799-391f4ae5925c)
+
+We started ECO fixes at wns -23.9000 and now we stand at wns -22.6173 we reduced around 1.2827 ns of violation
+
+11. Replace the old netlist with the new netlist generated after timing ECO fix and implement the floorplan, placement and cts.
+Now to insert this updated netlist to PnR flow and we can use write_verilog and overwrite the synthesis netlist but before that we are going to make a copy of the old old netlist
+
+Commands to make copy of netlist
+
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_04-58/results/synthesis/
+ls
+cp picorv32a.synthesis.v picorv32a.synthesis_old.v
+ls
+```
+
+Screenshot of commands run
+
+![image](https://github.com/user-attachments/assets/6925e487-e77f-4278-a109-d441d9916045)
+
+Commands to write verilog
+
+```
+help write_verilog
+write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_04-58/results/synthesis/picorv32a.synthesis.v
+exit
+```
+
+Screenshot of commands run
+
+![image](https://github.com/user-attachments/assets/07a2008d-9fe2-476e-a134-d349f1e1c0af)
+
+Verified that the netlist is overwritten by checking that instance _14506_ is replaced with sky130_fd_sc_hd__or4_4
+
+![image](https://github.com/user-attachments/assets/54768d56-2a4e-484a-acc8-bedbb2d71bdd)
+
+Since we confirmed that netlist is replaced and will be loaded in PnR but since we want to follow up on the earlier 0 violation design we are continuing with the clean design to further stages
+
+Commands load the design and run necessary stages
+
+```
+prep -design picorv32a -tag 24-03_10-03 -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+set ::env(SYNTH_SIZING) 1
+run_synthesis
+init_floorplan
+place_io
+tap_decap_or
+run_placement
+unset ::env(LIB_CTS)
+run_cts
+```
+
+Screenshots of commands run
+
+![image](https://github.com/user-attachments/assets/6caafa76-3ee9-48fb-84e9-70d632e94e2e)
+
+![image](https://github.com/user-attachments/assets/77979a87-96ac-41cc-864a-ad1d2817fb7e)
+
+![image](https://github.com/user-attachments/assets/d2d40f50-9e92-4b2d-8dbc-92a7c1f6649c)
+
+![image](https://github.com/user-attachments/assets/d9233445-8126-4a73-8f92-8eca7d109c2b)
+
+12. Post-CTS OpenROAD timing analysis.
+Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrated OpenSTA in OpenROAD
+
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/24-03_10-03/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+help report_checks
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+exit
+```
+
+
+Screenshots of commands run and timing report generated
 
 
 </details>
