@@ -3261,8 +3261,6 @@ Percentage of DFFs = 0.108429685*100 = 10.8429685
 
 Area of die in microns = Die width in microns * Die height in microns
 
-All section 2 logs, reports and results can be found in following run folder:
-
 # 1. Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
 Commands to invoke the OpenLANE flow and perform floorplan
 
@@ -3302,7 +3300,7 @@ Die heigth in microns = 671.405 Microns
 Commands to load floorplan def in magic in another terminal
 
 ```
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/10-11_01-27/results/floorplan/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
 ```
 
@@ -3372,16 +3370,14 @@ exit
 <summary> Day 3 - Design library cell using Magic Layout and ngspice characterization </summary>
 
 <li>Section 3 tasks:-</li>
-1. Clone custom inverter standard cell design from github repository: 
+
+1. Clone custom inverter standard cell design from github repository.
 2. Load the custom inverter layout in magic and explore.
 3. Spice extraction of inverter in magic.
 4. Editing the spice model file for analysis through simulation.
 5. Post-layout ngspice simulations.
 6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
 
-Section 3 - Tasks 1 to 5 files, reports and logs can be found in the following folder:
-
-Section 3 - Task 6 files, reports and logs can be found in the following folder:
 
 # 1. Clone custom inverter standard cell design from github repository
 
@@ -3801,7 +3797,7 @@ Noting down current design values generated before modifying parameters to impro
 Commands to view and change parameters to improve timing and run synthesis
 
 ```
-prep -design picorv32a -tag 24-03_10-03 -overwrite
+prep -design picorv32a -tag 10-11_15-53 -overwrite
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 echo $::env(SYNTH_STRATEGY)
@@ -3886,7 +3882,7 @@ Screenshots of command run
 Commands to load placement def in magic in another terminal
 
 ```
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/24-03_10-03/results/placement/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/10-11_15-53/results/placement/
 
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
@@ -4105,7 +4101,7 @@ Since we confirmed that netlist is replaced and will be loaded in PnR but since 
 Commands load the design and run necessary stages
 
 ```
-prep -design picorv32a -tag 24-03_10-03 -overwrite
+prep -design picorv32a -tag 10-11_15-53 -overwrite
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 set ::env(SYNTH_STRATEGY) "DELAY 3"
@@ -4134,11 +4130,11 @@ Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrat
 
 ```
 openroad
-read_lef /openLANE_flow/designs/picorv32a/runs/24-03_10-03/tmp/merged.lef
-read_def /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/cts/picorv32a.cts.def
+read_lef /openLANE_flow/designs/picorv32a/runs/13-11_12-34/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-11_12-34/results/cts/picorv32a.cts.def
 write_db pico_cts.db
 read_db pico_cts.db
-read_verilog /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/synthesis/picorv32a.synthesis_cts.v
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_12-34/results/synthesis/picorv32a.synthesis_cts.v
 read_liberty $::env(LIB_SYNTH_COMPLETE)
 link_design picorv32a
 read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
@@ -4170,8 +4166,8 @@ set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/13-11_12-34/results
 run_cts
 echo $::env(CTS_CLK_BUFFER_LIST)
 openroad
-read_lef /openLANE_flow/designs/picorv32a/runs/24-03_10-03/tmp/merged.lef
-read_def /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/cts/picorv32a.cts.def
+read_lef /openLANE_flow/designs/picorv32a/runs/13-11_12-34/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-11_12-34/results/cts/picorv32a.cts.def
 write_db pico_cts1.db
 read_db pico_cts.db
 read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_12-34/results/synthesis/picorv32a.synthesis_cts.v
