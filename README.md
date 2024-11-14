@@ -3563,7 +3563,7 @@ Incorrectly implemented poly.9 simple rule correction
 
 Screenshot of poly rules
 
-
+![image](https://github.com/user-attachments/assets/77748c44-4f72-4671-9ab9-5842a05f9aa9)
 
 Incorrectly implemented poly.9 rule no drc violation even though spacing < 0.48u
 
@@ -3591,6 +3591,8 @@ Incorrectly implemented difftap.2 simple rule correction
 
 Screenshot of difftap rules
 
+![image](https://github.com/user-attachments/assets/d8539c5c-3745-426d-862f-267117cf718d)
+
 Incorrectly implemented difftap.2 rule no drc violation even though spacing < 0.42u
 
 New commands inserted in sky130A.tech file to update drc
@@ -3605,15 +3607,15 @@ drc check
 drc why
 ```
 
-Screenshot of magic window with rule implemented
-
-
-
 Incorrectly implemented nwell.4 complex rule correction
 
 Screenshot of nwell rules
 
+![image](https://github.com/user-attachments/assets/18f52236-3630-4922-9c4e-7ee34f54bda0)
+
 Incorrectly implemented nwell.4 rule no drc violation even though no tap present in nwell
+
+![image](https://github.com/user-attachments/assets/5ec0c91a-ff1f-4d77-927b-c92c1994b8ac)
 
 New commands inserted in sky130A.tech file to update drc
 
@@ -3632,7 +3634,7 @@ drc why
 
 Screenshot of magic window with rule implemented
 
-
+![image](https://github.com/user-attachments/assets/5498f000-8f5b-42bf-bd7d-a5a0ad16104f)
 
 </details>
 
@@ -3661,10 +3663,10 @@ Screenshot of magic window with rule implemented
 # 1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
 Conditions to be verified before moving forward with custom designed cell layout:
 
-Condition 1: The input and output ports of the standard cell should lie on the intersection of the vertical and horizontal tracks.
-Condition 2: Width of the standard cell should be odd multiples of the horizontal track pitch.
-Condition 3: Height of the standard cell should be even multiples of the vertical track pitch.
-Commands to open the custom inverter layout
+<li>Condition 1: The input and output ports of the standard cell should lie on the intersection of the vertical and horizontal tracks.</li>
+<li>Condition 2: Width of the standard cell should be odd multiples of the horizontal track pitch.</li>
+<li>Condition 3: Height of the standard cell should be even multiples of the vertical track pitch.
+Commands to open the custom inverter layout</li>
 
 ```
 cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
@@ -3691,8 +3693,19 @@ Condition 1 verified
 
 Condition 2 verified
 
-![image](https://github.com/user-attachments/assets/1672282e-175a-4b35-a893-20f775aa50c9)
+Horizontal track pitch = 0.46 um
 
+![image](https://github.com/user-attachments/assets/3e272b96-b6cc-4fc2-8eed-db32f8f89eef)
+
+Width of standard cell = 1.38 um = 0.46 * 3
+
+Contition 3 verified
+
+Vertical track pitch = 0.34 um
+
+![image](https://github.com/user-attachments/assets/f824fe1e-a1f4-420f-bc36-57630a8a4fc5)
+
+Height of standard cell = 2.72 um = 0.34 * 8
 
 # 2. Save the finalized layout with custom name and open it.
 Command for tkcon window to save the layout with custom name
@@ -3704,6 +3717,7 @@ magic -T sky130A.tech sky130_vsdinv.mag &
 
 Screenshot of newly saved layout
 
+![image](https://github.com/user-attachments/assets/65deae57-bbde-4d7c-8e4d-823b7f0dc899)
 
 # 3. Generate lef from the layout.
 Command for tkcon window to write lef
@@ -3744,6 +3758,8 @@ set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/sr
 ```
 
 Edit to config.tcl config.tcl to include the added lef and change library to ones we added in src directory
+
+![image](https://github.com/user-attachments/assets/8935ed1c-520e-4f87-a718-ea31d0a67197)
 
 # 6. Run openlane flow synthesis with newly inserted custom inverter cell.
 Commands to invoke the OpenLANE flow include new lef and perform synthesis
