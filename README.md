@@ -3207,7 +3207,7 @@ report_wns -digits {4} >> /home/aditya/OpenSTA/app/Outputs/sta_wns.txt
 
 <summary> Day 1 - Introduction to open-source EDA, OpenLANE and Sky130 PDK </summary>
 
-1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
+# 1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
 Commands to invoke the OpenLANE flow and perform synthesis
 
 ```
@@ -3230,7 +3230,7 @@ Relevant screenshots
 
 ![image](https://github.com/user-attachments/assets/48015114-5e6b-4c50-b2ff-c42d2cca9048)
 
-2. Calculate the flop ratio.
+# 2. Calculate the flop ratio.
 Screenshots of synthesis statistics report file with required values highlighted
 
 ![image](https://github.com/user-attachments/assets/f97b806d-7c20-439d-9e19-7a9227fe2c6c)
@@ -3251,7 +3251,7 @@ Percentage of DFFs = 0.108429685*100 = 10.8429685
 	Day 2 - Good floorplan versus bad floorplan, and introduction to library cells 
 </summary>
 
-Day 2 tasks:-
+<li>Day 2 tasks:-</li>
 
 1. Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
 2. Calculate the die area in microns from the values in floorplan def.
@@ -3263,7 +3263,7 @@ Area of die in microns = Die width in microns * Die height in microns
 
 All section 2 logs, reports and results can be found in following run folder:
 
-1. Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
+# 1. Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
 Commands to invoke the OpenLANE flow and perform floorplan
 
 ```
@@ -3282,7 +3282,7 @@ Screenshot of floorplan run
 
 ![image](https://github.com/user-attachments/assets/bce7ae59-1c19-4f98-a369-afba8be2c47a)
 
-2. Calculate the die area in microns from the values in floorplan def.
+# 2. Calculate the die area in microns from the values in floorplan def.
 Screenshot of contents of floorplan def
 
 ![image](https://github.com/user-attachments/assets/abd29890-2be7-4cfe-af90-27ac545cb836)
@@ -3298,7 +3298,7 @@ Distance in microns = Value in unit distance/1000
 Die width in microns = 660685/1000 = 660.685 Microns
 Die heigth in microns = 671.405 Microns
 
-3. Load generated floorplan def in magic tool and explore the floorplan.
+# 3. Load generated floorplan def in magic tool and explore the floorplan.
 Commands to load floorplan def in magic in another terminal
 
 ```
@@ -3331,7 +3331,7 @@ Unplaced standard cells at the origin
 
 ![image](https://github.com/user-attachments/assets/81bfcab5-0031-4cb3-857e-82f9caafc5b3)
 
-4. Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
+# 4. Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
 Command to run placement
 
 ```
@@ -3345,7 +3345,7 @@ Screenshots of placement run
 ![image](https://github.com/user-attachments/assets/189d994c-4f5f-4a7e-b78d-1df5eec741f5)
 
 
-5. Load generated placement def in magic tool and explore the placement.
+# 5. Load generated placement def in magic tool and explore the placement.
 Commands to load placement def in magic in another terminal
 
 ```
@@ -3383,7 +3383,7 @@ Section 3 - Tasks 1 to 5 files, reports and logs can be found in the following f
 
 Section 3 - Task 6 files, reports and logs can be found in the following folder:
 
-1. Clone custom inverter standard cell design from github repository
+# 1. Clone custom inverter standard cell design from github repository
 
 ```
 cd Desktop/work/tools/openlane_working_dir/openlane
@@ -3400,7 +3400,7 @@ Screenshot of commands run
 
 ![image](https://github.com/user-attachments/assets/2e75bfa8-535a-4591-b09f-6c37e589d5f1)
 
-2. Load the custom inverter layout in magic and explore.
+# 2. Load the custom inverter layout in magic and explore.
 
 Screenshot of custom inverter layout in magic
 
@@ -3428,7 +3428,7 @@ Deleting necessary layout part to see DRC error
 
 
 
-3. Spice extraction of inverter in magic.
+# 3. Spice extraction of inverter in magic.
 Commands for spice extraction of the custom inverter layout to be used in tkcon window of magic
 
 ```
@@ -3446,17 +3446,15 @@ Screenshot of created spice file
 
 ![image](https://github.com/user-attachments/assets/a902ba3a-6dd5-46ef-9023-fb089aafc56d)
 
-4. Editing the spice model file for analysis through simulation.
+# 4. Editing the spice model file for analysis through simulation.
 Measuring unit distance in layout grid
 
-5. Post-layout ngspice simulations.
+# 5. Post-layout ngspice simulations.
 Commands for ngspice simulation
  
 ```
-# Command to directly load spice file for simulation to ngspice
 ngspice sky130_inv.spice
-
-# Now that we have entered ngspice with the simulation spice file loaded we just have to load the plot
+plot
 plot y vs time a
 ```
 
@@ -3538,7 +3536,7 @@ Rise Cell Delay = Time take for output to fall to 50% - Time taken for input to 
 
 Fall Cell Delay = 4.07802 - 4.05 = 0.02802 ns
 
-6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
+# 6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
 Link to Sky130 Periphery rules: https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html
 
 Commands to download and view the corrupted skywater process magic tech file and associated files to perform drc corrections
@@ -3602,13 +3600,8 @@ New commands inserted in sky130A.tech file to update drc
 Commands to run in tkcon window
 
 ```
-# Loading updated tech file
 tech load sky130A.tech
-
-# Must re-run drc check to see updated drc errors
 drc check
-
-# Selecting region displaying the new errors and getting the error messages 
 drc why
 ```
 
@@ -3647,8 +3640,9 @@ Screenshot of magic window with rule implemented
 <details> 
 	<summary> Day 4 - Pre-layout timing analysis and importance of good clock tree </summary>
 
-Implementation
-Day 4 tasks:-
+# Implementation
+<li>Day 4 tasks:-</li>
+
 1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
 2. Save the finalized layout with custom name and open it.
 3. Generate lef from the layout.
@@ -3664,7 +3658,7 @@ Day 4 tasks:-
 13. Explore post-CTS OpenROAD timing analysis by removing 'sky130_fd_sc_hd__clkbuf_1' cell from clock buffer list variable 'CTS_CLK_BUFFER_LIST'.
 
 
-1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
+# 1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
 Conditions to be verified before moving forward with custom designed cell layout:
 
 Condition 1: The input and output ports of the standard cell should lie on the intersection of the vertical and horizontal tracks.
@@ -3700,7 +3694,7 @@ Condition 2 verified
 ![image](https://github.com/user-attachments/assets/1672282e-175a-4b35-a893-20f775aa50c9)
 
 
-2. Save the finalized layout with custom name and open it.
+# 2. Save the finalized layout with custom name and open it.
 Command for tkcon window to save the layout with custom name
 
 ```
@@ -3711,7 +3705,7 @@ magic -T sky130A.tech sky130_vsdinv.mag &
 Screenshot of newly saved layout
 
 
-3. Generate lef from the layout.
+# 3. Generate lef from the layout.
 Command for tkcon window to write lef
 
 ```
@@ -3724,7 +3718,7 @@ Screenshot of newly created lef file
 
 ![image](https://github.com/user-attachments/assets/78250b0a-1ecc-45c9-9fef-dcf7e533e768)
 
-4. Copy the newly generated lef and associated required lib files to 'picorv32a' design 'src' directory.
+# 4. Copy the newly generated lef and associated required lib files to 'picorv32a' design 'src' directory.
 Commands to copy necessary files to 'picorv32a' design 'src' directory
 
 ```
@@ -3738,7 +3732,7 @@ Screenshot of commands run
 
 ![image](https://github.com/user-attachments/assets/0e75ee41-34ad-42f8-90e6-8ec77765c03b)
 
-5. Edit 'config.tcl' to change lib file and add the new extra lef into the openlane flow.
+# 5. Edit 'config.tcl' to change lib file and add the new extra lef into the openlane flow.
 Commands to be added to config.tcl to include our custom cell in the openlane flow
 
 ```
@@ -3751,7 +3745,7 @@ set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/sr
 
 Edit to config.tcl config.tcl to include the added lef and change library to ones we added in src directory
 
-6. Run openlane flow synthesis with newly inserted custom inverter cell.
+# 6. Run openlane flow synthesis with newly inserted custom inverter cell.
 Commands to invoke the OpenLANE flow include new lef and perform synthesis
 
 ```
@@ -3781,7 +3775,7 @@ Screenshots of commands run
 
 ![image](https://github.com/user-attachments/assets/b6926d7e-41f6-446e-9748-63dc1fea312e)
 
-7. Remove/reduce the newly introduced violations with the introduction of custom inverter cell by modifying design parameters.
+# 7. Remove/reduce the newly introduced violations with the introduction of custom inverter cell by modifying design parameters.
 Noting down current design values generated before modifying parameters to improve timing
 
 ![image](https://github.com/user-attachments/assets/2c21780a-2f54-4de2-9bee-2f4564d7e130)
@@ -3827,7 +3821,7 @@ Screenshots of commands run
 
 Comparing to previously noted run values area has increased and worst negative slack has become 0
 
-8. Once synthesis has accepted our custom inverter we can now run floorplan and placement and verify the cell is accepted in PnR flow.
+# 8. Once synthesis has accepted our custom inverter we can now run floorplan and placement and verify the cell is accepted in PnR flow.
 Now that our custom inverter is properly accepted in synthesis we can now run floorplan using following command
 
 ```
@@ -3903,7 +3897,7 @@ Abutment of power pins with other cell from library clearly visible
 
 ![image](https://github.com/user-attachments/assets/91394c0f-2c85-4344-9f4e-505387aa67d0)
 
-9. Do Post-Synthesis timing analysis with OpenSTA tool.
+# 9. Do Post-Synthesis timing analysis with OpenSTA tool.
 Since we are having 0 wns after improved timing run we are going to do timing analysis on initial run of synthesis which has lots of violations and no parameters were added to improve timing
 
 Commands to invoke the OpenLANE flow include new lef and perform synthesis
@@ -3989,7 +3983,7 @@ Screenshots of commands run
 
 ![image](https://github.com/user-attachments/assets/09ede2a4-f667-47f7-9249-d19f5907ec23)
 
-10. Make timing ECO fixes to remove all violations.
+# 10. Make timing ECO fixes to remove all violations.
 OR gate of drive strength 2 is driving 4 fanouts
 
 ![image](https://github.com/user-attachments/assets/c2568b88-6ad1-436b-aff9-36f269f2aab3)
@@ -4058,7 +4052,7 @@ Screenshot of replaced instance
 
 We started ECO fixes at wns -23.9000 and now we stand at wns -22.6173 we reduced around 1.2827 ns of violation
 
-11. Replace the old netlist with the new netlist generated after timing ECO fix and implement the floorplan, placement and cts.
+# 11. Replace the old netlist with the new netlist generated after timing ECO fix and implement the floorplan, placement and cts.
 Now to insert this updated netlist to PnR flow and we can use write_verilog and overwrite the synthesis netlist but before that we are going to make a copy of the old old netlist
 
 Commands to make copy of netlist
@@ -4119,7 +4113,7 @@ Screenshots of commands run
 
 ![image](https://github.com/user-attachments/assets/d9233445-8126-4a73-8f92-8eca7d109c2b)
 
-12. Post-CTS OpenROAD timing analysis.
+# 12. Post-CTS OpenROAD timing analysis.
 Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrated OpenSTA in OpenROAD
 
 ```
@@ -4138,9 +4132,59 @@ report_checks -path_delay min_max -fields {slew trans net cap input_pins} -forma
 exit
 ```
 
+Screenshots of commands run and timing report generated
+
+![image](https://github.com/user-attachments/assets/818c697f-0dad-4ad6-be40-6e70015a7215)
+
+![image](https://github.com/user-attachments/assets/660789d8-23d0-47cb-a51f-35aa6efffd12)
+
+![image](https://github.com/user-attachments/assets/6886235f-b3a4-4034-8499-d046e02a00dd)
+
+![image](https://github.com/user-attachments/assets/8a7e8b01-a378-4a46-bb7b-214112e53f10)
+
+# 13. Explore post-CTS OpenROAD timing analysis by removing 'sky130_fd_sc_hd__clkbuf_1' cell from clock buffer list variable 'CTS_CLK_BUFFER_LIST'.
+Commands to be run in OpenLANE flow to do OpenROAD timing analysis after changing CTS_CLK_BUFFER_LIST
+
+```
+echo $::env(CTS_CLK_BUFFER_LIST)
+set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+echo $::env(CTS_CLK_BUFFER_LIST)
+echo $::env(CURRENT_DEF)
+set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/13-11_12-34/results/placement/picorv32a.placement.def
+run_cts
+echo $::env(CTS_CLK_BUFFER_LIST)
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/24-03_10-03/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/cts/picorv32a.cts.def
+write_db pico_cts1.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_12-34/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+report_clock_skew -hold
+report_clock_skew -setup
+exit
+echo $::env(CTS_CLK_BUFFER_LIST)
+set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_sc_hd__clkbuf_1]
+echo $::env(CTS_CLK_BUFFER_LIST)
+```
 
 Screenshots of commands run and timing report generated
 
+![image](https://github.com/user-attachments/assets/575b0183-0096-493f-83b1-acad958f28d9)
+
+![image](https://github.com/user-attachments/assets/5abefc7f-beb4-48c3-af0d-694e264e3357)
+
+![image](https://github.com/user-attachments/assets/31a798ca-e971-4f08-ab7b-f49d238b5118)
+
+![image](https://github.com/user-attachments/assets/1b6a4dc4-84f9-459f-bfd9-88dd19632eeb)
+
+![image](https://github.com/user-attachments/assets/36c8bbb7-cba1-4477-b099-deeca0e5c41c)
+
+![image](https://github.com/user-attachments/assets/7ee4db59-bcf3-4458-9ae4-11fb7dd50054)
 
 </details>
 
@@ -4156,7 +4200,7 @@ Implementation
 3. Post-Route parasitic extraction using SPEF extractor.
 4. Post-Route OpenSTA timing analysis with the extracted parasitics of the route.
 
-1. Perform generation of Power Distribution Network (PDN) and explore the PDN layout.
+# 1. Perform generation of Power Distribution Network (PDN) and explore the PDN layout.
 Commands to perform all necessary stages up until now
 
 ```
@@ -4208,7 +4252,7 @@ Screenshots of PDN def
 
 ![image](https://github.com/user-attachments/assets/1ac9eaa2-ee08-4457-95e5-2dd69a23888e)
 
-2. Perfrom detailed routing using TritonRoute and explore the routed layout.
+# 2. Perfrom detailed routing using TritonRoute and explore the routed layout.
 Command to perform routing
 
 ```
@@ -4248,7 +4292,7 @@ Screenshot of fast route guide present in openlane/designs/picorv32a/runs/13-11_
 ![image](https://github.com/user-attachments/assets/4922c99f-60c3-49b4-b90b-f3dcb928c496)
 
 
-3. Post-Route parasitic extraction using SPEF extractor.
+# 3. Post-Route parasitic extraction using SPEF extractor.
 Commands for SPEF extraction using external tool
 
 ```
@@ -4256,7 +4300,7 @@ cd Desktop/work/tools/SPEF_EXTRACTOR
 python3 main.py /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_12-34/tmp/merged.lef /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_12-34/results/routing/picorv32a.def
 ```
 
-4. Post-Route OpenSTA timing analysis with the extracted parasitics of the route.
+# 4. Post-Route OpenSTA timing analysis with the extracted parasitics of the route.
 Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrated OpenSTA in OpenROAD
 
 ```
