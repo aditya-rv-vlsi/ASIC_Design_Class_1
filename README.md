@@ -3883,6 +3883,25 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 
 Screenshot of placement def in magic
 
+![image](https://github.com/user-attachments/assets/58423f52-cab4-4036-b03a-61805ce7fbfe)
+
+Screenshot of custom inverter inserted in placement def with proper abutment
+
+![image](https://github.com/user-attachments/assets/bce9d189-b72b-4949-bcfd-f9ba0d05f687)
+
+Command for tkcon window to view internal layers of cells
+
+```
+expand
+```
+
+![image](https://github.com/user-attachments/assets/0fd83366-f3bc-4049-b1b3-01d8d18febfb)
+
+Abutment of power pins with other cell from library clearly visible
+
+![image](https://github.com/user-attachments/assets/5ad0682e-c5ac-4780-8803-ed0877b79d38)
+
+![image](https://github.com/user-attachments/assets/91394c0f-2c85-4344-9f4e-505387aa67d0)
 
 9. Do Post-Synthesis timing analysis with OpenSTA tool.
 Since we are having 0 wns after improved timing run we are going to do timing analysis on initial run of synthesis which has lots of violations and no parameters were added to improve timing
