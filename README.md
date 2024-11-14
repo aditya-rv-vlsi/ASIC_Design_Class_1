@@ -3966,7 +3966,7 @@ Since more fanout is causing more delay we can add parameter to reduce fanout an
 Commands to include new lef and perform synthesis
 
 ```
-prep -design picorv32a -tag 25-03_18-52 -overwrite
+prep -design picorv32a -tag 13-11_04-58 -overwrite
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 set ::env(SYNTH_SIZING) 1
@@ -4252,7 +4252,7 @@ Screenshots of power distribution network run
 Commands to load PDN def in magic in another terminal
 
 ```
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/26-03_08-45/tmp/floorplan/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_12-34/tmp/floorplan/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read 16-pdn.def &
 ```
 
