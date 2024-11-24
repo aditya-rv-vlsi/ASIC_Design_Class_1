@@ -4346,6 +4346,81 @@ Screenshots of commands run and timing report generated
 
 </details>
 
+<details>
+	<summary>
+		Laboratory 14: Perform the following tasks:
+	1) Instal OpenROAD flow Scripts on individual machine (username should be clearly visible)
+	2) Study about OpenROAD basic Flow setup and Macro Flow Setup
+	3) Clear documentation Routed Database, QOR and heat Map for your BabySoC"
+	</summary>
 
+Installing and setting up ORFS
+
+```
+mkdir ORFS && cd ORFS
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+sudo ./setup.sh
+```
+
+![image](https://github.com/user-attachments/assets/fc14072b-6409-44d6-a809-c94b7200de20)
+
+
+```
+./build_openroad.sh --local
+```
+
+Verify Installation
+
+```
+source ./env.sh
+yosys -help
+openroad -help
+cd flow
+make
+```
+
+![image](https://github.com/user-attachments/assets/6cbc0c41-da26-44d0-b280-7a610c0d2565)
+
+![image](https://github.com/user-attachments/assets/64ab0bd5-8343-4612-8d49-7a7305e30f58)
+
+![image](https://github.com/user-attachments/assets/c3ef9218-4372-4594-97c9-ae2d76bb6cb8)
+
+```
+make gui_final
+```
+
+![image](https://github.com/user-attachments/assets/e7e13dba-67f5-4040-b3c2-8a0519f1c46b)
+
+ORFS Directory Structure and File formats
+
+![image](https://github.com/user-attachments/assets/ab4e86fb-0299-4115-918a-b16c792ba49e)
+
+```
+├── OpenROAD-flow-scripts             
+│   ├── docker           -> It has Docker based installation, run scripts and all saved here
+│   ├── docs             -> Documentation for OpenROAD or its flow scripts.  
+│   ├── flow             -> Files related to run RTL to GDS flow  
+|   ├── jenkins          -> It contains the regression test designed for each build update
+│   ├── tools            -> It contains all the required tools to run RTL to GDS flow
+│   ├── etc              -> Has the dependency installer script and other things
+│   ├── setup_env.sh     -> Its the source file to source all our OpenROAD rules to run the RTL to GDS flow
+```
+
+Now, go to flow directory
+
+![image](https://github.com/user-attachments/assets/8cf6a92a-e3e2-4e6d-9829-a91ec9f87c65)
+
+```
+├── flow           
+│   ├── design           -> It has built-in examples from RTL to GDS flow across different technology nodes
+│   ├── makefile         -> The automated flow runs through makefile setup
+│   ├── platform         -> It has different technology note libraries, lef files, GDS etc 
+|   ├── tutorials        
+│   ├── util            
+│   ├── scripts             
+```
+
+</details>
 
 
