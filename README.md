@@ -4466,7 +4466,7 @@ Synthesis log:
 
 Synthesis Check:
 
-![image](https://github.com/user-attachments/assets/987112bc-15e3-44e7-9dd7-5b82a757be0f)
+![image](https://github.com/user-attachments/assets/e5205f51-6a65-49dd-aea0-feb2ab9197d2)
 
 Synthesis Stats:
 
