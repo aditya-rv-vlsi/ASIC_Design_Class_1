@@ -4446,12 +4446,43 @@ cd flow
 
 Commands for synthesis:
 
+```
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
+```
 
 ![image](https://github.com/user-attachments/assets/828113e0-7e43-42b0-aca9-9280df1f65ce)
 
 ![image](https://github.com/user-attachments/assets/a8354726-f17d-440f-8a71-425e5dbcc149)
 
+![image](https://github.com/user-attachments/assets/c0e21080-f7b2-4bf6-9f93-70b5be81950c)
+
+Synthesis Netlist:
+
+![image](https://github.com/user-attachments/assets/bbc35e66-4de1-4122-84b9-df358a121116)
+
+Synthesis log:
+
+![image](https://github.com/user-attachments/assets/f687b56c-996f-4a72-bed1-b8aade23545e)
+
+Synthesis Check:
+
+![image](https://github.com/user-attachments/assets/987112bc-15e3-44e7-9dd7-5b82a757be0f)
+
+Synthesis Stats:
+
+![image](https://github.com/user-attachments/assets/dfbad31c-6b63-4188-a167-02f283a301aa)
+
+![image](https://github.com/user-attachments/assets/7f93f88b-b449-46bc-877a-e9e6c9497ecf)
+
+![image](https://github.com/user-attachments/assets/63148d1f-9f1a-471c-adf9-04b8dbe3377b)
+
+![image](https://github.com/user-attachments/assets/6909a299-2ec4-49e1-b140-81d5a76d8071)
+
+Commands for floorplan:
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
+```
 
 </details>
 
