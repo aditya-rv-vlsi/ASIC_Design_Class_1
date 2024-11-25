@@ -4346,6 +4346,8 @@ Screenshots of commands run and timing report generated
 
 </details>
 
+***
+
 <details>
 	<summary>
 		Laboratory 14: Perform the following tasks:
@@ -4420,6 +4422,36 @@ Now, go to flow directory
 │   ├── util            
 │   ├── scripts             
 ```
+
+Automated RTL2GDS Flow for VSDBabySoC:
+
+Initial Steps:
+
+<li>We need to create a directory vsdbabysoc inside OpenROAD-flow-scripts/flow/designs/sky130hd</li>
+<li>Now copy the folders gds, include, lef and lib from the VSDBabySoC folder in your system into this directory.</li>
+<li>The gds folder would contain the files avsddac.gds and avsdpll.gds</li>
+The include folder would contain the files sandpiper.vh, sandpiper_gen.vh, sp_default.vh and <li>sp_verilog.vh</li>
+<li>The gds folder would contain the files avsddac.lef and avsdpll.lef</li>
+<li>The lib folder would contain the files avsddac.lib and avsdpll.lib</li>
+<li>Now copy the constraints file(vsdbabysoc_synthesis.sdc) from the VSDBabySoC folder in your system into this directory.</li>
+<li>Now copy the files(macro.cfg and pin_order.cfg) from the VSDBabySoC folder in your system into this directory.</li>
+
+Now go to terminal and run the following commands:
+
+```
+cd OpenROAD-flow-scripts
+source env.sh
+cd flow
+```
+
+Commands for synthesis:
+
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
+
+![image](https://github.com/user-attachments/assets/828113e0-7e43-42b0-aca9-9280df1f65ce)
+
+![image](https://github.com/user-attachments/assets/a8354726-f17d-440f-8a71-425e5dbcc149)
+
 
 </details>
 
