@@ -4344,7 +4344,6 @@ Screenshots of commands run and timing report generated
 
 <details>
 	<summary>Laboratory 14: Perform the following tasks:
-		
 	1. Install OpenROAD flow Scripts on individual machine (username should be clearly visible)
 	2. Study about OpenROAD basic Flow setup and Macro Flow Setup
 	3. Clear documentation Routed Database, QOR and Heat Map for your BabySoC
