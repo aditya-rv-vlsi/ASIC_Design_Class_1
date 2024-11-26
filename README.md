@@ -4601,6 +4601,7 @@ make metadata
 
 ![image](https://github.com/user-attachments/assets/536a0eb8-2c41-4307-beef-8751430cde11)
 
+[The reports generated after each step can be viewed here](https://github.com/aditya-rv-vlsi/ASIC_Design_Class_1/tree/main/Lab%2014)
 
 </details>
 
