@@ -99,10 +99,8 @@ It can be observed that the number of instructions are equal to (0x100DC-0x100B0
 ***
 
 <details>
-  <summary>
-    Laboratory 4: 
+  <summary>Laboratory 4: 
     Task 1: Identify various RISC-V instruction type (R, I, S, B, U, J) and exact 32-bit instruction code in the instruction type format for below RISC-V instructions
-
     
     1. ADD r11, r12, r13
     2. SUB r13, r11, r12
@@ -117,8 +115,6 @@ It can be observed that the number of instructions are equal to (0x100DC-0x100B0
     11. BEQ r0, r0, 15
     12. LW r23, r21, 2
     13. SLL r25, r21, r20
-
-
 
     Task 2: Use the RISC-V Core Verilog netlist and testbench given, for functional simulation experiment. Upload waveform snapshots for the commands. 
   </summary>
@@ -921,9 +917,9 @@ We can view the changing of values in each of the registers as the program is ex
 <details>
   <summary>Laboratory 7: Using the TL Verilog Program written in the previous laboratory, convert the TL Verilog Program to Verilog Program using Sandpiper. Write a testbench using sample testbench for rvmyth. Use iverilog to simulate and gtkwave to view the output waveforms. Plot below signals from gtkwave 
 
-1) Clock signal appended with your name
-2) Reset signal
-3) 10-bit output which shows the gradual addition of 1 to 10
+1. Clock signal appended with your name
+2. Reset signal
+3. 10-bit output which shows the gradual addition of 1 to 10
 
 The above waveforms should match with your TLV waveform.
    </summary>
@@ -984,13 +980,12 @@ The output of iverilog and Makerchip (TL-Verilog) are found to be the same.
 <details>
   <summary>Laboratory 8: Using the Verilog Program written in the previous laboratory, convert the digital output from the Verilog Program file to an analog output using DAC and PLL. Use iverilog to simulate and gtkwave to view the output waveforms. Plot below signals from gtkwave: 
 	  
-	1) Clock signal appended with your name</li>
-	2) Reset signal</li>
-	3) 10-bit output which shows the gradual addition of 1 to 10</li>
-	4) DAC output analog waveform</li>
-	5) PLL clock input signal</li>
-	6) Your laptop username identifier and dates is clear</li> 
-
+	1. Clock signal appended with your name
+	2. Reset signal
+	3. 10-bit output which shows the gradual addition of 1 to 10
+	4. DAC output analog waveform
+	5. PLL clock input signal
+	6. Your laptop username identifier and dates is clear
    </summary>
 
 **Step 1:** Install yosys
@@ -2470,11 +2465,10 @@ These waveforms correspond to the GATE LEVEL SYNTHESIS for the Blocking Caveat.
 
 <details>
 
-<summary>
-	Laboratory 10: Synthesize RISC-V and compare output with functional simulations, and show the following:
+<summary>Laboratory 10: Synthesize RISC-V and compare output with functional simulations, and show the following:
 	
-	1) Functionality vs Synthesized output waveform comparison. They should match. Plot atleast for top 20 cycles (20 ups and 20 downs)
-	2) Synthesize output window CLEARLY showing standard cells in the gtkwave window along with your login name
+	1. Functionality vs Synthesized output waveform comparison. They should match. Plot atleast for top 20 cycles (20 ups and 20 downs)
+	2. Synthesize output window CLEARLY showing standard cells in the gtkwave window along with your login name
 </summary>	
 
 ```
@@ -4349,15 +4343,12 @@ Screenshots of commands run and timing report generated
 ***
 
 <details>
-	<summary>
+	<summary>Laboratory 14: Perform the following tasks:
 		
-		Laboratory 14: Perform the following tasks:
-		
-	1) Install OpenROAD flow Scripts on individual machine (username should be clearly visible)
-	2) Study about OpenROAD basic Flow setup and Macro Flow Setup
-	3) Clear documentation Routed Database, QOR and Heat Map for your BabySoC
- 
-	</summary>
+	1. Install OpenROAD flow Scripts on individual machine (username should be clearly visible)
+	2. Study about OpenROAD basic Flow setup and Macro Flow Setup
+	3. Clear documentation Routed Database, QOR and Heat Map for your BabySoC
+ 	</summary>
 
 # Installing and setting up ORFS
 
