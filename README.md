@@ -984,12 +984,12 @@ The output of iverilog and Makerchip (TL-Verilog) are found to be the same.
 <details>
   <summary>Laboratory 8: Using the Verilog Program written in the previous laboratory, convert the digital output from the Verilog Program file to an analog output using DAC and PLL. Use iverilog to simulate and gtkwave to view the output waveforms. Plot below signals from gtkwave: 
 	  
-	<li> 1) Clock signal appended with your name</li>
-	<li> 2) Reset signal</li>
-	<li> 3) 10-bit output which shows the gradual addition of 1 to 10</li>
-	<li> 4) DAC output analog waveform</li>
-	<li> 5) PLL clock input signal</li>
-	<li> 6) Your laptop username identifier and dates is clear</li> 
+	1) Clock signal appended with your name</li>
+	2) Reset signal</li>
+	3) 10-bit output which shows the gradual addition of 1 to 10</li>
+	4) DAC output analog waveform</li>
+	5) PLL clock input signal</li>
+	6) Your laptop username identifier and dates is clear</li> 
 
    </summary>
 
@@ -2466,9 +2466,9 @@ These waveforms correspond to the GATE LEVEL SYNTHESIS for the Blocking Caveat.
   </details>
 </details>
 
-<details>
-
 ***
+
+<details>
 
 <summary>
 	Laboratory 10: Synthesize RISC-V and compare output with functional simulations, and show the following:
@@ -4350,10 +4350,13 @@ Screenshots of commands run and timing report generated
 
 <details>
 	<summary>
+		
 		Laboratory 14: Perform the following tasks:
-	1) Instal OpenROAD flow Scripts on individual machine (username should be clearly visible)
+		
+	1) Install OpenROAD flow Scripts on individual machine (username should be clearly visible)
 	2) Study about OpenROAD basic Flow setup and Macro Flow Setup
-	3) Clear documentation Routed Database, QOR and heat Map for your BabySoC"
+	3) Clear documentation Routed Database, QOR and Heat Map for your BabySoC
+ 
 	</summary>
 
 # Installing and setting up ORFS
@@ -4581,6 +4584,8 @@ make gui_route
 ```
 
 ![image](https://github.com/user-attachments/assets/9039af28-7c04-432b-a771-646967a11984)
+
+# Final Layout
 
 To give the GDS file in the klayout type the following commands
 
