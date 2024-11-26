@@ -4356,7 +4356,7 @@ Screenshots of commands run and timing report generated
 	3) Clear documentation Routed Database, QOR and heat Map for your BabySoC"
 	</summary>
 
-Installing and setting up ORFS
+# Installing and setting up ORFS
 
 ```
 mkdir ORFS && cd ORFS
@@ -4372,7 +4372,7 @@ sudo ./setup.sh
 ./build_openroad.sh --local
 ```
 
-Verify Installation
+# Verify Installation
 
 ```
 source ./env.sh
@@ -4394,7 +4394,7 @@ make gui_final
 
 ![image](https://github.com/user-attachments/assets/e7e13dba-67f5-4040-b3c2-8a0519f1c46b)
 
-ORFS Directory Structure and File formats
+# ORFS Directory Structure and File formats
 
 ![image](https://github.com/user-attachments/assets/ab4e86fb-0299-4115-918a-b16c792ba49e)
 
@@ -4423,7 +4423,7 @@ Now, go to flow directory
 │   ├── scripts             
 ```
 
-Automated RTL2GDS Flow for VSDBabySoC:
+# Automated RTL2GDS Flow for VSDBabySoC:
 
 Initial Steps:
 
@@ -4444,7 +4444,7 @@ source env.sh
 cd flow
 ```
 
-Commands for synthesis:
+# Commands for Synthesis:
 
 ```
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
@@ -4488,7 +4488,7 @@ Synthesis Stats:
 
 ![image](https://github.com/user-attachments/assets/3d7d8a66-85d1-424f-abd8-6c0a6fc2c350)
 
-Commands for floorplan:
+# Commands for Floorplan:
 
 ```
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
@@ -4512,7 +4512,7 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
 
 ![image](https://github.com/user-attachments/assets/497d3c70-f637-4eaa-b6e0-b9701afa2260)
 
-Commands for placement
+# Commands for Placement
 
 ```
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk place
@@ -4530,7 +4530,7 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
 
 ![image](https://github.com/user-attachments/assets/a6473ffd-6415-49b2-b35b-f34a1861a04f)
 
-Heatmap:
+# Heatmap:
 
 ![image](https://github.com/user-attachments/assets/849f7e89-9f69-405d-9460-4bc77d8e92ca)
 
@@ -4557,6 +4557,49 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
 ![image](https://github.com/user-attachments/assets/a61144a6-06f2-4ef1-937c-f081a7f58a7d)
 
 ![image](https://github.com/user-attachments/assets/6552488d-da56-44dc-94f4-376bd43cf34b)
+
+# CTS Final Report:
+
+![image](https://github.com/user-attachments/assets/43c318da-8817-4b92-9663-82b813892222)
+
+![image](https://github.com/user-attachments/assets/98dd957f-a43a-4254-a22f-caccd84bc46f)
+
+
+# Commands for Route:
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
+```
+
+![image](https://github.com/user-attachments/assets/9e3353d5-a6fd-4ef9-b727-6b57c723a524)
+
+![image](https://github.com/user-attachments/assets/1cd73413-93a2-4844-a129-8d02f6ba2175)
+
+
+```
+make gui_route
+```
+
+![image](https://github.com/user-attachments/assets/9039af28-7c04-432b-a771-646967a11984)
+
+To give the GDS file in the klayout type the following commands
+
+```
+ klayout -e -nn ./platforms/sky130hd/FreePDK45.lyt -l ./platforms/sky130hd/FreePDK45.lyp ./results/sky130hd/base/6_final.gds
+```
+
+![image](https://github.com/user-attachments/assets/8b45d438-a870-496e-a6ed-151dde805977)
+
+
+# QoR Report:
+
+```
+make metadata
+```
+
+![image](https://github.com/user-attachments/assets/ad734ad1-66f7-42be-9c41-4d65659ac15d)
+
+![image](https://github.com/user-attachments/assets/536a0eb8-2c41-4307-beef-8751430cde11)
 
 
 </details>
