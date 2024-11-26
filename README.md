@@ -4450,39 +4450,114 @@ Commands for synthesis:
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk synth
 ```
 
-![image](https://github.com/user-attachments/assets/828113e0-7e43-42b0-aca9-9280df1f65ce)
+![image](https://github.com/user-attachments/assets/9818066b-d3b0-4342-ab0d-56c03272830e)
 
-![image](https://github.com/user-attachments/assets/a8354726-f17d-440f-8a71-425e5dbcc149)
-
-![image](https://github.com/user-attachments/assets/c0e21080-f7b2-4bf6-9f93-70b5be81950c)
+![image](https://github.com/user-attachments/assets/44e43dee-9d81-44d1-a108-f21c7ae44cb6)
 
 Synthesis Netlist:
 
-![image](https://github.com/user-attachments/assets/bbc35e66-4de1-4122-84b9-df358a121116)
+![image](https://github.com/user-attachments/assets/1c691e38-fd97-412d-a26a-bda200cfcdd2)
 
 Synthesis log:
 
-![image](https://github.com/user-attachments/assets/f687b56c-996f-4a72-bed1-b8aade23545e)
+![image](https://github.com/user-attachments/assets/6bc0b2b7-a4d0-4703-a58c-820a48141d52)
 
 Synthesis Check:
 
-![image](https://github.com/user-attachments/assets/e5205f51-6a65-49dd-aea0-feb2ab9197d2)
+![image](https://github.com/user-attachments/assets/18183608-eb07-4975-b953-74443c6436e9)
 
 Synthesis Stats:
 
-![image](https://github.com/user-attachments/assets/dfbad31c-6b63-4188-a167-02f283a301aa)
+![image](https://github.com/user-attachments/assets/25e9104a-d117-4354-914a-c420cc5b9a96)
 
-![image](https://github.com/user-attachments/assets/7f93f88b-b449-46bc-877a-e9e6c9497ecf)
+![image](https://github.com/user-attachments/assets/933a37e0-e702-42c7-82e5-d5c76f3c7283)
 
-![image](https://github.com/user-attachments/assets/63148d1f-9f1a-471c-adf9-04b8dbe3377b)
+![image](https://github.com/user-attachments/assets/f15bd913-8253-4752-b6fc-6efa7d4fd8bb)
 
-![image](https://github.com/user-attachments/assets/6909a299-2ec4-49e1-b140-81d5a76d8071)
+![image](https://github.com/user-attachments/assets/b471bc12-1aee-4df7-b8f0-42e897e01872)
+
+![image](https://github.com/user-attachments/assets/be4b1f6e-58f6-498e-a0ca-534aac249bd8)
+
+![image](https://github.com/user-attachments/assets/6c0689e2-19e7-4e70-84b1-a401629409ac)
+
+![image](https://github.com/user-attachments/assets/f6b5aff2-6f01-4c09-a697-35d27aa2cb8a)
+
+![image](https://github.com/user-attachments/assets/0f65fa99-2c1b-4dc4-b3ae-bf13899b3b3b)
+
+![image](https://github.com/user-attachments/assets/e4984f5b-65a0-47e5-87bf-f82c3636fd09)
+
+![image](https://github.com/user-attachments/assets/3d7d8a66-85d1-424f-abd8-6c0a6fc2c350)
 
 Commands for floorplan:
 
 ```
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
 ```
+
+![image](https://github.com/user-attachments/assets/d66a5630-76c7-4655-86f1-f2ed50581de9)
+
+![image](https://github.com/user-attachments/assets/038511b7-0712-4a46-9ee8-a541fc5eb163)
+
+![image](https://github.com/user-attachments/assets/1f683ede-b161-437e-a0c6-53ddfbe7d59e)
+
+![image](https://github.com/user-attachments/assets/d0b5b3dd-aba4-4687-b3ea-c5f9aab5071d)
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
+```
+
+![image](https://github.com/user-attachments/assets/e85b6015-19fc-4ba5-8a49-19f0fe98c8b4)
+
+![image](https://github.com/user-attachments/assets/b7f22768-c553-41ab-9912-7344b51c0ca4)
+
+![image](https://github.com/user-attachments/assets/497d3c70-f637-4eaa-b6e0-b9701afa2260)
+
+Commands for placement
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk place
+```
+
+![image](https://github.com/user-attachments/assets/ad86c859-cd5c-4055-8ccc-ef00b25da3c3)
+
+![image](https://github.com/user-attachments/assets/a055f90d-3309-4dc0-afab-93ff393a4aa4)
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
+```
+
+![image](https://github.com/user-attachments/assets/6db25ae7-40f1-4434-a0f3-03c229756d7e)
+
+![image](https://github.com/user-attachments/assets/a6473ffd-6415-49b2-b35b-f34a1861a04f)
+
+Heatmap:
+
+![image](https://github.com/user-attachments/assets/849f7e89-9f69-405d-9460-4bc77d8e92ca)
+
+![image](https://github.com/user-attachments/assets/59deb8a9-1c8d-4c5c-927c-9236ca59c11e)
+
+![image](https://github.com/user-attachments/assets/6829a0c4-275a-48bf-b38f-619f3776e51a)
+
+Commands for Clock Tree Synthesis
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk cts
+```
+
+![image](https://github.com/user-attachments/assets/5f939565-2977-4a71-92a3-11a847bd4277)
+
+![image](https://github.com/user-attachments/assets/e0456353-507d-443c-994f-8472915bdcde)
+
+```
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
+```
+
+![image](https://github.com/user-attachments/assets/588990f1-e8d2-49be-aa87-b186d8019f14)
+
+![image](https://github.com/user-attachments/assets/a61144a6-06f2-4ef1-937c-f081a7f58a7d)
+
+![image](https://github.com/user-attachments/assets/6552488d-da56-44dc-94f4-376bd43cf34b)
+
 
 </details>
 
